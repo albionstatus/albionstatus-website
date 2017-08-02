@@ -51,3 +51,5 @@ fabric.properties
 public/app.css
 public/app.js
 public/img
+mix-manifest.json
+public/fonts
