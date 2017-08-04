@@ -1,23 +1,13 @@
 <template>
     <div class="col-md-8 col-md-offset-2">
-        <div>
-            <span class="fa-stack fa-5x">
-                <i class="fa fa-fw fa-circle fa-stack-2x"></i>
-                <i class="fa fa-fw fa-thumbs-o-down text-danger fa-stack-1x"></i>
+            <span id="server-status">
+                <i id="server-status-background"></i>
+                <transition name="fade" mode="out-in">
+                    <i :class="statusClasses" id="server-status-icon"
+                       :key="statusClasses"></i>
+                </transition>
+
             </span>
-        </div>
-        <div>
-            <span class="fa-stack fa-5x">
-                <i class="fa fa-fw fa-circle fa-stack-2x"></i>
-                <i class="fa fa-fw fa-thumbs-o-up text-success fa-stack-1x"></i>
-            </span>
-        </div>
-        <div>
-            <span class="fa-stack fa-5x">
-                <i class="fa fa-fw fa-circle fa-stack-2x"></i>
-                <i class="fa fa-fw fa-hand-lizard-o text-warning fa-stack-1x"></i>
-            </span>
-        </div>
     </div>
 </template>
 
@@ -28,6 +18,16 @@
                 status: null,
             };
         },
-        methods: {}
+        computed: {
+            statusClasses() {
+                if (this.status === "online") {
+                    return 'fa-thumbs-o-up text-success';
+                } else if (this.status === "offline") {
+                    return 'fa-thumbs-o-down text-danger';
+                }
+                return 'fa-hand-lizard-o text-warning';
+            }
+        },
+        methods: {},
     }
 </script>
