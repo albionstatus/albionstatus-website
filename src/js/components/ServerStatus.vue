@@ -75,7 +75,7 @@
 
         mounted() {
             this.getStatus();
-            setTimeout(() => this.getStatus(), 30 * 1000);
+            setInterval(() => this.getStatus(), 30 * 1000);
         }
     }
 </script>
