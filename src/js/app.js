@@ -1,18 +1,21 @@
-import axios from "axios";
-//import VueAxios from "vue-axios";
 import Vue from "vue";
+import axios from "axios";
+import VueAxios from "vue-axios";
+import VueMoment from "vue-moment";
+import moment from "moment-timezone";
 //Vue-Strap
 //import {alert} from "vue-strap";
 //Own components
 import ServerStatus from "./components/ServerStatus.vue"
 
 require('./bootstrap');
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-//Vue.use(VueAxios, axios);
+
+
+Vue.use(VueAxios, axios);
+Vue.use(VueMoment, {
+    moment
+});
+
 new Vue({
     components: {
         ServerStatus
