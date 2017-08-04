@@ -3,6 +3,23 @@
   display: inline;
 }
 
-.text-small {
-  font-size: xx-small;
+.text-underline {
+  text-decoration: underline;
+}
+
+.no-link {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: #737373;
+    text-decoration: none;
+  }
+}
+
+.twitter-icon {
+  color: #1da1f2;
+  &:hover {
+    color: lighten(#1da1f2, 10%);
+  }
 }

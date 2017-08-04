@@ -8,15 +8,16 @@
                        :key="statusClasses"></i>
                 </transition>
             </span>
-        <p class="text-muted">The servers are
+        <p class="text-muted h1">The servers are
             <transition name="fade" mode="out-in">
-                <span :key="statusClasses" :class="statusClasses">
+                <span :key="statusClasses" class="text-underline"
+                      :class="statusClasses">
                     {{status}}
                 </span>
             </transition>
         </p>
         <transition name="fade" mode="out-in">
-            <p class="text-muted text-small"
+            <p class="text-muted"
                v-if="lastChecked !== null">
                 Last checked: {{ lastChecked | moment("HH:mm:ss") }}</p>
         </transition>
