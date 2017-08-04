@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 See deployment for notes on how to deploy the project on a live system.
 
 Be sure to look into the repositories of the [microservice](https://github.com/manniL/albionstatus-microservice)
-and the [scraper and twitter bot]() too. It is meant to work altogether.
+and the [scraper and twitter bot](https://github.com/manniL/albionstatus-scraper-bot/) too. It is meant to work altogether.
 
 ### Prerequisites
 
