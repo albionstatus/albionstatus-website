@@ -5,7 +5,12 @@
 
 .twitter-bot-row {
   @extend .col-md-8, .col-md-offset-2, .text-center;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
+}
+
+.github-row {
+  @extend .col-md-8, .col-md-offset-2, .text-center;
+  margin-bottom: 10px;
 }
 
 //Text helper

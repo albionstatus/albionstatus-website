@@ -18,6 +18,17 @@ const faq = [
         answer: "You can tweet our Twitter Bot or write us a mail at <a" +
         " href='mailto:hello@albionstatus.com'>hello@albionstatus.com</a>"
     },
+    {
+        question: "Do you make money with this project?",
+        answer: "Not a cent!",
+    },
+    {
+        question: "Can I see your code? What's your tech stack?",
+        answer: "Good questions! Check out our <a" +
+        " href='https://github.com/manniL/albionstatus-website/'" +
+        " target='_blank'>GitHub" +
+        " repository for all information!</a>",
+    },
 
 ];
 
