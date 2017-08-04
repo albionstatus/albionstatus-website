@@ -8,12 +8,6 @@
   margin-bottom: 50px;
 }
 
-.row-valign {
-  @extend .row;
-  display: flex;
-  align-items: center;
-}
-
 //Text helper
 .text-underline {
   text-decoration: underline;
