@@ -1,13 +1,11 @@
 .footer {
   background-color: #f9f9f9;
   font-size: $font-size-small;
-  margin: auto 0;
-  padding-top: 10px;
   border-top: 1px solid #A0EA6E;
 }
 
 #footer-info {
-  @extend .col-md-4, .col-md-offset-4, .text-center;
+  @extend .col-md-4, .text-center;
   padding: 10px 0;
   line-height: $line-height-large*1.3;
 }
