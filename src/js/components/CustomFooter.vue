@@ -22,7 +22,7 @@
                     &copy;
                     2016-{{(new Date()).getFullYear().toString().substr(-2)}} -
                     All rights reserved.<br>
-                    Albion Online is a trademark of Sandbox Interactive GmbH.
+                    Albion Online is a registered trademark of Sandbox Interactive GmbH in Germany, and/or other countries.
                 </div>
             </div>
         </div>
