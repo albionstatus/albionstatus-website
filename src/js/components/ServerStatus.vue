@@ -114,7 +114,6 @@
     },
 
     mounted () {
-      NotificationService.authorize()
       this.getStatus()
       setInterval(() => this.getStatus(), 30 * 1000)
     }
