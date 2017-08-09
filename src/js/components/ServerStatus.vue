@@ -17,6 +17,10 @@
             </transition>
         </p>
         <transition name="fade" mode="out-in">
+            <p class="text-muted h4"
+               v-if="showReason">Message: {{message}}</p>
+        </transition>
+        <transition name="fade" mode="out-in">
             <p class="text-muted"
                v-if="lastChecked !== null">
                 Last checked: {{ lastChecked | moment("HH:mm:ss") }}</p>
@@ -32,6 +36,7 @@
             return {
                 status: "???",
                 lastChecked: null,
+                message: "",
             };
         },
         computed: {
@@ -50,6 +55,9 @@
                     return 'text-danger';
                 }
                 return 'text-warning';
+            },
+            showReason() {
+                return this.status !== "online"
             }
         },
         methods: {
@@ -65,6 +73,7 @@
                 let newestData = data[0];
                 this.status = newestData.current_status;
                 this.lastChecked = moment(newestData.created_at);
+                this.message = newestData.message;
             }
         },
 
