@@ -18,7 +18,7 @@
         </p>
         <transition name="fade" mode="out-in">
             <p class="text-muted h4" :key="message"
-               v-if="showReason">Message: {{message}}</p>
+               v-if="showMessage">Message: {{message}}</p>
         </transition>
         <transition name="fade" mode="out-in">
             <p class="text-muted"
@@ -31,6 +31,7 @@
 <script>
     import Vue from "vue"
     import moment from "moment-timezone"
+
     const NotificationService = require('../shared/notification.service');
 
     /*
@@ -50,8 +51,18 @@
                 status: "???",
                 lastChecked: null,
                 message: "",
-                lastStatus: null,
+                firstTimeChanged: false,
             };
+        },
+        watch: {
+            status: function () {
+                if (!this.firstTimeChanged) {
+                    //Ignore change from "???" to the real status
+                    this.firstTimeChanged = true;
+                    return;
+                }
+                this.displayServerStatusNotification();
+            },
         },
         computed: {
             statusIconClasses() {
@@ -70,7 +81,7 @@
                 }
                 return 'text-warning';
             },
-            showReason() {
+            showMessage() {
                 return this.status !== "online" && this.status !== "???"
             }
         },
@@ -87,28 +98,25 @@
                 const newestData = data[0];
                 // Track last status so we know when to inform the user
                 // of a status change.
-                this.lastStatus = this.status;
                 this.status = newestData.current_status;
                 this.lastChecked = moment(newestData.created_at);
                 this.message = newestData.message;
-                this.displayServerStatusNotification();
             },
             displayServerStatusNotification() {
-                if (NotificationService.isSupported)
-                  if (this.status !== this.lastStatus) {
+                if (NotificationService.isSupported) {
                     NotificationService.show(SERVER_STATUS_NOTIFICATION_TITLE, {
-                      body: `${SERVER_STATUS_NOTIFICATION_BODY_PREFIX} ${this.status}!`,
-                      tag: SERVER_STATUS_NOTIFICATION_TAG,
-                      closeAfter: SERVER_STATUS_NOTIFICATION_TIMEOUT,
-                      icon: SERVER_STATUS_NOTIFICATION_ICON
+                        body: `${SERVER_STATUS_NOTIFICATION_BODY_PREFIX} ${this.status}!`,
+                        tag: SERVER_STATUS_NOTIFICATION_TAG,
+                        closeAfter: SERVER_STATUS_NOTIFICATION_TIMEOUT,
+                        icon: SERVER_STATUS_NOTIFICATION_ICON
                     });
-                  }
+                }
             }
         },
 
         mounted() {
+            NotificationService.authorize();
             this.getStatus();
-            this.requestDesktopNotificationPermissions();
             setInterval(() => this.getStatus(), 30 * 1000);
         }
     }
