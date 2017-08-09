@@ -29,7 +29,20 @@
 </template>
 
 <script>
+    import Vue from "vue"
     import moment from "moment-timezone"
+    const NotificationService = require('../shared/notification.service');
+
+    /*
+     * Constants
+     */
+
+    const SERVER_STATUS_NOTIFICATION_TITLE = "Albion Server Status";
+    const SERVER_STATUS_NOTIFICATION_BODY_PREFIX = "The server is now";
+    const SERVER_STATUS_NOTIFICATION_TAG = "server-status-notification";
+    const SERVER_STATUS_NOTIFICATION_TIMEOUT = 10000;
+    const SERVER_STATUS_NOTIFICATION_ICON = "";
+
 
     export default {
         data() {
@@ -37,18 +50,8 @@
                 status: "???",
                 lastChecked: null,
                 message: "",
-                firstTimeChanged: false,
+                lastStatus: null,
             };
-        },
-        watch: {
-            status: function () {
-                if (!this.firstTimeChanged) {
-                    //Ignore change from "???" to the real status
-                    this.firstTimeChanged = true;
-                    return;
-                }
-                this.sendNotification()
-            },
         },
         computed: {
             statusIconClasses() {
@@ -81,30 +84,25 @@
                 if (typeof data === "undefined" || data.length === 0) {
                     return
                 }
-                let newestData = data[0];
+                const newestData = data[0];
+                // Track last status so we know when to inform the user
+                // of a status change.
+                this.lastStatus = this.status;
                 this.status = newestData.current_status;
                 this.lastChecked = moment(newestData.created_at);
                 this.message = newestData.message;
+                this.displayServerStatusNotification();
             },
-            requestDesktopNotificationPermissions() {
-                if (!("Notification" in window) || Notification.permission === "granted") {
-                    return;
-                }
-                Notification.requestPermission();
-            },
-            sendNotification() {
-                if (Notification.permission !== "granted") {
-                    Notification.requestPermission();
-                }
-                if (Notification.permission === "granted") {
-                    new Notification(
-                        `Albion Server is now ${this.status}`,
-                        {
-                            body: `The server status has changed! Now the server ` +
-                            `is ${this.status}`
-                        }
-                    );
-                }
+            displayServerStatusNotification() {
+                if (NotificationService.isSupported)
+                  if (this.status !== this.lastStatus) {
+                    NotificationService.show(SERVER_STATUS_NOTIFICATION_TITLE, {
+                      body: `${SERVER_STATUS_NOTIFICATION_BODY_PREFIX} ${this.status}!`,
+                      tag: SERVER_STATUS_NOTIFICATION_TAG,
+                      closeAfter: SERVER_STATUS_NOTIFICATION_TIMEOUT,
+                      icon: SERVER_STATUS_NOTIFICATION_ICON
+                    });
+                  }
             }
         },
 
