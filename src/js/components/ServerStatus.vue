@@ -37,7 +37,18 @@
                 status: "???",
                 lastChecked: null,
                 message: "",
+                firstTimeChanged: false,
             };
+        },
+        watch: {
+            status: function () {
+                if (!this.firstTimeChanged) {
+                    //Ignore change from "???" to the real status
+                    this.firstTimeChanged = true;
+                    return;
+                }
+                this.sendNotification()
+            },
         },
         computed: {
             statusIconClasses() {
@@ -74,11 +85,32 @@
                 this.status = newestData.current_status;
                 this.lastChecked = moment(newestData.created_at);
                 this.message = newestData.message;
+            },
+            requestDesktopNotificationPermissions() {
+                if (!("Notification" in window) || Notification.permission === "granted") {
+                    return;
+                }
+                Notification.requestPermission();
+            },
+            sendNotification() {
+                if (Notification.permission !== "granted") {
+                    Notification.requestPermission();
+                }
+                if (Notification.permission === "granted") {
+                    new Notification(
+                        `Albion Server is now ${this.status}`,
+                        {
+                            body: `The server status has changed! Now the server ` +
+                            `is ${this.status}`
+                        }
+                    );
+                }
             }
         },
 
         mounted() {
             this.getStatus();
+            this.requestDesktopNotificationPermissions();
             setInterval(() => this.getStatus(), 30 * 1000);
         }
     }
