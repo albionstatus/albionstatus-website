@@ -17,7 +17,7 @@
             </transition>
         </p>
         <transition name="fade" mode="out-in">
-            <p class="text-muted h4"
+            <p class="text-muted h4" :key="message"
                v-if="showReason">Message: {{message}}</p>
         </transition>
         <transition name="fade" mode="out-in">
@@ -57,7 +57,7 @@
                 return 'text-warning';
             },
             showReason() {
-                return this.status !== "online"
+                return this.status !== "online" && this.status !== "???"
             }
         },
         methods: {
