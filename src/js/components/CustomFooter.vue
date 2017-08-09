@@ -29,13 +29,13 @@
     </footer>
 </template>
 <script>
-    import ImprintModal from "./ImprintModal.vue"
-    import FaqModal from "./FaqModal.vue"
+  import ImprintModal from './ImprintModal.vue'
+  import FaqModal from './FaqModal.vue'
 
-    export default {
-        components: {
-            ImprintModal,
-            FaqModal,
-        },
-    }
+  export default {
+    components: {
+      ImprintModal,
+      FaqModal,
+    },
+  }
 </script>

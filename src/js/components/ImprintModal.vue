@@ -80,16 +80,16 @@
     </div>
 </template>
 <script>
-    import {modal} from "vue-strap";
+  import { modal } from 'vue-strap'
 
-    export default {
-        components: {
-            modal,
-        },
-        data() {
-            return {
-                show: false,
-            }
-        },
-    }
+  export default {
+    components: {
+      modal,
+    },
+    data () {
+      return {
+        show: false,
+      }
+    },
+  }
 </script>

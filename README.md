@@ -48,6 +48,11 @@ management
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, take a look in [our repository](https://github.com/manniL/albionstatus-website).
 
+## Contribution
+
+Contributions are welcome at any time! Just make sure that you follow the [JS Standard Style](https://standardjs.com/rules.html) and common good practices (like DRY) when contributing.
+If you see parts of the code that don't follow those rules, you are free to submit a PR to fix that!
+
 ## Authors
 
 * **Alexander Lichter** - *Main work on the project* - [Website](http://developmint.de) - [BitBucket](https://bitbucket.org/manniL/) - [Github](https://github.com/manniL) - [StackOverflow](http://stackoverflow.com/users/3975480/mannil)

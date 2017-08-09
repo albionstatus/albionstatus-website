@@ -25,18 +25,18 @@
     </div>
 </template>
 <script>
-    import {modal} from "vue-strap";
-    import faq from "../faq";
+  import { modal } from 'vue-strap'
+  import faq from '../faq'
 
-    export default {
-        components: {
-            modal,
-        },
-        data() {
-            return {
-                show: false,
-                content: faq,
-            }
-        },
-    }
+  export default {
+    components: {
+      modal,
+    },
+    data () {
+      return {
+        show: false,
+        content: faq,
+      }
+    },
+  }
 </script>
