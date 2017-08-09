@@ -54,13 +54,7 @@
         },
         methods: {
             getStatus() {
-                const dateString =
-                    moment()
-                        .tz("Europe/Berlin")
-                        .subtract(5, "minutes")
-                        .format("YYYY-MM-DD HH:mm:");
-                this.axios.get("https://api.albionstatus.com/?timestamp=" +
-                    dateString + "00")
+                this.axios.get("https://api.albionstatus.com/current/")
                     .then(({data}) => this.setStatus(data))
                     .catch((err) => console.log(err));
             },
