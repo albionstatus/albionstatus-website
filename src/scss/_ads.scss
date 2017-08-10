@@ -1,15 +1,9 @@
-.ad-line {
+.ad-row {
   @extend .col-md-6, .col-md-offset-3, .text-center;
+}
 
+.ad-line {
   height: 90px;
   margin-top: 20px;
   margin-bottom: 20px;
-  @media (max-width: $screen-lg) {
-    width: 728px;
-  }
-  @media (max-width: $screen-sm) {
-    width: 468px;
-    height: 60px;
-  }
-
 }
