@@ -9,8 +9,6 @@ import CustomFooter from './components/CustomFooter.vue'
 
 const NotificationService = require('./shared/notification.service')
 
-require('./bootstrap')
-
 Vue.use(VueAxios, axios)
 Vue.use(VueMoment, {
   moment
