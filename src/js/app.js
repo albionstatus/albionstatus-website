@@ -3,7 +3,6 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueMoment from 'vue-moment'
 import moment from 'moment-timezone'
-import VueAnalytics from 'vue-analytics'
 import VueAdsense from 'vue-adsense'
 
 //Own components
@@ -16,10 +15,6 @@ Vue.use(VueAxios, axios)
 Vue.use(VueMoment, {
   moment
 })
-Vue.use(VueAnalytics, {
-  id: 'UA-62902757-9'
-})
-
 Vue.component('adsense', VueAdsense)
 
 new Vue({
