@@ -86,7 +86,7 @@
     },
     methods: {
       getStatus () {
-        this.axios.get('https://api.albionstatus.com/current/')
+        this.$http.get('https://api.albionstatus.com/current/')
           .then(({data}) => this.setStatus(data))
           .catch((err) => console.log(err))
       },

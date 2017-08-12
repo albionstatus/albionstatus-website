@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import axios from 'axios'
-import VueAxios from 'vue-axios'
 import VueMoment from 'vue-moment'
 import moment from 'moment-timezone'
 
@@ -10,7 +9,9 @@ import CustomFooter from './components/CustomFooter.vue'
 
 const NotificationService = require('./shared/notification.service')
 
-Vue.use(VueAxios, axios)
+//Override $http prototype with axios instance
+Vue.prototype.$http = axios.create()
+
 Vue.use(VueMoment, {
   moment
 })
