@@ -54,7 +54,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         path.join(__dirname, '../*.html')
       ]),
       styleExtensions: ['.css'],
-      whitelistPatterns: [/^gm.*/, /vue.*/],
+      whitelistPatterns: [/^fade.*/],
       extractors: [
         {
           extractor: class {static extract (content) { return content.match(/[A-z0-9-:\/]+/g) }},
