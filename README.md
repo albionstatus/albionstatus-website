@@ -13,7 +13,7 @@ and the [scraper and twitter bot](https://github.com/manniL/albionstatus-scraper
 
 ### Prerequisites
 
-To install the microservice on your machine, you'll need:
+To setup the website on your machine, you'll need:
 
 * A web server (I've tested it with Apache2)
 * An API that delivers you the server status
@@ -42,7 +42,6 @@ None known by now
 * [NodeJS and NPM](https://nodejs.org/) - Backend javascript and dependency
 management
 * [VueJS](http://vuejs.org/) - Lightweight but powerful Javascript framework. It just works!
-* [Laravel Mix](https://github.com/JeffreyWay/laravel-mix) - Because I hate it to write webpack configs
 
 ## Versioning
 
