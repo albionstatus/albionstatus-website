@@ -13,7 +13,7 @@ and the [scraper and twitter bot](https://github.com/manniL/albionstatus-scraper
 
 ### Prerequisites
 
-To install the microservice on your machine, you'll need:
+To setup the website on your machine, you'll need:
 
 * A web server (I've tested it with Apache2)
 * An API that delivers you the server status
@@ -42,7 +42,6 @@ None known by now
 * [NodeJS and NPM](https://nodejs.org/) - Backend javascript and dependency
 management
 * [VueJS](http://vuejs.org/) - Lightweight but powerful Javascript framework. It just works!
-* [Laravel Mix](https://github.com/JeffreyWay/laravel-mix) - Because I hate it to write webpack configs
 
 ## Versioning
 
@@ -50,12 +49,12 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Contribution
 
-Contributions are welcome at any time! Just make sure that you follow the [JS Standard Style](https://standardjs.com/rules.html) and common good practices (like DRY) when contributing.
-If you see parts of the code that don't follow those rules, you are free to submit a PR to fix that!
+Contributions are welcome at any time! Just make sure that you follow the [JS Standard Style](https://standardjs.com/rules.html) and common good practices when contributing.
+If you see parts of the code that don't follow those rules, feel free to submit a PR to fix that!
 
 ## Authors
 
-* **Alexander Lichter** - *Main work on the project* - [Website](http://developmint.de) - [BitBucket](https://bitbucket.org/manniL/) - [Github](https://github.com/manniL) - [StackOverflow](http://stackoverflow.com/users/3975480/mannil)
+* **Alexander Lichter** - *Main work on the project* - [Website](https://lichter.io) - [BitBucket](https://bitbucket.org/manniL/) - [Github](https://github.com/manniL) - [StackOverflow](http://stackoverflow.com/users/3975480/mannil)
 
 See also the [list of contributors](https://github.com/manniL/albionstatus-website/contributors) who participated in this project.
 
