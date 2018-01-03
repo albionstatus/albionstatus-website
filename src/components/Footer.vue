@@ -17,9 +17,15 @@
         © 2016-{{currentYearNumbers}} - All rights reserved. Albion Online is a registered
         trademark of Sandbox Interactive GmbH in Germany, and/or other countries.
       </p>
-      <router-link to="legal" class="no-underline text-grey-darkest hover:text-black my-2 md:my-0">
-        Legal notice <i class="fa fa-fw fa-legal"></i>
-      </router-link>
+      <div>
+        <router-link to="privacy" class="no-underline text-grey-darkest hover:text-black my-2 md:my-0">
+          Privacy
+        </router-link>
+        &bull;
+        <router-link to="legal" class="no-underline text-grey-darkest hover:text-black my-2 md:my-0">
+          Legal notice <i class="fa fa-fw fa-legal"></i>
+        </router-link>
+      </div>
     </nav>
   </div>
 </template>

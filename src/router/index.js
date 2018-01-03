@@ -23,6 +23,14 @@ export default new Router({
       }
     },
     {
+      path: '/privacy',
+      name: 'privacy',
+      component: () => import('../pages/Privacy'),
+      meta: {
+        title: 'AlbionStatus - Privacy'
+      }
+    },
+    {
       path: '/faq',
       name: 'faq',
       component: () => import('../pages/Faq'),
