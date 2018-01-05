@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-wrap flex-col w-full text-center mx-auto mt-2">
+    <div class="flex flex-wrap flex-col w-full text-center mx-auto mt-2 mb-8">
       <span class="mt-2 mb-1 text-sm text-grey-dark">Advertisement</span>
       <ad ad-class="w-full mx-auto mb-2" ad-client="ca-pub-4749840658812364" ad-slot="6721996033"/>
     </div>
@@ -58,6 +58,10 @@
         If you are interested in contributing towards the project, just do it 😊. Take an issue (or open one) to
         signal that you want to work on it or submit a PR if you are on it!
       </p>
+    </div>
+    <div class="flex flex-wrap flex-col w-full text-center mx-auto mb-2 mt-8">
+      <ad ad-class="w-full mx-auto mb-2" ad-client="ca-pub-4749840658812364" ad-slot="6721996033"/>
+      <span class="mt-2 mb-1 text-sm text-grey-dark">Advertisement</span>
     </div>
   </div>
 </template>
