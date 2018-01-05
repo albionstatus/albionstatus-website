@@ -7,23 +7,24 @@
       </a>
     </div>
     <nav
-      class="w-full flex flex-col md:flex-row items-center justify-between flex-wrap border-t border-green-light bg-grey-lightest p-6">
-      <router-link to="faq" class="no-underline text-grey-darkest hover:text-black my-2 md:my-0">
-        <i class="fa fa-fw fa-info"></i> FAQ
-      </router-link>
-      <p class="text-sm my-2 md:my-0">
+      class="w-full flex flex-col lg:flex-row items-center justify-between flex-wrap border-t border-green-light bg-grey-lightest p-6">
+      <p class="text-sm my-2 lg:my-0">
         Powered by <a class="no-underline text-developmint hover:text-developmint-light" href="https://developmint.de"
                       rel="noopener" target="_blank">Developmint</a>
         © 2016-{{currentYearNumbers}} - All rights reserved. Albion Online is a registered
         trademark of Sandbox Interactive GmbH in Germany, and/or other countries.
       </p>
       <div>
-        <router-link to="privacy" class="no-underline text-grey-darkest hover:text-black my-2 md:my-0">
-          Privacy
+        <router-link to="faq" class="no-underline text-grey-darkest hover:text-black my-2 lg:my-0">
+          <span class="hidden lg:visible"><i class="fa fa-fw fa-info"></i></span> FAQ
         </router-link>
         &bull;
-        <router-link to="legal" class="no-underline text-grey-darkest hover:text-black my-2 md:my-0">
-          Legal notice <i class="fa fa-fw fa-legal"></i>
+        <router-link to="privacy" class="no-underline text-grey-darkest hover:text-black my-2 lg:my-0">
+          <span class="hidden lg:visible"><i class="fa fa-fw fa-low-vision"></i></span> Privacy
+        </router-link>
+        &bull;
+        <router-link to="legal" class="no-underline text-grey-darkest hover:text-black my-2 lg:my-0">
+          Legal notice <span class="hidden lg:visible"><i class="fa fa-fw fa-legal"></i></span>
         </router-link>
       </div>
     </nav>
