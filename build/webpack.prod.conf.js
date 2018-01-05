@@ -131,7 +131,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       runtimeCaching: [
         {
           urlPattern: /^https:\/\/api\.albionstatus\.com\//,
-          handler: 'cacheFirst'
+          handler: 'networkFirst'
         }
       ]
     })
