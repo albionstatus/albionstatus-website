@@ -127,7 +127,13 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: 'service-worker.js',
       staticFileGlobs: ['dist/**/*.{js,html,css,eot,woff,woff2,ttf,svg}'],
       minify: true,
-      stripPrefix: 'dist/'
+      stripPrefix: 'dist/',
+      runtimeCaching: [
+        {
+          urlPattern: /^https:\/\/api\.albionstatus\.com\//,
+          handler: 'cacheFirst'
+        }
+      ]
     })
   ]
 })
