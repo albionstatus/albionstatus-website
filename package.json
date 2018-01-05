@@ -1,6 +1,6 @@
 {
   "name": "albionstatus-website",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "The frontend of https://albionstatus.com",
   "author": "Alexander Lichter <alichter@developmint.de>",
   "private": true,
