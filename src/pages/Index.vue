@@ -6,6 +6,11 @@
     </div>
     <div class="container px-4 pt-0 pb-6 mx-auto">
       <server-status/>
+      <div class="text-center my-4 py-2">
+        <router-link to="charts" class="underline text-2xl text-black">
+          Uptime charts have arrived!
+        </router-link>
+      </div>
       <h1 class="text-center mt-8 pt-4 text-grey-darkest mb-2">AlbionStatus</h1>
       <p class="text-lg leading-loose font-serif text-grey-darker">
         AlbionStatus is your <span class="text-black">reliable</span> Albion Online server status tracker! Operating

@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "babel-polyfill": "^6.26.0",
+    "chart.js": "^2.7.1",
     "font-awesome": "^4.7.0",
     "glob-all": "^3.1.0",
     "moment-timezone": "^0.5.14",
@@ -24,6 +25,7 @@
     "tailwindcss": "^0.4.0",
     "vue": "^2.5.2",
     "vue-analytics": "^5.8.0",
+    "vue-chartjs": "^3.0.2",
     "vue-moment": "^3.1.0",
     "vue-router": "^3.0.1"
   },
@@ -41,7 +43,7 @@
     "copy-webpack-plugin": "^4.1.1",
     "css-loader": "^0.28.8",
     "cssnano": "^3.10.0",
-    "eslint": "^4.9.0",
+    "eslint": "^4.15.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.9.0",
@@ -50,7 +52,7 @@
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "eslint-plugin-vue": "^4.0.1",
+    "eslint-plugin-vue": "^4.1.0",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.0",
@@ -72,7 +74,7 @@
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.7.1",
     "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-middleware": "^2.0.3",
+    "webpack-dev-middleware": "^2.0.4",
     "webpack-hot-middleware": "^2.19.1",
     "webpack-merge": "^4.1.0"
   },

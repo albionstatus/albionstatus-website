@@ -23,6 +23,14 @@ export default new Router({
       }
     },
     {
+      path: '/charts',
+      name: 'charts',
+      component: () => import('../pages/Charts'),
+      meta: {
+        title: 'AlbionStatus - Uptime Charts'
+      }
+    },
+    {
       path: '/privacy',
       name: 'privacy',
       component: () => import('../pages/Privacy'),
