@@ -1,13 +1,17 @@
-.DS_Store
-node_modules/
-/dist/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+node_modules
+*.log
+.nuxt
+dist
 
-# Editor directories and files
+# Intellij idea
 .idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+*iml
+
+# VSCode
+.vscode
+
+# Generated files
+static/manifest*.json
+static/sw.js
+static/workbox-sw*.js
+webpack.config.js

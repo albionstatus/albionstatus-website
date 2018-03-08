@@ -38,10 +38,10 @@ router.beforeEach((to, from, next) => {
 new Vue({
   el: '#app',
   router,
-  render: h => h(App),
   mounted () {
     if (NotificationService.isSupported) {
       NotificationService.authorize()
     }
-  }
+  },
+  render: h => h(App)
 })

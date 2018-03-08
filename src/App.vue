@@ -1,5 +1,7 @@
 <template>
-  <div id="app" class="font-serif bg-diagonal">
+  <div
+    id="app"
+    class="font-serif bg-diagonal">
     <app-header/>
     <main class="py-2">
       <router-view/>
@@ -9,13 +11,13 @@
 </template>
 
 <script>
-  import AppHeader from './components/Header'
-  import AppFooter from './components/Footer'
+import AppHeader from './components/Header'
+import AppFooter from './components/Footer'
 
-  export default {
-    name: 'app',
-    components: {AppHeader, AppFooter},
-  }
+export default {
+  name: 'App',
+  components: {AppHeader, AppFooter}
+}
 </script>
 
 <style lang="scss">

@@ -15,7 +15,6 @@ and the [scraper and twitter bot](https://github.com/manniL/albionstatus-scraper
 
 To setup the website on your machine, you'll need:
 
-* A web server (I've tested it with Apache2)
 * An API that delivers you the server status
 * [NodeJS and NPM](https://nodejs.org/)
 
@@ -25,13 +24,12 @@ Okay, you got these? Great, let's continue!
 
 1. Pull the application and switch to the correct branch (mostly `develop`, or `master` if you want to deploy)
 2. Get all dependencies by using `npm install`
-3. Process the assets with `npm run production` or `npm run dev`, depending on what you want to do.
-4. Copy the "public" folder to your web server root.
+3. Build the nuxt app with `npm run build && npm run start` or `npm run dev`, depending on what you want to do.
 
 
 ## Deployment
 
-Deployment works similar to installation. Just go for `master` instead of `develop` and use `npm run production`
+Deployment works similar to installation. Just go for `master` instead of `develop` and use `npm run run build && npm run start`
 
 ## Possible errors and there solutions
 
@@ -39,9 +37,8 @@ None known by now
 
 ## Built With
 
-* [NodeJS and NPM](https://nodejs.org/) - Backend javascript and dependency
-management
-* [VueJS](http://vuejs.org/) - Lightweight but powerful Javascript framework. It just works!
+* [NodeJS and NPM](https://nodejs.org/) - Backend javascript and dependency management
+* [NuxtJS](http://nuxtjs.org/) - Great VueJS framework!
 
 ## Versioning
 
