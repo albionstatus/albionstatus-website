@@ -15,14 +15,6 @@ export default new Router({
       }
     },
     {
-      path: '/legal',
-      name: 'legal',
-      component: () => import('../pages/LegalNotice'),
-      meta: {
-        title: 'AlbionStatus - Legal notice'
-      }
-    },
-    {
       path: '/charts',
       name: 'charts',
       component: () => import('../pages/Charts'),
@@ -31,19 +23,27 @@ export default new Router({
       }
     },
     {
-      path: '/privacy',
-      name: 'privacy',
-      component: () => import('../pages/Privacy'),
-      meta: {
-        title: 'AlbionStatus - Privacy'
-      }
-    },
-    {
       path: '/faq',
       name: 'faq',
       component: () => import('../pages/Faq'),
       meta: {
         title: 'AlbionStatus - FAQ'
+      }
+    },
+    {
+      path: '/legal',
+      name: 'legal',
+      component: () => import('../pages/LegalNotice'),
+      meta: {
+        title: 'AlbionStatus - Legal notice'
+      }
+    },
+    {
+      path: '/privacy',
+      name: 'privacy',
+      component: () => import('../pages/Privacy'),
+      meta: {
+        title: 'AlbionStatus - Privacy'
       }
     },
     {

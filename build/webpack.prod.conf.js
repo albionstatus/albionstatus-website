@@ -1,6 +1,5 @@
 'use strict'
 
-const fs = require('fs')
 const glob = require('glob-all')
 const path = require('path')
 const utils = require('./utils')
