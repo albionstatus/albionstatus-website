@@ -35,7 +35,7 @@ export default {
       return this.data.reduce((acc, currentData) => {
         acc[Number(currentData.created_at.slice(11, 13)).valueOf()].push(currentData.current_status === 'online')
         return acc
-      }, Array.from({length: 24}, v => []))
+      }, Array.from({ length: 24 }, v => []))
         .map(h => ({
           percent: roundPrecision(h.filter(d => !d).length * 100 / h.length, 2),
           minutes: h.filter(d => !d).length
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     async fetchData () {
-      let {data} = await this.$axios.get(`?timestamp=${this.$moment(new Date()).set('hours', 0).set('minutes', 0).set('seconds', 0).subtract(1, 'days').format()}`)
+      let { data } = await this.$axios.get(`?timestamp=${this.$moment(new Date()).set('hours', 0).set('minutes', 0).set('seconds', 0).subtract(1, 'days').format()}`)
       this.data = data.reverse()
     },
     async rebuildChart () {
