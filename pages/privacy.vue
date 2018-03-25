@@ -76,8 +76,6 @@
     free-of-charge information about your stored data,
     and possibly entitlement to correction, blocking or deletion of such data.
     Inquiries can be directed to the following
-    e-mail addresses: (<a href="mailto:hello@albionstatus.com">
-      hello@albionstatus.com
-    </a> )
+    e-mail addresses: (<a href="mailto:hello@albionstatus.com">hello@albionstatus.com</a>)
   </section>
 </template>

@@ -4,7 +4,8 @@
     <p class="leading-loose mt-4">Looks like you took a wrong path!</p>
     <nuxt-link
       to="/"
-      class="text-grey-darkest my-4">Back</nuxt-link>
+      class="text-grey-darkest my-4">Back
+    </nuxt-link>
     <img src="https://thecatapi.com/api/images/get?format=src&type=gif">
   </section>
 </template>

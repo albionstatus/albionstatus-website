@@ -12,7 +12,7 @@ module.exports = {
       let position = false
 
       if (to.matched.length < 2 || to.matched.some((r) => r.components.default.options.scrollToTop)) {
-        position = {x: 0, y: 0}
+        position = { x: 0, y: 0 }
       }
 
       if (savedPosition) {
@@ -26,7 +26,7 @@ module.exports = {
           // or if the selector didn't match any element.
           if (to.hash && document.querySelector(to.hash)) {
             // scroll to anchor by returning the selector
-            position = {selector: to.hash}
+            position = { selector: to.hash }
           }
           resolve(position)
         })
@@ -77,7 +77,7 @@ module.exports = {
   ],
   plugins: [
     '~/plugins/vue-moment',
-    {src: '~/plugins/vue-tooltip', ssr: false}
+    { src: '~/plugins/vue-tooltip', ssr: false }
   ],
 
   /*
@@ -91,7 +91,7 @@ module.exports = {
   /*
    * Customize the progress bar color
   */
-  loading: {color: tailwindConfig.colors.developmint},
+  loading: { color: tailwindConfig.colors.developmint },
   loadingIndicator: {
     name: 'rectangle-bounce',
     color: 'white',

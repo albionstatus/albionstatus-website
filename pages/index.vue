@@ -81,7 +81,7 @@ import ServerStatus from '../components/ServerStatus'
 
 export default {
   name: 'Index',
-  components: {ServerStatus},
+  components: { ServerStatus },
   props: {
     creationDate: {
       required: false,
