@@ -114,7 +114,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['axios', 'moment-timezone'],
+    vendor: ['axios'],
     maxChunkSize: 300000,
     extractCSS: {
       allChunks: true
