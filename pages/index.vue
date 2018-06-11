@@ -63,10 +63,10 @@
       Oh, great question! There are several more features planned:
     </p>
     <ul class="text-lg leading-loose font-serif text-grey-darker">
-      <li>Uptime charts 📊</li>
-      <li>Server status widget 🔌</li>
+      <li>Uptime charts 📊 (partially done!)</li>
+      <li>Server status widget 🔌 (coming soon)</li>
       <li>CLI/Bot support 🤖</li>
-      <li>Push notifications on server status change 👈🏼</li>
+      <li><s>Push notifications on server status change 👈🏼</s> Done!</li>
       <li>More sources of truth for the server status ➕</li>
     </ul>
     <p class="text-lg leading-loose font-serif text-grey-darker">
