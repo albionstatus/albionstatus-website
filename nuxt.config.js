@@ -3,12 +3,15 @@ const path = require('path')
 const process = require('process')
 const glob = require('glob-all')
 const PurgeCssPlugin = require('purgecss-webpack-plugin')
+
+const analyticsUA = 'UA-62902757-9'
+
 module.exports = {
   /*
    * Scroll behavior
    */
   router: {
-    scrollBehavior (to, from, savedPosition) {
+    scrollBehavior: (to, from, savedPosition) => {
       let position = false
 
       if (to.matched.length < 2 || to.matched.some((r) => r.components.default.options.scrollToTop)) {
@@ -42,8 +45,10 @@ module.exports = {
     meta: [
       {
         'http-equiv': 'x-ua-compatible', content: 'ie=edge'
-      }
-    ]
+      },
+      { hid: 'og:site_name', name: 'og:site_name', content: 'RealmStatus' }
+    ],
+    noscript: [{ innerHTML: 'This website requires JavaScript.' }]
   },
   meta: {
     name: 'AlbionStatus - Albion Online server status',
@@ -67,11 +72,19 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     ['@nuxtjs/google-analytics', {
-      id: 'UA-62902757-9'
+      id: analyticsUA,
+      disabled: () => document.cookie.indexOf('ga_optout=true') !== -1,
+      debug: {
+        sendHitTask: process.env.NODE_ENV === 'production'
+      },
+      set: [
+        { field: 'anonymizeIp', value: true }
+      ]
     }],
     ['@nuxtjs/google-adsense', {
       id: 'ca-pub-4749840658812364',
-      analyticsUacct: 'UA-62902757-9'
+      analyticsUacct: analyticsUA
+
     }],
     '@nuxtjs/pwa'
   ],
@@ -114,11 +127,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['axios'],
-    maxChunkSize: 300000,
-    extractCSS: {
-      allChunks: true
-    },
+    extractCSS: true,
     postcss: [
       require('tailwindcss')('./tailwind.js'),
       require('autoprefixer')
@@ -146,6 +155,7 @@ module.exports = {
             ]),
             styleExtensions: ['.css'],
             whitelist: ['body', 'html', 'nuxt-progress'],
+            whitelistPatterns: [/fade/],
             extractors: [
               {
                 extractor: class {
