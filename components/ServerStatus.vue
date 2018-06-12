@@ -64,23 +64,19 @@ export default {
   computed: {
     statusIconClasses () {
       const lookup = {
-        online: 'check',
-        offline: 'times',
-        default: 'question'
+        online: 'fa-check',
+        offline: 'fa-times',
+        default: 'fa-question'
       }
-      const classSuffix = (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
-
-      return `fa-${classSuffix}`
+      return (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
     },
     statusClasses () {
       const lookup = {
-        online: 'green',
-        offline: 'red',
-        default: 'yellow'
+        online: 'text-green-dark',
+        offline: 'text-red-dark',
+        default: 'text-yellow-dark'
       }
-      const classSuffix = (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
-
-      return `text-${classSuffix}-dark`
+      return (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
     },
     showMessage () {
       return !['online', '???'].includes(this.status)
