@@ -18,7 +18,7 @@
           href="https://developmint.de"
           rel="noopener"
           target="_blank">Developmint</a>
-        © 2016-{{ currentYearNumbers }} - All rights reserved. Albion Online is a registered
+        © 2016-{{ $options.currentYearNumbers }} - All rights reserved. Albion Online is a registered
         trademark of Sandbox Interactive GmbH in Germany, and/or other countries.
       </p>
       <div>
@@ -45,16 +45,10 @@
 </template>
 
 <script>
+import jumpMixin from '@/shared/jumpMixin'
+
 export default {
-  computed: {
-    currentYearNumbers () {
-      return (new Date()).getFullYear().toString().substr(-2)
-    }
-  },
-  methods: {
-    jump () {
-      return this.$route.path === '/' ? this.$router.go(0) : this.$router.replace('/')
-    }
-  }
+  currentYearNumbers: (new Date()).getFullYear().toString().substr(-2),
+  mixins: [jumpMixin]
 }
 </script>
