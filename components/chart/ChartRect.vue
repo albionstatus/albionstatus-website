@@ -8,7 +8,7 @@
     y="0"/>
 </template>
 <script>
-import { colors } from '~/tailwind.js'
+import colors from '~/tailwind/colors.json'
 
 export default {
   props: {
