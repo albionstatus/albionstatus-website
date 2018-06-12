@@ -63,18 +63,24 @@ export default {
   },
   computed: {
     statusIconClasses () {
-      return this.status === 'online'
-        ? 'fa-check'
-        : this.status === 'offline'
-          ? 'fa-times'
-          : 'fa-question'
+      const lookup = {
+        online: 'check',
+        offline: 'times',
+        default: 'question'
+      }
+      const classSuffix = (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
+
+      return `fa-${classSuffix}`
     },
     statusClasses () {
-      return this.status === 'online'
-        ? 'text-green-dark'
-        : this.status === 'offline'
-          ? 'text-red-dark'
-          : 'text-yellow-dark'
+      const lookup = {
+        online: 'green',
+        offline: 'red',
+        default: 'yellow'
+      }
+      const classSuffix = (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
+
+      return `text-${classSuffix}-dark`
     },
     showMessage () {
       return !['online', '???'].includes(this.status)
@@ -93,6 +99,9 @@ export default {
   mounted () {
     this.getStatus()
     setInterval(this.getStatus, 30 * 1000)
+
+    // Ask for permission to send pushs
+    NotificationService.authorize()
   },
   methods: {
     async getStatus () {
@@ -100,7 +109,7 @@ export default {
         let data = await this.$axios.$get('/current/')
         this.setStatus(data)
       } catch (e) {
-        console.log(e)
+        console.error(e)
       }
     },
     setStatus (data) {

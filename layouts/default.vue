@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-diagonal">
+  <div class="bg-diagonal min-h-screen flex flex-col justify-between">
     <app-header/>
     <div class="flex flex-wrap flex-col w-full text-center mx-auto mt-2 mb-8">
       <span class="mt-2 mb-1 text-sm text-grey-dark">Advertisement</span>

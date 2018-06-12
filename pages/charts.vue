@@ -6,11 +6,9 @@
 </template>
 
 <script>
-import UptimeChart from '~/components/UptimeChart'
-
 export default {
   components: {
-    UptimeChart
+    UptimeChart: () => import('~/components/chart/UptimeChart')
   },
   head () {
     return {
