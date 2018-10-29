@@ -1,5 +1,7 @@
 # AlbionStatus website
 
+[![thanks](https://img.shields.io/badge/thanks-%E2%99%A5-ff69b4.svg)](https://thanks.lichter.io/)
+
 The frontend of https://albionstatus.com.
 
 ## Getting Started
