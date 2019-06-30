@@ -2,7 +2,7 @@
   "name": "albionstatus-website",
   "version": "3.0.0",
   "description": "The frontend of https://albionstatus.com",
-  "author": "Alexander Lichter <alichter@developmint.de>",
+  "author": "Alexander Lichter <npm@lichter.io>",
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=dev nuxt",
@@ -43,7 +43,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "yarn lint"
     }
   }
 }
