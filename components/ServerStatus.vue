@@ -1,43 +1,55 @@
 <template>
   <div class="text-center">
     <span class="fa-stack text-10xl md:text-25xl mb-4">
-      <i class="fa fa-stack-2x bg-status rounded-full h-inherit w-inherit"/>
+      <i class="fa fa-stack-2x bg-status rounded-full h-inherit w-inherit" />
       <transition
         name="fade"
-        mode="out-in">
+        mode="out-in"
+      >
         <i
-          :class="`${statusClasses} ${statusIconClasses}`"
           :key="statusClasses"
-          class="fa fa-fw fa-stack-1x"/>
+          :class="`${statusClasses} ${statusIconClasses}`"
+          class="fa fa-fw fa-stack-1x"
+        />
       </transition>
     </span>
-    <p class="text-grey-darker text-2xl md:text-5xl mb-3">The servers are
+    <p class="text-grey-darker text-2xl md:text-5xl mb-3">
+      The servers are
       <transition
         name="fade"
-        mode="out-in">
+        mode="out-in"
+      >
         <span
           :key="statusClasses"
           :class="statusClasses"
-          class="underline">
+          class="underline"
+        >
           {{ status }}
         </span>
       </transition>
     </p>
     <transition
       name="fade"
-      mode="out-in">
+      mode="out-in"
+    >
       <p
         v-if="showMessage"
         :key="message"
-        class="text-grey-dark h4">Message: {{ message }}</p>
+        class="text-grey-dark h4"
+      >
+        Message: {{ message }}
+      </p>
     </transition>
     <transition
       name="fade"
-      mode="out-in">
+      mode="out-in"
+    >
       <p
         v-if="lastChecked"
-        class="text-grey-dark">
-        Last checked: {{ lastChecked | moment('HH:mm:ss') }}</p>
+        class="text-grey-dark"
+      >
+        Last checked: {{ lastChecked | moment('HH:mm:ss') }}
+      </p>
     </transition>
   </div>
 </template>
@@ -53,7 +65,7 @@ const SERVER_STATUS_NOTIFICATION_TAG = 'server-status-notification'
 const SERVER_STATUS_NOTIFICATION_TIMEOUT = 10000
 const SERVER_STATUS_NOTIFICATION_ICON = ''
 export default {
-  data () {
+  data() {
     return {
       status: '???',
       lastChecked: null,
@@ -62,7 +74,7 @@ export default {
     }
   },
   computed: {
-    statusIconClasses () {
+    statusIconClasses() {
       const lookup = {
         online: 'fa-check',
         offline: 'fa-times',
@@ -70,7 +82,7 @@ export default {
       }
       return (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
     },
-    statusClasses () {
+    statusClasses() {
       const lookup = {
         online: 'text-green-dark',
         offline: 'text-red-dark',
@@ -78,12 +90,12 @@ export default {
       }
       return (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
     },
-    showMessage () {
+    showMessage() {
       return !['online', '???'].includes(this.status)
     }
   },
   watch: {
-    status () {
+    status() {
       if (this.firstCheck) {
         // Ignore change from "???" to the real status
         this.firstCheck = false
@@ -92,7 +104,7 @@ export default {
       this.displayServerStatusNotification()
     }
   },
-  mounted () {
+  mounted() {
     this.getStatus()
     setInterval(this.getStatus, 30 * 1000)
 
@@ -100,15 +112,16 @@ export default {
     NotificationService.authorize()
   },
   methods: {
-    async getStatus () {
+    async getStatus() {
       try {
-        let data = await this.$axios.$get('/current/')
+        const data = await this.$axios.$get('/current/')
         this.setStatus(data)
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.error(e)
       }
     },
-    setStatus (data) {
+    setStatus(data) {
       if (typeof data === 'undefined' || data.length === 0) {
         return
       }
@@ -119,7 +132,7 @@ export default {
       this.lastChecked = this.$moment(newestData.created_at)
       this.message = newestData.message
     },
-    displayServerStatusNotification () {
+    displayServerStatusNotification() {
       if (NotificationService.isSupported) {
         NotificationService.show(SERVER_STATUS_NOTIFICATION_TITLE, {
           body: `${SERVER_STATUS_NOTIFICATION_BODY_PREFIX} ${this.status}!`,

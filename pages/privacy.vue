@@ -57,7 +57,8 @@
     browser plug-in from the following link:
     <a
       href="http://tools.google.com/dlpage/gaoptout?hl=en"
-      target="_blank">http://tools.google.com/dlpage/gaoptout?hl=en</a>
+      target="_blank"
+    >http://tools.google.com/dlpage/gaoptout?hl=en</a>
     <br>
     <h2>Information about cookies</h2>
     (1) To optimize our web presence, we use cookies. These are small text files

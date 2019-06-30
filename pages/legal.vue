@@ -1,5 +1,6 @@
 <template>
-  <div class="container mx-auto p-4"><b>Information in accordance with section 5 TMG:</b>
+  <div class="container mx-auto p-4">
+    <b>Information in accordance with section 5 TMG:</b>
     <br>
     <br>
     Developmint GbR<br>
@@ -18,11 +19,13 @@
     <br>
     <h3>Contact</h3>
     E-Mail: <a
-      href="mailto:hello@albionstatus.com">hello@albionstatus.com</a>
+      href="mailto:hello@albionstatus.com"
+    >hello@albionstatus.com</a>
     <br>
     Website: <a
       href="http://www.developmint.de/"
-      target="_blank">http://www.developmint.de/</a>
+      target="_blank"
+    >http://www.developmint.de/</a>
     <br>
     <h3>VAT number</h3>
     VAT identification number in accordance with section 27 a of the German VAT act

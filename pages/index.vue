@@ -1,14 +1,17 @@
 <template>
   <div class="container px-4 pt-0 pb-6 mx-auto">
-    <server-status/>
+    <server-status />
     <div class="text-center my-4 py-2">
       <nuxt-link
         to="charts"
-        class="underline text-2xl text-black">
+        class="underline text-2xl text-black"
+      >
         Uptime charts have arrived!
       </nuxt-link>
     </div>
-    <h1 class="text-center mt-8 pt-4 text-grey-darkest mb-2">AlbionStatus</h1>
+    <h1 class="text-center mt-8 pt-4 text-grey-darkest mb-2">
+      AlbionStatus
+    </h1>
     <p class="text-lg leading-loose font-serif text-grey-darker">
       AlbionStatus is your <span class="text-black">reliable</span> Albion Online server status tracker! Operating
       since
@@ -25,18 +28,22 @@
         href="https://twitter.com/AlbionStatus"
         target="_blank"
         rel="noopener"
-        class="text-grey-darkest group hover:text-black no-underline">
-        <i class="fa fa-fw fa-twitter text-blue-light group-hover:text-blue"/>-bot
+        class="text-grey-darkest group hover:text-black no-underline"
+      >
+        <i class="fa fa-fw fa-twitter text-blue-light group-hover:text-blue" />-bot
       </a> which you can follow to stay up to date about the server status.
       Be sure to take a look into the
       <router-link
         to="faq"
-        class="no-underline text-grey-darkest hover:text-black my-2 md:my-0">
-        <i class="fa fa-fw fa-info"/> FAQ
+        class="no-underline text-grey-darkest hover:text-black my-2 md:my-0"
+      >
+        <i class="fa fa-fw fa-info" /> FAQ
       </router-link>
       if you haven't done that by now!
     </p>
-    <h2 class="text-center mt-8 pt-4 text-grey-darkest mb-2">Open Source</h2>
+    <h2 class="text-center mt-8 pt-4 text-grey-darkest mb-2">
+      Open Source
+    </h2>
     <p class="text-lg leading-loose font-serif text-grey-darker">
       Also, AlbionStatus is the first open source tracker for the servers of Albion Online. If you are interested how
       the tech stack looks like, what queries we do and how we save the data, check out our
@@ -44,21 +51,26 @@
         href="https://github.com/manniL/albionstatus-website/"
         class="text-grey-darker hover:text-black"
         rel="noopener"
-        target="_blank">three</a>
+        target="_blank"
+      >three</a>
       &nbsp;
       <a
         href="https://github.com/manniL/albionstatus-microservice/"
         class="text-grey-darker hover:text-black"
         rel="noopener"
-        target="_blank">GitHub</a>
+        target="_blank"
+      >GitHub</a>
       &nbsp;
       <a
         href="https://github.com/manniL/albionstatus-scraper-bot/"
         class="text-grey-darker hover:text-black"
         rel="noopener"
-        target="_blank">repos</a>! Thanks a lot to all contributors who helped building AlbionStatus.
+        target="_blank"
+      >repos</a>! Thanks a lot to all contributors who helped building AlbionStatus.
     </p>
-    <h2 class="text-center mt-8 pt-4 text-grey-darkest mb-2">What's next?</h2>
+    <h2 class="text-center mt-8 pt-4 text-grey-darkest mb-2">
+      What's next?
+    </h2>
     <p class="text-lg leading-loose font-serif text-grey-darker">
       Oh, great question! There are several more features planned:
     </p>

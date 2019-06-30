@@ -39,7 +39,7 @@ View the full documentation at https://tailwindcss.com.
 |
 */
 
-let colors = require('./tailwind/colors.json')
+const colors = require('./tailwind/colors.json')
 
 module.exports = {
 

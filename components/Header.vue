@@ -3,10 +3,12 @@
     <a
       href="/"
       class="no-underline"
-      @click.prevent="jump">
+      @click.prevent="jump"
+    >
       <img
         src="~/assets/logo.png"
-        alt="AlbionStatus logo">
+        alt="AlbionStatus logo"
+      >
     </a>
   </header>
 </template>

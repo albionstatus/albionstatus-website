@@ -3,13 +3,15 @@
     preserveAspectRatio="none"
     height="34"
     viewBox="0 0 355 75"
-    class="w-full mx-auto h-16 mt-4">
+    class="w-full mx-auto h-16 mt-4"
+  >
     <chart-rect
       v-for="({ percent, minutes },i) in dataByHours"
       :key="i"
       :percent="percent"
       :minutes="minutes"
-      :position="i"/>
+      :position="i"
+    />
   </svg>
 </template>
 <script>
@@ -22,14 +24,14 @@ const roundPrecision = (n, p) => {
 
 export default {
   components: { ChartRect },
-  data () {
+  data() {
     return {
       data: [],
       hours: []
     }
   },
   computed: {
-    dataByHours () {
+    dataByHours() {
       return this.data
         .reduce((acc, currentData) => {
           const hourArray = acc[Number(currentData.created_at.slice(11, 13)).valueOf()]
@@ -43,14 +45,14 @@ export default {
         }))
     }
   },
-  async beforeMount () {
+  async beforeMount() {
     await this.fetchData()
   },
-  mounted () {
+  mounted() {
     setInterval(this.fetchData, 30 * 1000)
   },
   methods: {
-    async fetchData () {
+    async fetchData() {
       const timestamp = this.$moment(new Date())
         .set('hours', 0)
         .set('minutes', 0)

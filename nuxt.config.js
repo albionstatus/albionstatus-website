@@ -1,8 +1,8 @@
-const tailwindConfig = require('./tailwind.js')
 const path = require('path')
 const process = require('process')
 const glob = require('glob-all')
 const PurgeCssPlugin = require('purgecss-webpack-plugin')
+const tailwindConfig = require('./tailwind.js')
 
 const analyticsUA = 'UA-62902757-9'
 
@@ -14,7 +14,7 @@ module.exports = {
     scrollBehavior: (to, from, savedPosition) => {
       let position = false
 
-      if (to.matched.length < 2 || to.matched.some((r) => r.components.default.options.scrollToTop)) {
+      if (to.matched.length < 2 || to.matched.some(r => r.components.default.options.scrollToTop)) {
         position = { x: 0, y: 0 }
       }
 
@@ -22,7 +22,7 @@ module.exports = {
         position = savedPosition
       }
 
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         // wait for the out transition to complete (if necessary)
         window.$nuxt.$once('triggerScroll', () => {
           // coords will be used if no selector is provided,
@@ -136,7 +136,7 @@ module.exports = {
     ** Run ESLint on save
     ** Add PurgeCSS
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
       if (ctx.isClient) {
         if (ctx.isDev) {
           config.module.rules.push({
@@ -159,7 +159,7 @@ module.exports = {
             extractors: [
               {
                 extractor: class {
-                  static extract (content) {
+                  static extract(content) {
                     return content.match(/[A-z0-9-:\\/]+/g)
                   }
                 },

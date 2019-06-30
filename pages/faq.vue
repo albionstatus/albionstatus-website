@@ -1,13 +1,19 @@
 <template>
   <div class="container p-4 mx-auto">
-    <h1 class="text-center pb-4">FAQ</h1>
+    <h1 class="text-center pb-4">
+      FAQ
+    </h1>
     <div
       v-for="({question, answer},i) in $options.content"
-      :key="i">
-      <h2 class="text-xl font-semibold py-2">{{ question }}</h2>
+      :key="i"
+    >
+      <h2 class="text-xl font-semibold py-2">
+        {{ question }}
+      </h2>
       <p
         class="text-lg py-4"
-        v-html="answer"/>
+        v-html="answer"
+      />
     </div>
   </div>
 </template>
@@ -55,7 +61,7 @@ export default {
       ' href="https://github.com/manniL/albionstatus-website/" rel="noopener">GitHub repository</a> for all information!'
     }
   ],
-  head () {
+  head() {
     return {
       title: 'Faq - AlbionStatus'
     }

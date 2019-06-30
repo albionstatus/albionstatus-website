@@ -5,7 +5,8 @@
     :x="15 * position"
     height="75"
     width="10"
-    y="0"/>
+    y="0"
+  />
 </template>
 <script>
 import colors from '~/tailwind/colors.json'
@@ -13,11 +14,11 @@ import colors from '~/tailwind/colors.json'
 export default {
   props: {
     percent: {
-      type: Number | String,
+      type: [Number, String],
       required: true
     },
     minutes: {
-      type: Number | String,
+      type: [Number, String],
       required: true
     },
     position: {
@@ -26,7 +27,7 @@ export default {
     }
   },
   computed: {
-    fill () {
+    fill() {
       const fillMap = {
         100: colors.red,
         60: colors['orange-dark'],
