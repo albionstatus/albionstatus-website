@@ -18,12 +18,6 @@ export default {
     twitterCard: 'summary'
   },
   /*
-  ** CSS Load
-   */
-  css: [
-    '@/assets/styles/app.pcss'
-  ],
-  /*
   ** Modules
    */
   modules: [
@@ -86,7 +80,7 @@ export default {
   ],
   tailwindcss: {
     configPath: '~/tailwind.config.js',
-    cssPath: '~/assets/css/app.css'
+    cssPath: '~/assets/css/app.pcss'
   },
   purgeCSS: {
     whitelistPatterns: [/fade/]
