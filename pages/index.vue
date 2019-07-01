@@ -3,20 +3,24 @@
     <server-status />
     <div class="text-center my-4 py-2">
       <nuxt-link
-        to="charts"
         class="underline text-2xl text-black"
+        to="charts"
       >
         Uptime charts have arrived!
       </nuxt-link>
     </div>
-    <h1 class="text-center mt-8 pt-4 text-grey-darkest mb-2">
+    <h1 class="text-center mt-8 pt-4 text-4xl font-bold text-gray-800 mb-2">
       AlbionStatus
     </h1>
-    <p class="text-lg leading-loose font-serif text-grey-darker">
+    <p class="text-lg leading-loose font-serif text-gray-800">
       AlbionStatus is your <span class="text-black">reliable</span> Albion Online server status tracker! Operating
       since
-      <span class="text-black">{{ creationDate | moment('MMM Do YYYY') }}</span> (already
-      <span class="text-black">{{ creationDate | moment('from', new Date(), true) }}</span> by now 🎉), it was the
+      <span class="text-black font-semibold">{{ creationDate | moment('MMM Do YYYY') }}</span> (already
+      <time
+        :datetime="creationDate.toString()"
+        :title="creationDate.toString()"
+        class="text-black italic"
+      >{{ creationDate | moment('from', new Date(), true) }}</time> by now 🎉), it was the
       first Albion Online server status tracker <strong class="text-black">ever!</strong> The project was created when
       no server status page was available and Albion Online devs announced the server status changes manually.
       Additionally, there were heavy DDoS attacks against the servers. AlbionStatus was built to allow players to stay
@@ -25,63 +29,61 @@
       sure that we reached it!<br><br>
       We also have a
       <a
+        class="gray-900 group hover:text-black "
         href="https://twitter.com/AlbionStatus"
-        target="_blank"
         rel="noopener"
-        class="text-grey-darkest group hover:text-black no-underline"
+        target="_blank"
       >
-        <i class="fa fa-fw fa-twitter text-blue-light group-hover:text-blue" />-bot
+        <i class="fa fa-fw fa-twitter text-blue-light group-hover:text-blue" title="Twitter" aria-label="Twitter" />-bot
       </a> which you can follow to stay up to date about the server status.
       Be sure to take a look into the
-      <router-link
+      <nuxt-link
+        class="font-semibold text-gray-800 hover:text-black my-2 md:my-0"
         to="faq"
-        class="no-underline text-grey-darkest hover:text-black my-2 md:my-0"
       >
         <i class="fa fa-fw fa-info" /> FAQ
-      </router-link>
+      </nuxt-link>
       if you haven't done that by now!
     </p>
-    <h2 class="text-center mt-8 pt-4 text-grey-darkest mb-2">
+    <h2 class="text-center mt-8 pt-4 text-3xl font-bold text-gray-800 mb-2">
       Open Source
     </h2>
-    <p class="text-lg leading-loose font-serif text-grey-darker">
+    <p class="text-lg leading-loose font-serif text-gray-800">
       Also, AlbionStatus is the first open source tracker for the servers of Albion Online. If you are interested how
       the tech stack looks like, what queries we do and how we save the data, check out our
       <a
+        class="text-gray-800 underline hover:text-black"
         href="https://github.com/manniL/albionstatus-website/"
-        class="text-grey-darker hover:text-black"
-        rel="noopener"
+        rel="noreferrer noopener"
         target="_blank"
       >three</a>
-      &nbsp;
       <a
+        class="text-gray-800 underline hover:text-black"
         href="https://github.com/manniL/albionstatus-microservice/"
-        class="text-grey-darker hover:text-black"
-        rel="noopener"
+        rel="noreferrer noopener"
         target="_blank"
       >GitHub</a>
-      &nbsp;
       <a
+        class="text-gray-800 underline hover:text-black"
         href="https://github.com/manniL/albionstatus-scraper-bot/"
-        class="text-grey-darker hover:text-black"
-        rel="noopener"
+        rel="noreferrer noopener"
         target="_blank"
       >repos</a>! Thanks a lot to all contributors who helped building AlbionStatus.
     </p>
-    <h2 class="text-center mt-8 pt-4 text-grey-darkest mb-2">
+    <h2 class="text-center mt-8 pt-4 text-3xl font-bold text-gray-800 mb-2">
       What's next?
     </h2>
-    <p class="text-lg leading-loose font-serif text-grey-darker">
+    <p class="text-lg leading-loose font-serif text-gray-800">
       Oh, great question! There are several more features planned:
     </p>
-    <ul class="text-lg leading-loose font-serif text-grey-darker">
+    <ul class="text-lg leading-loose font-serif text-gray-800 list-disc pl-12 mb-4">
       <li>Uptime charts 📊 (partially done!)</li>
       <li>Server status widget 🔌 (coming soon)</li>
       <li>CLI/Bot support 🤖</li>
       <li><s>Push notifications on server status change 👈🏼</s> Done!</li>
       <li>More sources of truth for the server status ➕</li>
     </ul>
-    <p class="text-lg leading-loose font-serif text-grey-darker">
+    <p class="text-lg leading-loose font-serif text-gray-800">
       If you are interested in contributing towards the project, just do it 😊. Take an issue (or open one) to
       signal that you want to work on it or submit a PR if you are on it!
     </p>

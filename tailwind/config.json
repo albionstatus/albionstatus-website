@@ -1,0 +1,16 @@
+{
+  "theme": {
+    "container": {
+      "center": true,
+      "padding": "1rem"
+    },
+    "extend": {
+      "colors": {
+        "developmint": {
+          "500": "#199922",
+          "300": "#75c17a"
+        }
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@
     </p>
     <nuxt-link
       to="/"
-      class="text-grey-darkest my-4"
+      class="gray-900 my-4"
     >
       Back
     </nuxt-link>

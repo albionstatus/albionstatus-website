@@ -1,8 +1,8 @@
 <template>
-  <header class="w-full text-center p-6 pb-2">
+  <header class="w-full text-center flex justify-center p-6 pb-2">
     <a
       href="/"
-      class="no-underline"
+      class=""
       @click.prevent="jump"
     >
       <img

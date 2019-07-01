@@ -6,7 +6,7 @@
     class="w-full mx-auto h-16 mt-4"
   >
     <chart-rect
-      v-for="({ percent, minutes },i) in dataByHours"
+      v-for="({ percent, minutes }, i) in dataByHours"
       :key="i"
       :percent="percent"
       :minutes="minutes"
@@ -45,8 +45,8 @@ export default {
         }))
     }
   },
-  async beforeMount() {
-    await this.fetchData()
+  beforeMount() {
+    this.fetchData()
   },
   mounted() {
     setInterval(this.fetchData, 30 * 1000)

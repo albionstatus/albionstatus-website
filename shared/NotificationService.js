@@ -3,7 +3,7 @@ export const authorize = () => {
     return Notification.requestPermission()
   } catch (error) {
     // Safari fix
-    Notification.requestPermission((p) => {})
+    Notification.requestPermission(() => {})
   }
 }
 

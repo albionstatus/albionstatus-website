@@ -1,23 +1,24 @@
 <template>
   <div class="text-center">
-    <span class="fa-stack text-10xl md:text-25xl mb-4">
-      <i class="fa fa-stack-2x bg-status rounded-full h-inherit w-inherit" />
-      <transition
-        name="fade"
-        mode="out-in"
-      >
-        <i
-          :key="statusClasses"
-          :class="`${statusClasses} ${statusIconClasses}`"
-          class="fa fa-fw fa-stack-1x"
-        />
-      </transition>
-    </span>
-    <p class="text-grey-darker text-2xl md:text-5xl mb-3">
+    <div class="flex justify-center ">
+      <div class="bg-status rounded-full p-12 mb-4">
+        <transition
+          mode="out-in"
+          name="fade"
+        >
+          <component
+            :is="iconComponent"
+            :class="statusClasses"
+            class="w-32 fill-current"
+          />
+        </transition>
+      </div>
+    </div>
+    <p class="text-gray-800 text-2xl md:text-5xl mb-3">
       The servers are
       <transition
-        name="fade"
         mode="out-in"
+        name="fade"
       >
         <span
           :key="statusClasses"
@@ -29,8 +30,8 @@
       </transition>
     </p>
     <transition
-      name="fade"
       mode="out-in"
+      name="fade"
     >
       <p
         v-if="showMessage"
@@ -41,8 +42,8 @@
       </p>
     </transition>
     <transition
-      name="fade"
       mode="out-in"
+      name="fade"
     >
       <p
         v-if="lastChecked"
@@ -56,6 +57,7 @@
 
 <script>
 import * as NotificationService from '~/shared/NotificationService'
+
 /*
  * Constants
  */
@@ -74,21 +76,24 @@ export default {
     }
   },
   computed: {
-    statusIconClasses() {
+    iconComponent() {
       const lookup = {
-        online: 'fa-check',
-        offline: 'fa-times',
-        default: 'fa-question'
+        online: 'check',
+        offline: 'times',
+        default: 'question'
       }
-      return (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
+
+      const componentName = lookup[this.status] || lookup.default
+
+      return () => import(`~/components/icons/${componentName}.svg`)
     },
     statusClasses() {
       const lookup = {
-        online: 'text-green-dark',
-        offline: 'text-red-dark',
-        default: 'text-yellow-dark'
+        online: 'text-green-700',
+        offline: 'text-red-800',
+        default: 'text-yellow-700'
       }
-      return (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
+      return lookup[this.status] || lookup.default
     },
     showMessage() {
       return !['online', '???'].includes(this.status)
@@ -125,7 +130,7 @@ export default {
       if (typeof data === 'undefined' || data.length === 0) {
         return
       }
-      const newestData = data[0]
+      const [newestData] = data
       // Track last status so we know when to inform the user
       // of a status change.
       this.status = newestData.current_status
