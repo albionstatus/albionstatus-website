@@ -34,7 +34,7 @@
         rel="noopener"
         target="_blank"
       >
-        <i class="fa fa-fw fa-twitter text-blue-light group-hover:text-blue" title="Twitter" aria-label="Twitter" />-bot
+        <span class="text-blue-500">Twitter</span>-bot
       </a> which you can follow to stay up to date about the server status.
       Be sure to take a look into the
       <nuxt-link
