@@ -85,7 +85,8 @@ export default {
     '@nuxtjs/tailwindcss'
   ],
   tailwindcss: {
-    configPath: '~/tailwind.config.js'
+    configPath: '~/tailwind.config.js',
+    cssPath: '~/assets/css/app.css'
   },
   purgeCSS: {
     whitelistPatterns: [/fade/]
