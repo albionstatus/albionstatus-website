@@ -6,10 +6,11 @@
     viewBox="0 0 355 75"
   >
     <chart-rect
-      v-for="({ percent, minutes }, i) in dataByHours"
+      v-for="({ percent, minutes, hour }, i) in dataByHours"
       :key="i"
       :minutes="minutes"
       :percent="percent"
+      :hour="hour"
       :position="i"
     />
   </svg>
@@ -21,6 +22,8 @@ const roundPrecision = (n, p) => {
   const f = Math.pow(10, p)
   return Math.round(n * f) / f
 }
+
+const rotateArray = (arr, n) => arr.slice(n, arr.length).concat(arr.slice(0, n))
 
 export default {
   components: { ChartRect },
@@ -40,16 +43,20 @@ export default {
         hourArray.push(serverOnlineAtTime)
       }
 
-      return multiDimensionalHourArray
-        .map((hourArray) => {
+      const mappedHourData = multiDimensionalHourArray
+        .map((hourArray, index) => {
           const onlineMinutes = hourArray.filter(d => !d).length
-          const totalMinutestTracked = hourArray.length
+          const totalMinutesTracked = hourArray.length
 
           return {
-            percent: roundPrecision(onlineMinutes * 100 / totalMinutestTracked, 2),
-            minutes: onlineMinutes
+            percent: roundPrecision(onlineMinutes * 100 / totalMinutesTracked, 2),
+            minutes: onlineMinutes,
+            hour: index
           }
         })
+
+      const shiftedHourData = rotateArray(mappedHourData, (new Date()).getUTCHours())
+      return shiftedHourData
     }
   },
   beforeMount() {
@@ -61,10 +68,8 @@ export default {
   methods: {
     async fetchData() {
       const timestamp = this.$moment(new Date())
-        .set('hours', 0)
-        .set('minutes', 0)
-        .set('seconds', 0)
         .subtract(1, 'days')
+        .utc()
         .format()
 
       const { data } = await this.$axios.get(`?timestamp=${timestamp}`)
