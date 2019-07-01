@@ -9,12 +9,12 @@
   />
 </template>
 <script>
-import { VTooltip } from 'v-tooltip'
+import { VTooltip as tooltip } from 'v-tooltip'
 import { colors } from '~/tailwind/values'
 
 export default {
   directives: {
-    VTooltip
+    tooltip
   },
   props: {
     percent: {

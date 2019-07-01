@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto p-4 text-center">
-    <h1 class="my-4">
+    <h1 class="my-4 text-3xl font-bold">
       Uptime charts (last 24h)
     </h1>
     <uptime-chart />
