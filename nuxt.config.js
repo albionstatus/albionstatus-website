@@ -1,7 +1,7 @@
 import { colors } from './tailwind/values'
 
 const analyticsUA = 'UA-62902757-9'
-const isDev = process.env.NODE_ENV === 'production'
+const isDev = process.env.NODE_ENV !== 'production'
 
 export default {
   head: {
@@ -18,12 +18,6 @@ export default {
     twitterCard: 'summary'
   },
   /*
-  ** CSS Load
-   */
-  css: [
-    '@/assets/styles/app.pcss'
-  ],
-  /*
   ** Modules
    */
   modules: [
@@ -32,7 +26,7 @@ export default {
       id: analyticsUA,
       disabled: () => document.cookie.indexOf('ga_optout=true') !== -1,
       debug: {
-        sendHitTask: isDev
+        sendHitTask: !isDev
       },
       set: [
         { field: 'anonymizeIp', value: true }
@@ -55,7 +49,7 @@ export default {
    * Axios
    */
   axios: {
-    debug: process.env.NODE_ENV === 'dev',
+    debug: isDev,
     baseURL: 'https://api.albionstatus.com'
   },
 
@@ -85,7 +79,8 @@ export default {
     '@nuxtjs/tailwindcss'
   ],
   tailwindcss: {
-    configPath: '~/tailwind.config.js'
+    configPath: '~/tailwind.config.js',
+    cssPath: '~/assets/css/app.pcss'
   },
   purgeCSS: {
     whitelistPatterns: [/fade/]
