@@ -15,12 +15,14 @@
     <p class="text-lg leading-loose font-serif text-gray-800">
       AlbionStatus is your <span class="text-black">reliable</span> Albion Online server status tracker! Operating
       since
-      <span class="text-black font-semibold">{{ creationDate | moment('MMM Do YYYY') }}</span> (already
+      <span class="text-black font-semibold">{{ $options.creationDate | moment('MMM Do YYYY') }}</span> (already
       <time
-        :datetime="creationDate.toString()"
-        :title="creationDate.toString()"
+        :datetime="$options.creationDate"
+        :title="$options.creationDate"
         class="text-black italic"
-      >{{ creationDate | moment('from', new Date(), true) }}</time> by now 🎉), it was the
+      >{{ $options.creationDate | moment('from', new Date(), true) }}
+      </time>
+      by now 🎉), it was the
       first Albion Online server status tracker <strong class="text-black">ever!</strong> The project was created when
       no server status page was available and Albion Online devs announced the server status changes manually.
       Additionally, there were heavy DDoS attacks against the servers. AlbionStatus was built to allow players to stay
@@ -41,7 +43,8 @@
         class="font-semibold text-gray-800 hover:text-black my-2 md:my-0"
         to="faq"
       >
-        <i class="fa fa-fw fa-info" /> FAQ
+        <InfoIcon class="w-6 h-6 inline" style="vertical-align: sub" />
+        FAQ
       </nuxt-link>
       if you haven't done that by now!
     </p>
@@ -91,17 +94,14 @@
 </template>
 
 <script>
-import ServerStatus from '../components/ServerStatus'
+import ServerStatus from '~/components/ServerStatus'
 
 export default {
   name: 'Index',
-  components: { ServerStatus },
-  props: {
-    creationDate: {
-      required: false,
-      type: String,
-      default: '2017-07-29T08:09:11.0Z'
-    }
-  }
+  components: {
+    ServerStatus,
+    InfoIcon: () => import('~/components/icons/info.svg')
+  },
+  creationDate: '2017-07-29T08:09:11.0Z'
 }
 </script>
