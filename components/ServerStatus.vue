@@ -1,49 +1,63 @@
 <template>
   <div class="text-center">
-    <span class="fa-stack text-10xl md:text-25xl mb-4">
-      <i class="fa fa-stack-2x bg-status rounded-full h-inherit w-inherit"/>
+    <div class="flex justify-center ">
+      <div class="bg-status rounded-full p-12 mb-4">
+        <transition
+          mode="out-in"
+          name="fade"
+        >
+          <component
+            :is="iconComponent"
+            :class="statusClasses"
+            class="w-32 fill-current"
+          />
+        </transition>
+      </div>
+    </div>
+    <p class="text-gray-800 text-2xl md:text-5xl mb-3">
+      The servers are
       <transition
+        mode="out-in"
         name="fade"
-        mode="out-in">
-        <i
-          :class="`${statusClasses} ${statusIconClasses}`"
-          :key="statusClasses"
-          class="fa fa-fw fa-stack-1x"/>
-      </transition>
-    </span>
-    <p class="text-grey-darker text-2xl md:text-5xl mb-3">The servers are
-      <transition
-        name="fade"
-        mode="out-in">
+      >
         <span
           :key="statusClasses"
           :class="statusClasses"
-          class="underline">
+          class="underline"
+        >
           {{ status }}
         </span>
       </transition>
     </p>
     <transition
+      mode="out-in"
       name="fade"
-      mode="out-in">
+    >
       <p
         v-if="showMessage"
         :key="message"
-        class="text-grey-dark h4">Message: {{ message }}</p>
+        class="text-grey-dark h4"
+      >
+        Message: {{ message }}
+      </p>
     </transition>
     <transition
+      mode="out-in"
       name="fade"
-      mode="out-in">
+    >
       <p
         v-if="lastChecked"
-        class="text-grey-dark">
-        Last checked: {{ lastChecked | moment('HH:mm:ss') }}</p>
+        class="text-grey-dark"
+      >
+        Last checked: {{ lastChecked | moment('HH:mm:ss') }}
+      </p>
     </transition>
   </div>
 </template>
 
 <script>
 import * as NotificationService from '~/shared/NotificationService'
+
 /*
  * Constants
  */
@@ -53,7 +67,7 @@ const SERVER_STATUS_NOTIFICATION_TAG = 'server-status-notification'
 const SERVER_STATUS_NOTIFICATION_TIMEOUT = 10000
 const SERVER_STATUS_NOTIFICATION_ICON = ''
 export default {
-  data () {
+  data() {
     return {
       status: '???',
       lastChecked: null,
@@ -62,28 +76,31 @@ export default {
     }
   },
   computed: {
-    statusIconClasses () {
+    iconComponent() {
       const lookup = {
-        online: 'fa-check',
-        offline: 'fa-times',
-        default: 'fa-question'
+        online: 'check',
+        offline: 'times',
+        default: 'question'
       }
-      return (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
+
+      const componentName = lookup[this.status] || lookup.default
+
+      return () => import(`~/components/icons/${componentName}.svg`)
     },
-    statusClasses () {
+    statusClasses() {
       const lookup = {
-        online: 'text-green-dark',
-        offline: 'text-red-dark',
-        default: 'text-yellow-dark'
+        online: 'text-green-700',
+        offline: 'text-red-800',
+        default: 'text-yellow-700'
       }
-      return (lookup.hasOwnProperty(this.status) && lookup[this.status]) || lookup.default
+      return lookup[this.status] || lookup.default
     },
-    showMessage () {
+    showMessage() {
       return !['online', '???'].includes(this.status)
     }
   },
   watch: {
-    status () {
+    status() {
       if (this.firstCheck) {
         // Ignore change from "???" to the real status
         this.firstCheck = false
@@ -92,7 +109,7 @@ export default {
       this.displayServerStatusNotification()
     }
   },
-  mounted () {
+  mounted() {
     this.getStatus()
     setInterval(this.getStatus, 30 * 1000)
 
@@ -100,26 +117,27 @@ export default {
     NotificationService.authorize()
   },
   methods: {
-    async getStatus () {
+    async getStatus() {
       try {
-        let data = await this.$axios.$get('/current/')
+        const data = await this.$axios.$get('/current/')
         this.setStatus(data)
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.error(e)
       }
     },
-    setStatus (data) {
+    setStatus(data) {
       if (typeof data === 'undefined' || data.length === 0) {
         return
       }
-      const newestData = data[0]
+      const [newestData] = data
       // Track last status so we know when to inform the user
       // of a status change.
       this.status = newestData.current_status
       this.lastChecked = this.$moment(newestData.created_at)
       this.message = newestData.message
     },
-    displayServerStatusNotification () {
+    displayServerStatusNotification() {
       if (NotificationService.isSupported) {
         NotificationService.show(SERVER_STATUS_NOTIFICATION_TITLE, {
           body: `${SERVER_STATUS_NOTIFICATION_BODY_PREFIX} ${this.status}!`,

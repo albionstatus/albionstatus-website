@@ -1,11 +1,12 @@
 <template>
-  <div class="container mx-auto p-4"><b>Information in accordance with section 5 TMG:</b>
+  <div class="container mx-auto p-4">
+    <h1>Information in accordance with section 5 TMG</h1>
     <br>
     <br>
     Developmint GbR<br>
     Corotweg 15<br>
     04289 Leipzig<br>
-    <h3>Represented by</h3>
+    <h2>Represented by</h2>
     Alexander Lichter
     <br>
     Max Langer
@@ -16,26 +17,29 @@
     <br>
     Max Langer
     <br>
-    <h3>Contact</h3>
+    <h2>Contact</h2>
     E-Mail: <a
-      href="mailto:hello@albionstatus.com">hello@albionstatus.com</a>
+      href="mailto:albionstatus@developmint.de"
+    >albionstatus@developmint.de</a>
     <br>
     Website: <a
       href="http://www.developmint.de/"
-      target="_blank">http://www.developmint.de/</a>
+      target="_blank"
+    >http://www.developmint.de/</a>
     <br>
-    <h3>VAT number</h3>
+    <h2>VAT number</h2>
     VAT identification number in accordance with section 27 a of the German VAT act
     <br>
     DE301268038
     <br>
-    <h3>
+    <h2>
       Person responsible for content in accordance with 55 Abs. 2 RStV
-    </h3>
+    </h2>
     Alexander Lichter<br>
-    <h3>Indication of source for images and graphics</h3>
+    <h2>Indication of source for images and graphics</h2>
     Patterns by Hero Patterns, Steve Schoger<br>
-    <h3>Disclaimer</h3>
+    Icons by FontAwesome
+    <h2>Disclaimer</h2>
     Accountability for content
     <br>
     The contents of our pages have been created with the utmost care. However, we cannot guarantee the contents'
@@ -66,3 +70,12 @@
     Unauthorized utilization of copyrighted works is punishable (&sect; 106 of the copyright law).
   </div>
 </template>
+
+<style scoped>
+  h1 {
+    @apply font-normal text-3xl py-4 font-bold
+  }
+  h2 {
+    @apply font-normal text-2xl py-4 font-bold
+  }
+</style>

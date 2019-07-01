@@ -57,7 +57,9 @@
     browser plug-in from the following link:
     <a
       href="http://tools.google.com/dlpage/gaoptout?hl=en"
-      target="_blank">http://tools.google.com/dlpage/gaoptout?hl=en</a>
+      class="underline"
+      target="_blank"
+    >http://tools.google.com/dlpage/gaoptout?hl=en</a>
     <br>
     <h2>Information about cookies</h2>
     (1) To optimize our web presence, we use cookies. These are small text files
@@ -76,6 +78,15 @@
     free-of-charge information about your stored data,
     and possibly entitlement to correction, blocking or deletion of such data.
     Inquiries can be directed to the following
-    e-mail addresses: (<a href="mailto:hello@albionstatus.com">hello@albionstatus.com</a>)
+    e-mail addresses: (albionstatus@developmint.de)
   </section>
 </template>
+
+<style scoped>
+  h1 {
+    @apply font-normal text-3xl py-4 font-bold
+  }
+  h2 {
+    @apply font-normal text-2xl py-4 font-bold
+  }
+</style>

@@ -1,15 +1,17 @@
 <template>
   <svg
-    preserveAspectRatio="none"
+    class="w-full mx-auto h-16 mt-4"
     height="34"
+    preserveAspectRatio="none"
     viewBox="0 0 355 75"
-    class="w-full mx-auto h-16 mt-4">
+  >
     <chart-rect
-      v-for="({ percent, minutes },i) in dataByHours"
+      v-for="({ percent, minutes }, i) in dataByHours"
       :key="i"
-      :percent="percent"
       :minutes="minutes"
-      :position="i"/>
+      :percent="percent"
+      :position="i"
+    />
   </svg>
 </template>
 <script>
@@ -22,35 +24,42 @@ const roundPrecision = (n, p) => {
 
 export default {
   components: { ChartRect },
-  data () {
+  data() {
     return {
-      data: [],
-      hours: []
+      data: []
     }
   },
   computed: {
-    dataByHours () {
-      return this.data
-        .reduce((acc, currentData) => {
-          const hourArray = acc[Number(currentData.created_at.slice(11, 13)).valueOf()]
-          hourArray.push(currentData.current_status === 'online')
+    dataByHours() {
+      const multiDimensionalHourArray = Array.from({ length: 24 }, () => [])
 
-          return acc
-        }, Array.from({ length: 24 }, () => []))
-        .map(hourArray => ({
-          percent: roundPrecision(hourArray.filter(d => !d).length * 100 / hourArray.length, 2),
-          minutes: hourArray.filter(d => !d).length
-        }))
+      for (const currentData of this.data) {
+        const hourFromCreatedAtDate = Number(currentData.created_at.slice(11, 13))
+        const hourArray = multiDimensionalHourArray[hourFromCreatedAtDate]
+        const serverOnlineAtTime = currentData.current_status === 'online'
+        hourArray.push(serverOnlineAtTime)
+      }
+
+      return multiDimensionalHourArray
+        .map((hourArray) => {
+          const onlineMinutes = hourArray.filter(d => !d).length
+          const totalMinutestTracked = hourArray.length
+
+          return {
+            percent: roundPrecision(onlineMinutes * 100 / totalMinutestTracked, 2),
+            minutes: onlineMinutes
+          }
+        })
     }
   },
-  async beforeMount () {
-    await this.fetchData()
+  beforeMount() {
+    this.fetchData()
   },
-  mounted () {
+  mounted() {
     setInterval(this.fetchData, 30 * 1000)
   },
   methods: {
-    async fetchData () {
+    async fetchData() {
       const timestamp = this.$moment(new Date())
         .set('hours', 0)
         .set('minutes', 0)

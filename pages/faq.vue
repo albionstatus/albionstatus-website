@@ -1,13 +1,19 @@
 <template>
   <div class="container p-4 mx-auto">
-    <h1 class="text-center pb-4">FAQ</h1>
+    <h1 class="text-center text-4xl font-bold pb-4">
+      FAQ
+    </h1>
     <div
       v-for="({question, answer},i) in $options.content"
-      :key="i">
-      <h2 class="text-xl font-semibold py-2">{{ question }}</h2>
+      :key="i"
+    >
+      <h2 class="text-xl font-semibold py-2">
+        {{ question }}
+      </h2>
       <p
         class="text-lg py-4"
-        v-html="answer"/>
+        v-html="answer"
+      />
     </div>
   </div>
 </template>
@@ -30,19 +36,19 @@ export default {
     {
       question: 'Your font is terrible man! It says AlbionGtatuf... WTF?!',
       answer: 'I chose that font because it is the <a href="https://www.dafont.com/koch-fette-deutsche-schrift.font"' +
-      ' target="_blank" rel="noopener noreferrer nofollow" class="text-grey-darker hover:text-black no-underline' +
+      ' target="_blank" rel="noopener noreferrer nofollow" class="text-gray-600 hover:text-black ' +
       ' hover:underline">official Albion font</a>. It might be hard to read, I admit that! Fun fact: That font is an' +
       ' "old German" font. As you may know, the Albion Online dev team is from Germany as well!'
     },
     {
       question: 'Is this a scam page?',
-      answer: 'No, don\'t worry, it is not! You don\'t have to enter any data on the page, so you can be sure that this' +
+      answer: 'No, don\'t worry, it is <strong>not</strong>! You don\'t have to enter any data on the page, so you can be sure that this' +
       ' is <b>no scam!</b> Also, the whole code is open-source.'
     },
     {
       question: 'How can I contact you?',
-      answer: 'You can tweet our Twitter bot or write us a mail at <a class="text-grey-darker hover:text-black' +
-      ' no-underline hover:underline" href="mailto:hello@albionstatus.com" rel="noopener">hello@albionstatus.com</a>'
+      answer: 'You can tweet our Twitter bot or write us a mail at <a class="text-gray-600 hover:text-black' +
+      ' hover:underline" href="mailto:albionstatus@developmint.de" rel="noopener">albionstatus@developmint.de</a>'
     },
     {
       question: 'Do you make money with this project?',
@@ -51,11 +57,11 @@ export default {
     },
     {
       question: 'Can I see your code? What\'s your tech stack?',
-      answer: 'Good questions! Check out our <a class="text-grey-darker hover:text-black no-underline hover:underline"' +
+      answer: 'Good questions! Check out our <a class="text-gray-600 hover:text-black hover:underline"' +
       ' href="https://github.com/manniL/albionstatus-website/" rel="noopener">GitHub repository</a> for all information!'
     }
   ],
-  head () {
+  head() {
     return {
       title: 'Faq - AlbionStatus'
     }
