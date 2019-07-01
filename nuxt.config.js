@@ -11,9 +11,10 @@ export default {
     name: 'AlbionStatus - Albion Online server status',
     author: 'Developmint',
     description: 'AlbionStatus is the first reliable Albion Online server status tracker',
-    ogSiteName: 'AlbiobStatus',
+    ogSiteName: 'AlbionStatus',
     mobileAppIOs: true,
     ogHost: 'https://albionstatus.com',
+    twitterSite: '@AlbionStatus',
     twitterCard: 'summary'
   },
   /*
