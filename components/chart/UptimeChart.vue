@@ -6,7 +6,7 @@
     viewBox="0 0 355 75"
   >
     <chart-rect
-      v-for="({ percent, minutes, hour }, i) in dataByHours"
+      v-for="({ percent, minutes, hour }, i) in shiftedHourData"
       :key="i"
       :minutes="minutes"
       :percent="percent"
@@ -33,7 +33,7 @@ export default {
     }
   },
   computed: {
-    dataByHours() {
+    shiftedHourData() {
       const multiDimensionalHourArray = Array.from({ length: 24 }, () => [])
 
       for (const currentData of this.data) {
@@ -55,8 +55,7 @@ export default {
           }
         })
 
-      const shiftedHourData = rotateArray(mappedHourData, (new Date()).getUTCHours())
-      return shiftedHourData
+      return rotateArray(mappedHourData, (new Date()).getUTCHours())
     }
   },
   beforeMount() {

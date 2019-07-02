@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <footer>
     <div class="text-center py-2">
       <a
         v-if="$route.path !== '/'"
@@ -49,7 +49,7 @@
         </nuxt-link>
       </div>
     </nav>
-  </div>
+  </footer>
 </template>
 
 <script>
