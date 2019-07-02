@@ -4,7 +4,7 @@
     <div class="text-center my-4 py-2">
       <nuxt-link
         class="underline text-2xl text-black"
-        to="charts"
+        to="/charts"
       >
         Uptime charts have arrived!
       </nuxt-link>
@@ -41,7 +41,7 @@
       Be sure to take a look into the
       <nuxt-link
         class="font-semibold text-gray-800 hover:text-black my-2 md:my-0"
-        to="faq"
+        to="/faq"
       >
         <InfoIcon class="w-6 h-6 inline" style="vertical-align: sub" />
         FAQ

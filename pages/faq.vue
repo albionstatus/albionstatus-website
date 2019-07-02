@@ -4,7 +4,7 @@
       FAQ
     </h1>
     <div
-      v-for="({question, answer},i) in $options.content"
+      v-for="({ question, answer }, i) in $options.content"
       :key="i"
     >
       <h2 class="text-xl font-semibold py-2">

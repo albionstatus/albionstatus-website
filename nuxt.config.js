@@ -2,11 +2,13 @@ import { colors } from './tailwind/values'
 
 const analyticsUA = 'UA-62902757-9'
 const isDev = process.env.NODE_ENV !== 'production'
+const isProd = !isDev
 
 export default {
   head: {
     noscript: [{ innerHTML: 'This website requires JavaScript.' }]
   },
+
   meta: {
     name: 'AlbionStatus - Albion Online server status',
     author: 'Developmint',
@@ -17,16 +19,14 @@ export default {
     twitterSite: '@AlbionStatus',
     twitterCard: 'summary'
   },
-  /*
-  ** Modules
-   */
+
   modules: [
     '@nuxtjs/axios',
     ['@nuxtjs/google-analytics', {
       id: analyticsUA,
       disabled: () => document.cookie.indexOf('ga_optout=true') !== -1,
       debug: {
-        sendHitTask: !isDev
+        sendHitTask: isProd
       },
       set: [
         { field: 'anonymizeIp', value: true }
@@ -41,31 +41,18 @@ export default {
     '@nuxtjs/pwa',
     'nuxt-svg-loader'
   ],
+
   plugins: [
     '~/plugins/vue-moment'
   ],
 
-  /*
-   * Axios
-   */
   axios: {
     debug: isDev,
     baseURL: 'https://api.albionstatus.com'
   },
 
-  /*
-   * Customize the progress bar color
-  */
   loading: { color: colors.developmint['500'] },
-  loadingIndicator: {
-    name: 'rectangle-bounce',
-    color: 'white',
-    background: colors.developmint['500']
-  },
 
-  /*
-  ** Manifest
-   */
   manifest: {
     lang: 'en',
     short_name: 'AlbionStatus',
@@ -75,24 +62,21 @@ export default {
     orientation: 'any',
     theme_color: colors.green['300']
   },
+
   devModules: [
     '@nuxtjs/tailwindcss'
   ],
+
   tailwindcss: {
     configPath: '~/tailwind.config.js',
     cssPath: '~/assets/css/app.pcss'
   },
+
   purgeCSS: {
     whitelistPatterns: [/fade/]
   },
-  /*
-  ** Build configuration
-  */
+
   build: {
-    /*
-    ** Run ESLint on save
-    ** Add PurgeCSS
-    */
     extend(config, ctx) {
       if (!ctx.isClient) {
         return

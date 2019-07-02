@@ -9,6 +9,7 @@
           <component
             :is="iconComponent"
             :class="statusClasses"
+            aria-role="presentational"
             class="w-32 fill-current"
           />
         </transition>
@@ -46,10 +47,10 @@
       name="fade"
     >
       <p
-        v-if="lastChecked"
+        v-if="lastCheckedAt"
         class="text-grey-dark"
       >
-        Last checked: {{ lastChecked | moment('HH:mm:ss') }}
+        Last checked: {{ lastCheckedAt | moment('HH:mm:ss') }}
       </p>
     </transition>
   </div>
@@ -70,9 +71,9 @@ export default {
   data() {
     return {
       status: '???',
-      lastChecked: null,
+      lastCheckedAt: null,
       message: '',
-      firstCheck: true
+      isFirstCheck: true
     }
   },
   computed: {
@@ -101,9 +102,9 @@ export default {
   },
   watch: {
     status() {
-      if (this.firstCheck) {
+      if (this.isFirstCheck) {
         // Ignore change from "???" to the real status
-        this.firstCheck = false
+        this.isFirstCheck = false
         return
       }
       this.displayServerStatusNotification()
@@ -134,7 +135,7 @@ export default {
       // Track last status so we know when to inform the user
       // of a status change.
       this.status = newestData.current_status
-      this.lastChecked = this.$moment(newestData.created_at)
+      this.lastCheckedAt = this.$moment(newestData.created_at)
       this.message = newestData.message
     },
     displayServerStatusNotification() {

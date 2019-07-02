@@ -1,7 +1,8 @@
 export default {
   methods: {
     jump() {
-      this.$route.path === '/' ? this.$router.go(0) : this.$router.replace('/')
+      const indexPath = '/'
+      this.$route.path === indexPath ? this.$router.go(0) : this.$router.replace(indexPath)
     }
   }
 }
