@@ -1,12 +1,12 @@
 <template>
   <rect
+    v-tooltip="`From ${isForToday ? 'today' : 'yesterday'} ${styledHour} on: ${percent}% (${minutes} minutes) outage`"
     :fill="fill"
     :x="15 * position"
     height="75"
     stroke="black"
     stroke-linecap="square"
     :stroke-width="isForToday ? 0.4 : 0"
-    v-tooltip="`From ${isForToday ? 'today' : 'yesterday'} ${styledHour} on: ${percent}% (${minutes} minutes) outage`"
     width="10"
     y="0"
   />
