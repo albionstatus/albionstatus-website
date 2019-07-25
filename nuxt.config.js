@@ -5,6 +5,7 @@ const isDev = process.env.NODE_ENV !== 'production'
 const isProd = !isDev
 
 export default {
+  modern: isProd && 'client',
   head: {
     noscript: [{ innerHTML: 'This website requires JavaScript.' }]
   },
