@@ -39,7 +39,8 @@ export default {
 
     }],
     '@nuxtjs/pwa',
-    'nuxt-svg-loader'
+    'nuxt-svg-loader',
+    '@nuxtjs/netlify-files'
   ],
 
   plugins: [
@@ -76,7 +77,12 @@ export default {
     whitelistPatterns: [/fade/]
   },
 
+  netlifyFiles: {
+    existingFilesDirectory: './netlify'
+  },
+
   build: {
+    publicPath: '/assets/',
     extend(config, ctx) {
       if (!ctx.isClient) {
         return
