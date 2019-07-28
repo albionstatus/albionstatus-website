@@ -23,7 +23,8 @@
       >{{ $options.creationDate | moment('from', new Date(), true) }}
       </time>
       by now 🎉), it was the
-      first Albion Online server status tracker <strong class="text-black">ever!</strong> The project was created when
+      first Albion Online server status tracker <strong class="text-black">ever!</strong> Want to know if Albion is
+      down? We got you covered. The project was created when
       no server status page was available and Albion Online devs announced the server status changes manually.
       Additionally, there were heavy DDoS attacks against the servers. AlbionStatus was built to allow players to stay
       informed about the Albion Online server status while doing something else, like watching videos or playing
