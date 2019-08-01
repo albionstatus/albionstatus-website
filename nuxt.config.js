@@ -35,9 +35,7 @@ export default {
     }],
     ['@nuxtjs/google-adsense', {
       id: 'ca-pub-4749840658812364',
-      analyticsUacct: analyticsUA,
-      test: isDev
-
+      analyticsUacct: analyticsUA
     }],
     '@nuxtjs/pwa',
     'nuxt-svg-loader',
