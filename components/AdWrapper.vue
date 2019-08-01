@@ -18,6 +18,6 @@ export default {
       return !['/legal', '/privacy'].includes(this.$route.path)
     }
   },
-  adSlotId: '6721996033'
+  adSlotId: '2610490971'
 }
 </script>
