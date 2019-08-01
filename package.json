@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
-    "@nuxtjs/google-adsense": "https://github.com/nuxt-community/google-adsense-module.git#ea2de54",
+    "@nuxtjs/google-adsense": "https://github.com/nuxt-community/google-adsense-module.git#f0e1302",
     "@nuxtjs/google-analytics": "^2.0.2",
     "@nuxtjs/netlify-files": "^1.0.0",
     "@nuxtjs/pwa": "^3.0.0-beta.16",
