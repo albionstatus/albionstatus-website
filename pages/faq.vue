@@ -63,7 +63,7 @@ export default {
   ],
   head() {
     return {
-      title: 'Faq - AlbionStatus'
+      title: 'FAQ'
     }
   }
 }

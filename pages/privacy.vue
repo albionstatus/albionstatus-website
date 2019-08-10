@@ -82,6 +82,20 @@
   </section>
 </template>
 
+<script>
+
+export default {
+  head() {
+    return {
+      title: 'Privacy',
+      meta: [
+        { hid: 'robots', name: 'robots', content: 'noindex' }
+      ]
+    }
+  }
+}
+</script>
+
 <style scoped>
   h1 {
     @apply font-normal text-3xl py-4 font-bold

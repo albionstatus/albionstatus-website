@@ -15,7 +15,7 @@ export default {
   },
   head() {
     return {
-      title: 'Uptime Charts - AlbionStatus'
+      title: 'Uptime Charts'
     }
   }
 }

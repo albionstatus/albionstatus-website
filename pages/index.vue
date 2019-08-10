@@ -98,7 +98,6 @@
 import ServerStatus from '~/components/ServerStatus'
 
 export default {
-  name: 'Index',
   components: {
     ServerStatus,
     InfoIcon: () => import('~/components/icons/info.svg')

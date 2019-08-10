@@ -71,6 +71,20 @@
   </div>
 </template>
 
+<script>
+
+export default {
+  head() {
+    return {
+      title: 'Legal',
+      meta: [
+        { hid: 'robots', name: 'robots', content: 'noindex' }
+      ]
+    }
+  }
+}
+</script>
+
 <style scoped>
   h1 {
     @apply font-normal text-3xl py-4 font-bold
