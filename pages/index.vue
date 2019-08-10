@@ -24,12 +24,12 @@
       </time>
       by now 🎉), it was the
       first Albion Online server status tracker <strong class="text-black">ever!</strong> Want to know if Albion is
-      down? We got you covered. The project was created when
-      no server status page was available and Albion Online devs announced the server status changes manually.
-      Additionally, there were heavy DDoS attacks against the servers. AlbionStatus was built to allow players to stay
-      informed about the Albion Online server status while doing something else, like watching videos or playing
-      something else. The key goal was to make refreshing the server status page and client obsolete, and I'm quite
-      sure that we reached it!<br><br>
+      down? We got you covered. The project was created when no server status page was available and the Albion Online
+      developers announced the server status changes manually. Additionally, there were heavy DDoS attacks taking down
+      the servers every now and then. Nowadays, the most common downtime source is the daily maintenance.
+      AlbionStatus was built to allow players to stay informed about the Albion Online server status while doing
+      something else, like watching videos or playing something else. The key goal was to make
+      refreshing the server status page and client obsolete, and I'm quite sure that we've reached it!<br><br>
       We also have a
       <a
         class="gray-900 group hover:text-black "
