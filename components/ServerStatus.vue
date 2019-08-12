@@ -9,7 +9,7 @@
           <component
             :is="iconComponent"
             :class="statusClasses"
-            aria-role="presentational"
+            role="presentation"
             class="w-32 fill-current"
           />
         </transition>
