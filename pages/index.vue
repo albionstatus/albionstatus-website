@@ -16,12 +16,17 @@
       AlbionStatus is your <span class="text-black">reliable</span> Albion Online server status tracker! Operating
       since
       <span class="text-black font-semibold">{{ $options.creationDate | moment('MMM Do YYYY') }}</span> (already
-      <time
-        :datetime="$options.creationDate"
-        :title="$options.creationDate"
-        class="text-black italic"
-      >{{ $options.creationDate | moment('from', new Date(), true) }}
-      </time>
+      <ClientOnly placeholder-tag="span">
+        <time
+          :datetime="$options.creationDate"
+          :title="$options.creationDate"
+          class="text-black italic"
+        >{{ $options.creationDate | moment('from', new Date(), true) }}
+        </time>
+        <span slot="placeholder" class="text-black italic">
+          {{ $options.creationDate | moment('from', new Date(), true) }}
+        </span>
+      </ClientOnly>
       by now 🎉), it was the
       first Albion Online server status tracker <strong class="text-black">ever!</strong> Want to know if Albion is
       down? We got you covered. The project was created when no server status page was available and the Albion Online

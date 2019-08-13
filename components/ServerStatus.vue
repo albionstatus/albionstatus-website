@@ -9,8 +9,8 @@
           <component
             :is="iconComponent"
             :class="statusClasses"
-            role="presentation"
             class="w-32 fill-current"
+            role="presentation"
           />
         </transition>
       </div>
@@ -46,12 +46,10 @@
       mode="out-in"
       name="fade"
     >
-      <p
-        v-if="lastCheckedAt"
-        class="text-grey-dark"
-      >
-        Last checked: {{ lastCheckedAt | moment('HH:mm:ss') }}
-      </p>
+      <div v-if="lastCheckedAt">
+        <span class="text-grey-dark">Last checked:</span>
+        <time :datetime="lastCheckedAt" :title="lastCheckedAt"> {{ lastCheckedAt | moment('HH:mm:ss') }}</time>
+      </div>
     </transition>
   </div>
 </template>
