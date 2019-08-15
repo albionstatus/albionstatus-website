@@ -48,7 +48,7 @@
     >
       <div v-if="lastCheckedAt">
         <span class="text-grey-dark">Last checked:</span>
-        <time :datetime="lastCheckedAt" :title="lastCheckedAt"> {{ lastCheckedAt | moment('HH:mm:ss') }}</time>
+        <time :datetime="lastCheckedAt.toISOString()" :title="lastCheckedAt.toISOString()"> {{ lastCheckedAt | moment('HH:mm:ss') }}</time>
       </div>
     </transition>
   </div>
