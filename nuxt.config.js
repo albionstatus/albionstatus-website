@@ -4,8 +4,13 @@ const analyticsUA = 'UA-62902757-9'
 const isDev = process.env.NODE_ENV !== 'production'
 const isProd = !isDev
 
+const baseUrl = 'https://www.albionstatus.com'
+
 export default {
   modern: isProd && 'client',
+  env: {
+    baseUrl
+  },
   head: {
     title: '',
     titleTemplate: s => s ? `${s} | AlbionStatus` : 'AlbionStatus - Is Albion Down?',
@@ -15,7 +20,8 @@ export default {
   meta: {
     name: 'AlbionStatus - Albion Online server status',
     author: 'Developmint',
-    description: 'AlbionStatus is the first reliable Albion Online server status tracker',
+    description: 'AlbionStatus is the only reliable Albion Online server status tracker. Find out if Albion is down' +
+      ' in a splitsecond, no matter if it is the daily maintenance or an outage.',
     ogSiteName: 'AlbionStatus',
     mobileAppIOs: true,
     ogHost: 'https://albionstatus.com',
