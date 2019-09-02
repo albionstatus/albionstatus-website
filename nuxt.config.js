@@ -17,6 +17,10 @@ export default {
     noscript: [{ innerHTML: 'This website requires JavaScript.' }]
   },
 
+  generate: {
+    fallback: true
+  },
+
   meta: {
     name: 'AlbionStatus - Albion Online server status',
     author: 'Developmint',
