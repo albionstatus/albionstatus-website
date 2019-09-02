@@ -33,7 +33,7 @@ export default {
     '@nuxtjs/axios',
     ['@nuxtjs/google-analytics', {
       id: analyticsUA,
-      disabled: () => document.cookie.indexOf('ga_optout=true') !== -1,
+      disabled: () => document.cookie.includes('ga_optout=true'),
       debug: {
         sendHitTask: isProd
       },
@@ -92,7 +92,7 @@ export default {
 
   build: {
     publicPath: '/assets/',
-    extend(config, ctx) {
+    extend (config, ctx) {
       if (!ctx.isClient) {
         return
       }

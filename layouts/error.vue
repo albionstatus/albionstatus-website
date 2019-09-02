@@ -24,7 +24,7 @@ export default {
       required: true
     }
   },
-  head() {
+  head () {
     return {
       title: `${this.error.statusCode} - No server status here!`
     }

@@ -13,7 +13,7 @@ export default {
   components: {
     UptimeChart
   },
-  head() {
+  head () {
     return {
       title: 'Uptime Charts'
     }

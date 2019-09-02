@@ -85,7 +85,7 @@
 <script>
 
 export default {
-  head() {
+  head () {
     return {
       title: 'Privacy',
       meta: [

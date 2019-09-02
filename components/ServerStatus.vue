@@ -66,7 +66,7 @@ const SERVER_STATUS_NOTIFICATION_TAG = 'server-status-notification'
 const SERVER_STATUS_NOTIFICATION_TIMEOUT = 10000
 const SERVER_STATUS_NOTIFICATION_ICON = ''
 export default {
-  data() {
+  data () {
     return {
       status: '???',
       lastCheckedAt: null,
@@ -75,7 +75,7 @@ export default {
     }
   },
   computed: {
-    iconComponent() {
+    iconComponent () {
       const lookup = {
         online: 'check',
         offline: 'times',
@@ -86,7 +86,7 @@ export default {
 
       return () => import(`~/components/icons/${componentName}.svg`)
     },
-    statusClasses() {
+    statusClasses () {
       const lookup = {
         online: 'text-green-700',
         offline: 'text-red-800',
@@ -94,12 +94,12 @@ export default {
       }
       return lookup[this.status] || lookup.default
     },
-    showMessage() {
+    showMessage () {
       return !['online', '???'].includes(this.status)
     }
   },
   watch: {
-    status() {
+    status () {
       if (this.isFirstCheck) {
         // Ignore change from "???" to the real status
         this.isFirstCheck = false
@@ -108,7 +108,7 @@ export default {
       this.displayServerStatusNotification()
     }
   },
-  mounted() {
+  mounted () {
     this.getStatus()
     setInterval(this.getStatus, 30 * 1000)
 
@@ -116,7 +116,7 @@ export default {
     NotificationService.authorize()
   },
   methods: {
-    async getStatus() {
+    async getStatus () {
       try {
         const data = await this.$axios.$get('/current/')
         this.setStatus(data)
@@ -125,7 +125,7 @@ export default {
         console.error(e)
       }
     },
-    setStatus(data) {
+    setStatus (data) {
       if (typeof data === 'undefined' || data.length === 0) {
         return
       }
@@ -136,7 +136,7 @@ export default {
       this.lastCheckedAt = this.$moment(newestData.created_at)
       this.message = newestData.message
     },
-    displayServerStatusNotification() {
+    displayServerStatusNotification () {
       if (NotificationService.isSupported) {
         NotificationService.show(SERVER_STATUS_NOTIFICATION_TITLE, {
           body: `${SERVER_STATUS_NOTIFICATION_BODY_PREFIX} ${this.status}!`,

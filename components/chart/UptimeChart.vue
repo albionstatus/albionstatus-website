@@ -19,7 +19,7 @@
 import ChartRect from '~/components/chart/ChartRect'
 
 const roundPrecision = (n, p) => {
-  const f = Math.pow(10, p)
+  const f = 10 ** p
   return Math.round(n * f) / f
 }
 
@@ -27,13 +27,13 @@ const rotateArray = (arr, n) => arr.slice(n, arr.length).concat(arr.slice(0, n))
 
 export default {
   components: { ChartRect },
-  data() {
+  data () {
     return {
       data: []
     }
   },
   computed: {
-    shiftedHourData() {
+    shiftedHourData () {
       const multiDimensionalHourArray = Array.from({ length: 24 }, () => [])
 
       for (const currentData of this.data) {
@@ -58,14 +58,14 @@ export default {
       return rotateArray(mappedHourData, (new Date()).getUTCHours())
     }
   },
-  beforeMount() {
+  beforeMount () {
     this.fetchData()
   },
-  mounted() {
+  mounted () {
     setInterval(this.fetchData, 30 * 1000)
   },
   methods: {
-    async fetchData() {
+    async fetchData () {
       const timestamp = this.$moment(new Date())
         .subtract(1, 'days')
         .utc()

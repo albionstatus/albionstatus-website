@@ -17,7 +17,7 @@ export default {
     AdWrapper: () => import('~/components/AdWrapper'),
     AppFooter: () => import('~/components/Footer')
   },
-  head() {
+  head () {
     const baseUrl = process.env.baseUrl
     const { path } = this.$route
     const pathWithSlash = path.endsWith('/') ? path : `${path}/`

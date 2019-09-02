@@ -61,7 +61,7 @@ export default {
       ' href="https://github.com/manniL/albionstatus-website/" rel="noopener">GitHub repository</a> for all information!'
     }
   ],
-  head() {
+  head () {
     return {
       title: 'FAQ'
     }

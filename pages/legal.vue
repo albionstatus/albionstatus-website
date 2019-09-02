@@ -74,7 +74,7 @@
 <script>
 
 export default {
-  head() {
+  head () {
     return {
       title: 'Legal',
       meta: [

@@ -38,15 +38,15 @@ export default {
     }
   },
   computed: {
-    styledHour() {
+    styledHour () {
       return this.hour < 12
         ? `${this.hour === 0 ? 12 : this.hour}am`
         : `${this.hour === 12 ? 12 : this.hour - 12}pm`
     },
-    isForToday() {
+    isForToday () {
       return this.hour < new Date().getUTCHours()
     },
-    fill() {
+    fill () {
       const sortedFillEntries = Object.entries(this.$options.fillMap).sort(([a], [b]) => Number(a) < Number(b))
       const colorObject = sortedFillEntries.find(([key]) => this.percent >= key)
 

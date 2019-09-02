@@ -14,7 +14,7 @@
 <script>
 export default {
   computed: {
-    notInLegalView() {
+    notInLegalView () {
       return !['/legal', '/privacy'].includes(this.$route.path)
     }
   },
