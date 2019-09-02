@@ -26,7 +26,7 @@
       </p>
       <div>
         <nuxt-link
-          to="/faq"
+          to="/faq/"
           class="gray-900 hover:underline inline-block my-2 lg:my-0"
         >
           FAQ
@@ -34,7 +34,7 @@
         &bull;
         <nuxt-link
           no-prefetch
-          to="/privacy"
+          to="/privacy/"
           class="gray-900 hover:underline inline-block my-2 lg:my-0"
         >
           Privacy
@@ -42,7 +42,7 @@
         &bull;
         <nuxt-link
           no-prefetch
-          to="/legal"
+          to="/legal/"
           class="gray-900 hover:underline inline-block my-2 lg:my-0"
         >
           Legal notice

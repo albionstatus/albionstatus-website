@@ -17,6 +17,10 @@ export default {
     noscript: [{ innerHTML: 'This website requires JavaScript.' }]
   },
 
+  router: {
+    trailingSlash: true
+  },
+
   generate: {
     fallback: true
   },
@@ -53,7 +57,8 @@ export default {
     }],
     '@nuxtjs/pwa',
     'nuxt-svg-loader',
-    '@nuxtjs/netlify-files'
+    '@nuxtjs/netlify-files',
+    '@nuxtjs/sitemap'
   ],
 
   plugins: [
@@ -77,7 +82,7 @@ export default {
     theme_color: colors.green['300']
   },
 
-  devModules: [
+  buildModules: [
     '@nuxtjs/tailwindcss'
   ],
 
@@ -88,6 +93,15 @@ export default {
 
   purgeCSS: {
     whitelistPatterns: [/fade/]
+  },
+
+  sitemap: {
+    hostname: baseUrl,
+    exclude: [
+      '/legal/',
+      '/privacy/'
+    ],
+    trailingSlash: true
   },
 
   netlifyFiles: {
