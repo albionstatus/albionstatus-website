@@ -10,7 +10,7 @@
       </nuxt-link>
     </div>
     <h1 class="text-center mt-8 pt-4 text-4xl font-bold text-gray-800 mb-2">
-      AlbionStatus
+      AlbionStatus - Your Server Status tracker
     </h1>
     <p class="text-lg leading-loose font-serif text-gray-800">
       AlbionStatus is your <span class="text-black">reliable</span> Albion Online server status tracker! Operating
