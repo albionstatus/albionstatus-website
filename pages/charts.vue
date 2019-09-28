@@ -14,8 +14,27 @@ export default {
     UptimeChart
   },
   head () {
+    const title = 'Albion Uptime Charts'
+    const metaDescription = 'See how many Albion server outage have happened in the last 24 hours in our dynamic uptime charts.'
     return {
-      title: 'Uptime Charts'
+      title,
+      meta: [
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: title
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: metaDescription
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: metaDescription
+        }
+      ]
     }
   }
 }
