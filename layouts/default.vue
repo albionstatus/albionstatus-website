@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-diagonal min-h-screen flex flex-col justify-between">
+  <div class="min-h-screen flex flex-col justify-between">
     <AppHeader />
     <AdWrapper />
     <Nuxt />
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import AppHeader from '~/components/Header'
+import AppHeader from '~/components/AppHeader'
 
 export default {
   components: {
     AppHeader,
     AdWrapper: () => import('~/components/AdWrapper'),
-    AppFooter: () => import('~/components/Footer')
+    AppFooter: () => import('~/components/AppFooter')
   },
   head () {
     const baseUrl = process.env.baseUrl

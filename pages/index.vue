@@ -1,18 +1,10 @@
 <template>
   <div class="container px-4 pt-0 pb-6 mx-auto">
-    <server-status />
-    <div class="text-center my-4 py-2">
-      <nuxt-link
-        class="underline text-2xl text-black"
-        to="/charts/"
-      >
-        Uptime charts have arrived!
-      </nuxt-link>
-    </div>
-    <h1 class="text-center mt-8 pt-4 text-4xl font-bold text-gray-800 mb-2">
+    <ServerStatus />
+    <h1 class="text-center pt-8 lg:pt-16 text-4xl font-bold text-gray-800 mb-2">
       AlbionStatus - Your Server Status tracker
     </h1>
-    <p class="text-lg leading-loose font-serif text-gray-800">
+    <p class="text-lg pt-4 lg:pt-8 leading-loose font-serif text-gray-800">
       AlbionStatus is your <span class="text-black">reliable</span> Albion Online server status tracker! Operating
       since
       <span class="text-black font-semibold">{{ $options.creationDate | moment('MMM Do YYYY') }}</span> (already
@@ -30,7 +22,7 @@
       refreshing the server status page and client obsolete, and I'm quite sure that we've reached it!<br><br>
       We also have a
       <a
-        class="gray-900 group hover:text-black "
+        class="gray-900 group hover:text-black hover:no-underline underline inline-block"
         href="https://twitter.com/AlbionStatus"
         rel="noopener"
         target="_blank"
@@ -39,10 +31,9 @@
       </a> which you can follow to stay up to date about the server status.
       Be sure to take a look into the
       <nuxt-link
-        class="font-semibold text-gray-800 hover:text-black my-2 md:my-0"
+        class="font-semibold underline hover:no-underline inline-block text-gray-800 hover:text-black my-2 md:my-0"
         to="/faq/"
       >
-        <InfoIcon class="w-6 h-6 inline" style="vertical-align: sub" />
         FAQ
       </nuxt-link>
       if you haven't done that by now!
@@ -54,19 +45,19 @@
       Also, AlbionStatus is the first open source tracker for the servers of Albion Online. If you are interested how
       the tech stack looks like, what queries we do and how we save the data, check out our
       <a
-        class="text-gray-800 underline hover:text-black"
+        class="text-gray-800 underline hover:no-underline hover:text-black"
         href="https://github.com/manniL/albionstatus-website/"
         rel="noreferrer noopener"
         target="_blank"
       >three</a>
       <a
-        class="text-gray-800 underline hover:text-black"
+        class="text-gray-800 underline hover:no-underline hover:text-black"
         href="https://github.com/manniL/albionstatus-microservice/"
         rel="noreferrer noopener"
         target="_blank"
       >GitHub</a>
       <a
-        class="text-gray-800 underline hover:text-black"
+        class="text-gray-800 underline hover:no-underline hover:text-black"
         href="https://github.com/manniL/albionstatus-scraper-bot/"
         rel="noreferrer noopener"
         target="_blank"
@@ -97,8 +88,7 @@ import ServerStatus from '~/components/ServerStatus'
 
 export default {
   components: {
-    ServerStatus,
-    InfoIcon: () => import('~/components/icons/info.svg')
+    ServerStatus
   },
   creationDate: '2017-07-29T08:09:11.0Z'
 }

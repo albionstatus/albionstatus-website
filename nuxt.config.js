@@ -98,9 +98,14 @@ export default {
   sitemap: {
     hostname: baseUrl,
     exclude: [
-      '/legal/',
-      '/privacy/'
+      '/legal',
+      '/privacy'
     ],
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmodrealtime: true
+    },
     trailingSlash: true
   },
 
