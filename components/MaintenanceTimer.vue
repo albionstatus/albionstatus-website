@@ -3,11 +3,30 @@
     <h3 id="timer" class="text-xl">
       Maintenance timer
     </h3>
-    <p class="mt-4">
-      Start of the next maintenance: <strong>{{ formattedStartOfNextMaintenance }}</strong>
-    </p>
-    <p>Usual end of the next maintenance: <strong>{{ formattedEndOfNextMaintenance }}</strong></p>
-    <p>Time until the next maintenance: <strong>{{ formattedTimeUntilMaintenance }}</strong></p>
+    <dl class="mt-4">
+      <dt class="inline-block">
+        Start of the next maintenance:
+      </dt>
+      <dd class="font-bold inline-block">
+        {{ formattedStartOfNextMaintenance }}
+      </dd>
+    </dl>
+    <dl>
+      <dt class="inline-block">
+        Usual end of the next maintenance:
+      </dt>
+      <dd class="font-bold inline-block">
+        {{ formattedEndOfNextMaintenance }}
+      </dd>
+    </dl>
+    <dl>
+      <dt class="inline-block">
+        Time until the next maintenance:
+      </dt>
+      <dd class="font-bold inline-block">
+        {{ formattedTimeUntilMaintenance }}
+      </dd>
+    </dl>
   </div>
 </template>
 
