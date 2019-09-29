@@ -20,6 +20,9 @@
       That's the reason why there is no sever selection shown when creating your character.
       Albion is, similar to EVE Online, sticking to the global server concept, which means:<br>
       "<strong>One server for all players</strong>".
+      <br><br>
+      However, in the early days the data was hosted in two datacenters, which resulted in a better ping for players.
+      But the disadvantages, including latency and inter-server disconnects, outweighed the advantages.
     </p>
     <h2 class="text-2xl pt-8">
       Where is the Albion Online server located?
@@ -28,8 +31,7 @@
       The server is located in <strong>Washington DC, USA</strong>. This server location was chosen in such a way that
       players from
       America, Europe and also Russia will have a decent ping. As Albion's combat isn't as fast paced as RTS games like
-      Dota or Starcraft,
-      players can even play the game well with "high pings" of 150.
+      Dota or Starcraft, players can even play the game well with "high pings" of 150.
     </p>
     <h2 class="text-2xl pt-8">
       Does the server location negatively influences the game experience?
