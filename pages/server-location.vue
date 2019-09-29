@@ -15,8 +15,9 @@
       How many Albion servers exist?
     </h2>
     <p class="mt-4 max-w-4xl">
-      All players play on <strong>the same server instance</strong>. There aren't multiple servers running, which is
-      why there isn't a sever selection when creating your character.
+      All players play on <strong>the same server instance</strong>.
+      There aren't multiple servers running, not even for the different platforms the game is available on.
+      That's the reason why there is no sever selection shown when creating your character.
       Albion is, similar to EVE Online, sticking to the global server concept, which means:<br>
       "<strong>One server for all players</strong>".
     </p>

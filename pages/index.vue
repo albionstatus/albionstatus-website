@@ -74,7 +74,7 @@
       <li>Server status widget 🔌 (coming soon)</li>
       <li>CLI/Bot support 🤖</li>
       <li><s>Push notifications on server status change 👈🏼</s> Done!</li>
-      <li>More sources of truth for the server status ➕</li>
+      <li><s>More sources of truth for the server status ➕</s> No more sources available.</li>
     </ul>
     <p class="text-lg leading-loose font-serif text-gray-800">
       If you are interested in contributing towards the project, just do it 😊. Take an issue (or open one) to
