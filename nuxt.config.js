@@ -61,10 +61,6 @@ export default {
     '@nuxtjs/sitemap'
   ],
 
-  plugins: [
-    '~/plugins/vue-moment'
-  ],
-
   axios: {
     debug: isDev,
     baseURL: 'https://api.albionstatus.com'

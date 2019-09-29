@@ -16,6 +16,7 @@
   </svg>
 </template>
 <script>
+import { DateTime } from 'luxon'
 import ChartRect from '~/components/chart/ChartRect'
 
 const roundPrecision = (n, p) => {
@@ -66,10 +67,7 @@ export default {
   },
   methods: {
     async fetchData () {
-      const timestamp = this.$moment(new Date())
-        .subtract(1, 'days')
-        .utc()
-        .format()
+      const timestamp = DateTime.utc().minus({ days: 1 }).toISO()
 
       const { data } = await this.$axios.get(`?timestamp=${timestamp}`)
       this.data = data.reverse()

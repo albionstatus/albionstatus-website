@@ -47,14 +47,15 @@
       name="fade"
     >
       <div v-if="lastCheckedAt">
-        <span class="text-grey-dark">Last checked:</span>
-        <time :datetime="lastCheckedAt.toISOString()" :title="lastCheckedAt.toISOString()"> {{ lastCheckedAt | moment('HH:mm:ss') }}</time>
+        <span class="text-grey-dark">Last checked at</span>
+        <time :datetime="lastCheckedAt.toISO()" :title="lastCheckedAt.toISO()"> {{ formattedLastChecked }}</time>
       </div>
     </transition>
   </div>
 </template>
 
 <script>
+import { DateTime } from 'luxon'
 import * as NotificationService from '~/shared/NotificationService'
 
 /*
@@ -96,6 +97,9 @@ export default {
     },
     showMessage () {
       return !['online', '???'].includes(this.status)
+    },
+    formattedLastChecked () {
+      return this.lastCheckedAt && this.lastCheckedAt.toFormat('HH:mm:ss')
     }
   },
   watch: {
@@ -133,7 +137,7 @@ export default {
       // Track last status so we know when to inform the user
       // of a status change.
       this.status = newestData.current_status
-      this.lastCheckedAt = this.$moment(newestData.created_at)
+      this.lastCheckedAt = DateTime.fromISO(newestData.created_at)
       this.message = newestData.message
     },
     displayServerStatusNotification () {

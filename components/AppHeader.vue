@@ -64,6 +64,10 @@ export default {
       to: '/charts/'
     },
     {
+      name: 'Daily Maintenance',
+      to: '/daily-maintenance/'
+    },
+    {
       name: 'Server Location',
       to: '/server-location/'
     },

@@ -11,6 +11,7 @@
       <br><br>
       In the following overview, you will find out!
     </p>
+
     <h2 class="text-2xl pt-8">
       How many Albion servers exist?
     </h2>
@@ -20,10 +21,13 @@
       That's the reason why there is no sever selection shown when creating your character.
       Albion is, similar to EVE Online, sticking to the global server concept, which means:<br>
       "<strong>One server for all players</strong>".
-      <br><br>
+    </p>
+    <br>
+    <p class="mt-4 max-w-4xl">
       However, in the early days the data was hosted in two datacenters, which resulted in a better ping for players.
       But the disadvantages, including latency and inter-server disconnects, outweighed the advantages.
     </p>
+
     <h2 class="text-2xl pt-8">
       Where is the Albion Online server located?
     </h2>
@@ -33,6 +37,7 @@
       America, Europe and also Russia will have a decent ping. As Albion's combat isn't as fast paced as RTS games like
       Dota or Starcraft, players can even play the game well with "high pings" of 150.
     </p>
+
     <h2 class="text-2xl pt-8">
       Does the server location negatively influences the game experience?
     </h2>

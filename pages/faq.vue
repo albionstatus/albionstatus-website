@@ -1,17 +1,17 @@
 <template>
   <div class="container p-4 mx-auto">
     <h1 class="text-center text-4xl font-bold pb-4">
-      FAQ
+      FAQ - Frequently Asked Questions about AlbionStatus
     </h1>
     <div
       v-for="({ question, answer }, i) in $options.content"
       :key="i"
     >
-      <h2 class="text-xl font-semibold py-2">
+      <h2 class="text-xl font-bold pt-12">
         {{ question }}
       </h2>
       <p
-        class="text-lg py-4"
+        class="text-lg mt-1"
         v-html="answer"
       />
     </div>
@@ -21,20 +21,19 @@
 export default {
   content: [
     {
-      question: 'What is this here?',
-      answer: 'AlbionStatus is a fan-driven service that displays the status of the Albion server'
+      question: 'What is AlbionStatus?',
+      answer: 'AlbionStatus is a fan-driven service that provides information about the Albion Online server, including the server status and information about it\'s location and daily maintenance'
     },
     {
       question: 'So.. this is no official service?',
-      answer: '<b>Nope</b>! We are no official part of Albion Online.'
+      answer: '<b>Nope, it is not</b>! We are no official part of Albion Online, not sponsored or endorsed of SBI.'
     },
     {
       question: 'Do we even need this now? There is an official server status page as well',
-      answer: 'You are right that there is an official page. Unfortunately, it\'s not as accurate as AlbionStatus,' +
-      ' because it doesn\'t take daily maintenance and several other issues into consideration!'
+      answer: 'No, there is no official server status page anymore. AlbionStatus is the <strong>only</strong> server status tracker existing at the moment.'
     },
     {
-      question: 'Your font is terrible man! It says AlbionGtatuf... WTF?!',
+      question: 'Your logo font is terrible man! It says AlbionGtatuf... WTF?!',
       answer: 'I chose that font because it is the <a href="https://www.dafont.com/koch-fette-deutsche-schrift.font"' +
       ' target="_blank" rel="noopener noreferrer nofollow" class="text-gray-600 hover:text-black ' +
       ' hover:underline">official Albion font</a>. It might be hard to read, I admit that! Fun fact: That font is an' +
@@ -52,7 +51,7 @@ export default {
     },
     {
       question: 'Do you make money with this project?',
-      answer: 'Recently I added Ads to cover the hosting costs, but besides this, I don\'t make any money with' +
+      answer: 'Recently I\'ve added ads to cover the hosting costs, but besides the ad revenue, which is quite small, I don\'t make any money with' +
       ' AlbionStatus!'
     },
     {
@@ -62,8 +61,28 @@ export default {
     }
   ],
   head () {
+    const title = 'FAQ - Frequently Asked Questions'
+    const metaDescription = 'Read the answers to the most frequently asked questions about AlbionStatus and it\'s services'
+
     return {
-      title: 'FAQ'
+      title,
+      meta: [
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: title
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: metaDescription
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: metaDescription
+        }
+      ]
     }
   }
 }
