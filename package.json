@@ -25,6 +25,7 @@
     "nuxt-edge": "^2.10.0-26161929.686720f0",
     "nuxt-svg-loader": "^1.0.1",
     "v-tooltip": "^2.0.0-rc.31",
+    "vue-luxon": "^0.7.0",
     "vue-moment": "^4.0.0"
   },
   "devDependencies": {
