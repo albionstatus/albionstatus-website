@@ -17,38 +17,23 @@
       showing you the time until the next maintenance.
     </p>
 
-    <h2 class="text-2xl pt-8">
-      How long does the server maintenance usually last?
-    </h2>
-    <p class="mt-4 max-w-4xl">
-      The maintenance of the Albion servers lasts an <strong>average of 30 to 60 minutes per day</strong>. During
-      this time, no player can access the servers as they are shut down. However, the time can be extended by the
-      developers. This is often the case after large content updates or patches.
-    </p>
-
-    <h2 class="text-2xl pt-8">
-      When does the Albion Online daily maintenance happen?
-    </h2>
-    <p class="mt-4 max-w-4xl">
-      The maintenance is taking place from <strong>10am to 11am UTC</strong> every day.
-      The total duration can vary though as explained above.
-    </p>
-    <template v-if="true">
-      <br>
-      <ClientOnly>
-        <MaintenanceTimer />
-      </ClientOnly>
-    </template>
-
-    <section v-for="({question, answer}) in $options.content" :key="question">
+    <section v-for="({question, answer, showTimer}) in $options.content" :key="question">
       <h2 class="text-2xl pt-8">
         {{ question }}
       </h2>
       <p v-interpolation class="mt-4 max-w-4xl" v-html="answer" />
+      <template v-if="showTimer">
+        <br>
+        <ClientOnly>
+          <MaintenanceTimer />
+        </ClientOnly>
+      </template>
     </section>
   </div>
 </template>
 <script>
+import { encodeAnswer } from '@/shared/schemaHelpers'
+
 export default {
   components: {
     MaintenanceTimer: () => import('@/components/MaintenanceTimer.vue')
@@ -94,6 +79,20 @@ export default {
     }
   },
   content: [
+    {
+      question: 'How long does the server maintenance usually last?',
+      answer: `
+      The maintenance of the Albion servers lasts an <strong>average of 30 to 60 minutes per day</strong>. During
+      this time, no player can access the servers as they are shut down. However, the time can be extended by the
+      developers. This is often the case after large content updates or patches.`
+    },
+    {
+      question: 'When does the Albion Online daily maintenance happen?',
+      answer: `
+      The maintenance is taking place from <strong>10am to 11am UTC</strong> every day.
+      The total duration can vary though as explained above.`,
+      showTimer: true
+    },
     {
       question: 'Why is the daily server maintenance needed at all?',
       answer: `
@@ -154,7 +153,7 @@ export default {
               'name': content.question,
               'acceptedAnswer': {
                 '@type': 'Answer',
-                'text': content.answer
+                'text': encodeAnswer(content.answer)
               }
             }))
           }

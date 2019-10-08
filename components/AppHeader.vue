@@ -44,10 +44,7 @@
 </template>
 
 <script>
-import jumpMixin from '@/shared/jumpMixin'
-
 export default {
-  mixins: [jumpMixin],
   data () {
     return {
       isVisible: false
@@ -56,6 +53,10 @@ export default {
   methods: {
     toggleVisibility () {
       this.isVisible = !this.isVisible
+    },
+    jump () {
+      const indexPath = '/'
+      this.$route.path === indexPath ? this.$router.go(0) : this.$router.replace(indexPath)
     }
   },
   links: [

@@ -21,6 +21,8 @@
   </div>
 </template>
 <script>
+import { encodeAnswer } from '@/shared/schemaHelpers'
+
 export default {
   content: [
     {
@@ -87,7 +89,7 @@ export default {
               'name': content.question,
               'acceptedAnswer': {
                 '@type': 'Answer',
-                'text': content.answer
+                'text': encodeAnswer(content.answer)
               }
             }))
           }
