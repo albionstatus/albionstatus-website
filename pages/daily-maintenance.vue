@@ -18,10 +18,10 @@
     </p>
 
     <h2 class="text-2xl pt-8">
-      How long does the server maintenance usually take?
+      How long does the server maintenance usually last?
     </h2>
     <p class="mt-4 max-w-4xl">
-      The maintenance of the Albion Online servers takes an <strong>average of 30 to 60 minutes per day</strong>. During
+      The maintenance of the Albion servers lasts an <strong>average of 30 to 60 minutes per day</strong>. During
       this time, no player can access the servers as they are shut down. However, the time can be extended by the
       developers. This is often the case after large content updates or patches.
     </p>
@@ -30,8 +30,8 @@
       When does the Albion Online daily maintenance happen?
     </h2>
     <p class="mt-4 max-w-4xl">
-      The maintenance happens from <strong>10am to 11am UTC</strong> every day. The total duration can vary though as
-      explained above.
+      The maintenance is taking place from <strong>10am to 11am UTC</strong> every day.
+      The total duration can vary though as explained above.
     </p>
     <br>
     <ClientOnly>
