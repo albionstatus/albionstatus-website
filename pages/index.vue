@@ -7,11 +7,11 @@
     <p class="text-lg pt-4 lg:pt-8 leading-loose font-serif text-gray-800">
       AlbionStatus is your <span class="text-black">reliable</span> Albion Online server status tracker! Operating
       since
-      <span class="text-black font-semibold">{{ $options.creationDate | moment('MMM Do YYYY') }}</span> (already
+      <span class="text-black font-semibold">{{ $options.luxonDate }}</span> (already
       <span
         :title="$options.creationDate"
         class="text-black italic"
-      >{{ $options.creationDate | moment('from', new Date(), true) }}</span>
+      >{{ $options.operationDuration }}</span>
       by now 🎉), it was the
       first Albion Online server status tracker <strong class="text-black">ever!</strong> Want to know if Albion is
       down? We got you covered. The project was created when no server status page was available and the Albion Online
@@ -84,12 +84,18 @@
 </template>
 
 <script>
+import { DateTime } from 'luxon'
 import ServerStatus from '~/components/ServerStatus'
 
+const DATE_OF_CREATION = '2017-07-29T08:09:11.0Z'
+
+const duration = DateTime.local().diff(DateTime.fromISO(DATE_OF_CREATION), ['years', 'months', 'days', 'hours'])
 export default {
   components: {
     ServerStatus
   },
-  creationDate: '2017-07-29T08:09:11.0Z'
+  creationDate: DATE_OF_CREATION,
+  luxonDate: DateTime.fromISO(DATE_OF_CREATION).toLocaleString(DateTime.DATE_FULL),
+  operationDuration: `${duration.years} years, ${duration.months} months and ${duration.days} days`
 }
 </script>
