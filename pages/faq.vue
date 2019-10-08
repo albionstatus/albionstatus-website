@@ -10,14 +10,14 @@
       <h2 class="text-xl font-bold pt-12">
         {{ question }}
       </h2>
-      <p
-        class="text-lg mt-1"
-        v-html="answer"
-      />
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <p class="text-lg mt-1" v-html="answer" />
     </div>
   </div>
 </template>
 <script>
+import { encodeAnswer } from '@/shared/schemaHelpers'
+
 export default {
   content: [
     {
@@ -81,6 +81,23 @@ export default {
           hid: 'og:description',
           name: 'og:description',
           content: metaDescription
+        }
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          json: {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            'mainEntity': this.$options.content.map(content => ({
+              '@type': 'Question',
+              'name': content.question,
+              'acceptedAnswer': {
+                '@type': 'Answer',
+                'text': encodeAnswer(content.answer)
+              }
+            }))
+          }
         }
       ]
     }
