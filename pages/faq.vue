@@ -82,6 +82,23 @@ export default {
           name: 'og:description',
           content: metaDescription
         }
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          json: {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            'mainEntity': this.$options.content.map(content => ({
+              '@type': 'Question',
+              'name': content.question,
+              'acceptedAnswer': {
+                '@type': 'Answer',
+                'text': content.answer
+              }
+            }))
+          }
+        }
       ]
     }
   }

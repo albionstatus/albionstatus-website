@@ -33,40 +33,19 @@
       The maintenance is taking place from <strong>10am to 11am UTC</strong> every day.
       The total duration can vary though as explained above.
     </p>
-    <br>
-    <ClientOnly>
-      <MaintenanceTimer />
-    </ClientOnly>
+    <template v-if="true">
+      <br>
+      <ClientOnly>
+        <MaintenanceTimer />
+      </ClientOnly>
+    </template>
 
-    <h2 class="text-2xl pt-8">
-      Why is the daily server maintenance needed at all?
-    </h2>
-    <p class="mt-4 max-w-4xl">
-      The world of Albion is running on a single server, as explained on the
-      <NuxtLink class="underline hover:no-underline inline-block text-gray-800 font-bold" to="/server-location/">
-        server location
-      </NuxtLink>
-      information page. Also, it is a large, fast-living and persisting world. To update the game, fixing bugs or simply
-      re-rolling the resource allocation, there is no other option than taking the game down for a couple of minutes.
-      This also frees some server resources that'd pile up otherwise.
-    </p>
-
-    <h2 class="text-2xl pt-8">
-      What happens during the maintenance?
-    </h2>
-    <p class="mt-4 max-w-4xl">
-      During the daily server maintenance, there are a couple of technical tasks to fulfill.
-      First of all, a world backup is created automatically to have a rollback available for critical situations.
-      The downtime can also be used to upstream server-side updates or fixes, when there are any.
-      Also, changes on the server software and hardware have to be done in that time. This includes tasks like adding
-      additional machines, updating the server's operating system or changing the routing configurations.
-    </p>
-    <br>
-    <p class="mt-4 max-w-4xl">
-      The daily maintenance plays also a key role for the world ecosystem in Albion Online.
-      It will cause territory changes on the map and also shuffle the resource node allocation. That means that ores, wood but also
-      chests are changing their location after the downtime and will respawn somewhere with full capacities.
-    </p>
+    <section v-for="({question, answer}) in $options.content" :key="question">
+      <h2 class="text-2xl pt-8">
+        {{ question }}
+      </h2>
+      <p v-interpolation class="mt-4 max-w-4xl" v-html="answer" />
+    </section>
   </div>
 </template>
 <script>
@@ -74,6 +53,74 @@ export default {
   components: {
     MaintenanceTimer: () => import('@/components/MaintenanceTimer.vue')
   },
+  directives: {
+    interpolation: {
+      bind (el) {
+        const navigate = (event) => {
+          const href = event.target.getAttribute('href')
+          event.preventDefault()
+          window.$nuxt.$router.push(href)
+        }
+
+        const links = Array.from(el.getElementsByTagName('a')).filter((link) => {
+          const href = link.getAttribute('href')
+          return href && href.startsWith('/')
+        })
+
+        const addListeners = (links) => {
+          links.forEach((link) => {
+            const href = link.getAttribute('href')
+            if (href && href.startsWith('/')) {
+              link.addEventListener('click', navigate, false)
+            }
+          })
+        }
+
+        const removeListeners = (links) => {
+          links.forEach(link => link.removeEventListener('click', navigate, false))
+        }
+
+        addListeners(links)
+
+        el.$componentUpdated = () => {
+          removeListeners(links)
+          window.$nuxt.$nextTick(() => addListeners(links))
+        }
+
+        el.$destroy = () => el.removeEventListener('click', removeListeners(links))
+      },
+      componentUpdated: el => el.$componentUpdated(),
+      unbind: el => el.$destroy()
+    }
+  },
+  content: [
+    {
+      question: 'Why is the daily server maintenance needed at all?',
+      answer: `
+      The world of Albion is running on a single server, as explained on the
+      <a class="underline hover:no-underline inline-block text-gray-800 font-bold" href="/server-location/">
+        server location
+      </a>
+      information page. Also, it is a large, fast-living and persisting world. To update the game, fixing bugs or simply
+      re-rolling the resource allocation, there is no other option than taking the game down for a couple of minutes.
+      This also frees some server resources that'd pile up otherwise.
+    `
+    },
+    {
+      question: 'What happens during the maintenance?',
+      answer: `
+      During the daily server maintenance, there are a couple of technical tasks to fulfill.
+      First of all, a world backup is created automatically to have a rollback available for critical situations.
+      The downtime can also be used to upstream server-side updates or fixes, when there are any.
+      Also, changes on the server software and hardware have to be done in that time. This includes tasks like adding
+      additional machines, updating the server's operating system or changing the routing configurations.
+      <br><br>
+      The daily maintenance plays also a key role for the world ecosystem in Albion Online.
+      It will cause territory changes on the map and also shuffle the resource node allocation. That means that ores, wood but also
+      chests are changing their location after the downtime and will respawn somewhere with full capacities.
+      `
+    }
+  ],
   head () {
     const title = 'Daily Maintenance of the Albion Online Servers'
     const metaDescription = `Find out about the daily server maintenance for Albion Online. When does it happen? How long does it take? And what will be done during it?`
@@ -94,6 +141,23 @@ export default {
           hid: 'og:description',
           name: 'og:description',
           content: metaDescription
+        }
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          json: {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            'mainEntity': this.$options.content.map(content => ({
+              '@type': 'Question',
+              'name': content.question,
+              'acceptedAnswer': {
+                '@type': 'Answer',
+                'text': content.answer
+              }
+            }))
+          }
         }
       ]
     }
