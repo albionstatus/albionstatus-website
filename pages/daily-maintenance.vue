@@ -21,6 +21,7 @@
       <h2 class="text-2xl pt-8">
         {{ question }}
       </h2>
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <p v-interpolation class="mt-4 max-w-4xl" v-html="answer" />
       <template v-if="showTimer">
         <br>

@@ -10,10 +10,8 @@
       <h2 class="text-xl font-bold pt-12">
         {{ question }}
       </h2>
-      <p
-        class="text-lg mt-1"
-        v-html="answer"
-      />
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <p class="text-lg mt-1" v-html="answer" />
     </div>
   </div>
 </template>

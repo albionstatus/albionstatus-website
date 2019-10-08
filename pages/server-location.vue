@@ -16,7 +16,8 @@
       <h2 class="text-2xl pt-8">
         {{ question }}
       </h2>
-      <p class="mt-4 max-w-4xl" v-html="answer"/>
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <p class="mt-4 max-w-4xl" v-html="answer" />
     </div>
   </div>
 </template>
