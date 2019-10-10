@@ -88,6 +88,7 @@ export default {
   methods: {
     updateMaintenanceDate () {
       this.startOfMaintenance = this.startOfMaintenance.plus({ days: 1 })
+      this.endOfMaintenance = this.endOfMaintenance.plus({ days: 1 })
     }
   }
 }
