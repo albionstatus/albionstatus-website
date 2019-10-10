@@ -16,7 +16,12 @@
       first Albion Online server status tracker <strong class="text-black">ever!</strong> Want to know if Albion is
       down? We got you covered. The project was created when no server status page was available and the Albion Online
       developers announced the server status changes manually. Additionally, there were heavy DDoS attacks taking down
-      the servers every now and then. Nowadays, the most common downtime source is the daily maintenance.
+      the servers every now and then. Nowadays, the most common downtime source is the <nuxt-link
+        class="underline hover:no-underline inline-block text-black my-2 md:my-0"
+        to="/daily-maintenance/"
+      >
+        daily maintenance
+      </nuxt-link>.
       AlbionStatus was built to allow players to stay informed about the Albion Online server status while doing
       something else, like watching videos or playing something else. The key goal was to make
       refreshing the server status page and client obsolete, and I'm quite sure that we've reached it!<br><br>

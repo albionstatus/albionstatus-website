@@ -29,7 +29,7 @@ export default {
     name: 'AlbionStatus - Albion Online server status',
     author: 'Developmint',
     description: 'AlbionStatus is the only reliable Albion Online server status tracker. Find out if Albion is down' +
-      ' in a splitsecond, no matter if it is the daily maintenance or an outage.',
+      ' in a splitsecond, no matter if the downtime is caused by the daily maintenance or an outage.',
     ogSiteName: 'AlbionStatus',
     mobileAppIOs: true,
     ogHost: 'https://albionstatus.com',

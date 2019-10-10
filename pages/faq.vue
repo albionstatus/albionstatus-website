@@ -22,7 +22,7 @@ export default {
   content: [
     {
       question: 'What is AlbionStatus?',
-      answer: 'AlbionStatus is a fan-driven service that provides information about the Albion Online server, including the server status and information about it\'s location and daily maintenance'
+      answer: 'AlbionStatus is a fan-driven service that provides information about the Albion Online server, including the server status and information about it\'s location and daily maintenance.'
     },
     {
       question: 'So.. this is no official service?',
@@ -47,7 +47,7 @@ export default {
     {
       question: 'How can I contact you?',
       answer: 'You can tweet our Twitter bot or write us a mail at <a class="text-gray-600 hover:text-black' +
-      ' hover:underline" href="mailto:albionstatus@developmint.de" rel="noopener">albionstatus@developmint.de</a>'
+      ' hover:underline" href="mailto:albionstatus@developmint.de" rel="noopener">albionstatus@developmint.de</a>.'
     },
     {
       question: 'Do you make money with this project?',
