@@ -14,7 +14,7 @@
       <br><br>
       Below, you'll find information regarding the duration, timing and purpose of the daily server maintenance.
       As a bonus, there is a <a class="underline hover:no-underline inline-block text-gray-800 font-bold" href="#timer">timer</a>
-      showing you the time until the next maintenance.
+      showing you the time until the next maintenance based on the usual schedule.
     </p>
 
     <section v-for="({question, answer, showTimer}) in $options.content" :key="question">

@@ -5,7 +5,7 @@
     </h3>
     <dl class="mt-4">
       <dt class="inline-block">
-        Start of the next maintenance:
+        Start of the next scheduled maintenance:
       </dt>
       <dd class="font-bold inline-block">
         {{ formattedStartOfNextMaintenance }}
@@ -13,7 +13,7 @@
     </dl>
     <dl>
       <dt class="inline-block">
-        Usual end of the next maintenance:
+        Usual end of the next scheduled maintenance:
       </dt>
       <dd class="font-bold inline-block">
         {{ formattedEndOfNextMaintenance }}
@@ -21,7 +21,7 @@
     </dl>
     <dl>
       <dt class="inline-block">
-        Time until the next maintenance:
+        Time until the next scheduled maintenance:
       </dt>
       <dd class="font-bold inline-block">
         {{ formattedTimeUntilMaintenance }}
