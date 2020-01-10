@@ -55,6 +55,13 @@ export default {
         The server is located in <strong>Washington DC, USA</strong>. This server location was chosen in such a way that
         players from America, Europe and also Russia will have a decent ping. As Albion's combat isn't as fast paced as
         RTS games like Dota or Starcraft, players can even play the game well with "high pings" of 150.`
+    },
+    {
+      question: 'Is there an EU server for Albion?',
+      answer: `
+        As explained in the previous answers, there is <strong>no EU server for Albion Online</strong>. As long as the
+        Albion developers will stick to the single server principle, a dedicated server for european players is not
+        possible.`
     }
   ],
   head () {
