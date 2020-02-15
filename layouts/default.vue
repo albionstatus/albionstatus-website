@@ -1,9 +1,13 @@
 <template>
   <div class="min-h-screen flex flex-col justify-between">
     <AppHeader />
-    <AdWrapper />
+    <ClientOnly>
+      <AdWrapper />
+    </ClientOnly>
     <Nuxt />
-    <AdWrapper />
+    <ClientOnly>
+      <AdWrapper />
+    </ClientOnly>
     <AppFooter />
   </div>
 </template>
