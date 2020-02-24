@@ -62,6 +62,10 @@ export default {
         As explained in the previous answers, there is <strong>no EU server for Albion Online</strong>. As long as the
         Albion developers will stick to the single server principle, a dedicated server for european players is not
         possible.`
+    },
+    {
+      question: 'How can I check my ping when I am playing Albion Online?',
+      answer: 'When you are in the game, type <code>/ping</code>. Then the ping will be shown in the lower-right corner of the screen.'
     }
   ],
   head () {
