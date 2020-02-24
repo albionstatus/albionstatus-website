@@ -21,7 +21,6 @@
     "@nuxtjs/tailwindcss": "^1.1.0",
     "glob-all": "^3.1.0",
     "luxon": "^1.19.3",
-    "moment-timezone": "^0.5.17",
     "nuxt-edge": "^2.11.1-26375059.fd5fefe",
     "nuxt-svg-loader": "^1.0.1",
     "v-tooltip": "^2.0.0-rc.31"
