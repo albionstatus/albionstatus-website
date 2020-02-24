@@ -123,7 +123,7 @@ export default {
   ],
   head () {
     const title = 'Daily Maintenance of the Albion Online Servers'
-    const metaDescription = `Find out about the daily server maintenance for Albion Online. When does it happen? How long does it take? And what will be done during it?`
+    const metaDescription = 'Find out about the daily server maintenance for Albion Online. When does it happen? How long does it take? And what will be done during it?'
     return {
       title,
       meta: [
@@ -149,12 +149,12 @@ export default {
           json: {
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
-            'mainEntity': this.$options.content.map(content => ({
+            mainEntity: this.$options.content.map(content => ({
               '@type': 'Question',
-              'name': content.question,
-              'acceptedAnswer': {
+              name: content.question,
+              acceptedAnswer: {
                 '@type': 'Answer',
-                'text': encodeAnswer(content.answer)
+                text: encodeAnswer(content.answer)
               }
             }))
           }

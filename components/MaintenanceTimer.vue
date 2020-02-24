@@ -51,7 +51,7 @@ export default {
       return this.endOfMaintenance.toHTTP()
     },
     formattedTimeUntilMaintenance () {
-      return Duration.fromObject(this.remaining).toFormat(`hh 'hours' mm 'minutes and' ss 'seconds'`)
+      return Duration.fromObject(this.remaining).toFormat('hh \'hours\' mm \'minutes and\' ss \'seconds\'')
     },
     total () {
       return this.startOfMaintenance.diff(this.start).toObject()

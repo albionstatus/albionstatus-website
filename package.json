@@ -17,22 +17,24 @@
     "@nuxtjs/google-analytics": "^2.0.2",
     "@nuxtjs/netlify-files": "^1.0.0",
     "@nuxtjs/pwa": "^3.0.0-beta.19",
-    "@nuxtjs/sitemap": "^1.3.1",
+    "@nuxtjs/sitemap": "^2.0.1",
     "@nuxtjs/tailwindcss": "^1.1.0",
     "glob-all": "^3.1.0",
     "luxon": "^1.19.3",
     "moment-timezone": "^0.5.17",
-    "nuxt-edge": "^2.10.0-26161929.686720f0",
+    "nuxt-edge": "^2.11.1-26375059.fd5fefe",
     "nuxt-svg-loader": "^1.0.1",
-    "v-tooltip": "^2.0.0-rc.31",
-    "vue-moment": "^4.0.0"
+    "v-tooltip": "^2.0.0-rc.31"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^1.1.2",
+    "@nuxtjs/eslint-config": "^2.0.2",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.4.0",
     "eslint-loader": "^3.0.2",
     "husky": "^3.0.7"
+  },
+  "resolutions": {
+    "@babel/parser": "7.7.5"
   },
   "husky": {
     "hooks": {
