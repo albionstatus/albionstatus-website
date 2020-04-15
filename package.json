@@ -21,7 +21,7 @@
     "@nuxtjs/tailwindcss": "^1.1.0",
     "glob-all": "^3.1.0",
     "luxon": "^1.19.3",
-    "nuxt-edge": "^2.11.1-26375059.fd5fefe",
+    "nuxt-edge": "^2.13.0-26448496.479e3ffe",
     "nuxt-svg-loader": "^1.0.1",
     "v-tooltip": "^2.0.0-rc.31"
   },
