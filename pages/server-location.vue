@@ -57,15 +57,15 @@ export default {
         RTS games like Dota or Starcraft, players can even play the game well with "high pings" of 150.`
     },
     {
-      question: 'Is there an EU server for Albion?',
+      question: 'Is there a european or oceanic server for Albion?',
       answer: `
-        As explained in the previous answers, there is <strong>no EU server for Albion Online</strong>. As long as the
-        Albion developers will stick to the single server principle, a dedicated server for european players is not
-        possible.`
+        As explained in the previous answers, there is <strong>no european or australian/oceanic server for Albion Online</strong>.
+        As long as the Albion developers will stick to the single server principle, a dedicated server for european players is not
+        possible. Thus, you also can not change the server you are playing on.`
     },
     {
-      question: 'How can I check my ping when I am playing Albion Online?',
-      answer: 'When you are in the game, type <code>/ping</code>. Then the ping will be shown in the lower-right corner of the screen.'
+      question: 'How do I check my ping or latency when playing Albion Online?',
+      answer: 'When you are in the game, type <code>/ping</code>. Then, the ping will be shown in the lower-right corner of the screen.'
     }
   ],
   head () {
