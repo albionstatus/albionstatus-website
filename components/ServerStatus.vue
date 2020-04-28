@@ -115,9 +115,6 @@ export default {
   mounted () {
     this.getStatus()
     setInterval(this.getStatus, 30 * 1000)
-
-    // Ask for permission to send pushs
-    NotificationService.authorize()
   },
   methods: {
     async getStatus () {

@@ -21,6 +21,10 @@ export default {
     trailingSlash: true
   },
 
+  plugins: [
+    '~/plugins/composition-api'
+  ],
+
   generate: {
     fallback: true
   },

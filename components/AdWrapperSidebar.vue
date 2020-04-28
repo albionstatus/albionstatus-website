@@ -1,7 +1,7 @@
 <template>
-  <div v-if="notInLegalView" class="flex flex-wrap flex-col w-full text-center mx-auto mb-2 mt-8">
+  <div v-if="notInLegalView" class="flex flex-wrap flex-col w-full text-center mx-auto">
     <template v-if="hasAdblock === false">
-      <adsbygoogle :slot="adSlotId" class="w-full mx-auto mb-2" />
+      <Adsbygoogle :slot="adSlotId" class="w-full mx-auto mb-2" />
       <span class="mt-2 mb-1 text-sm text-gray-600">Advertisement</span>
     </template>
     <div v-if="hasAdblock === true" class="mt-2 md:mt-8 mb-4 md:mb-16" aria-hidden="true">
