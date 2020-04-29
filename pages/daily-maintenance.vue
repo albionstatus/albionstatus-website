@@ -10,13 +10,13 @@
         The daily maintenance is an important part of Albion Online. Every player should be aware of it.
         Nothing is more annoying then trying to play the game and see that the maintenance is ongoing.
         Luckily, our
-        <NuxtLink class="underline hover:no-underline inline-block text-gray-800 font-bold" to="/">
+        <NuxtLink class="underline hover:no-underline inline-block text-gray-800" to="/">
           server status tracker
         </NuxtLink>
         will tell you when the servers are back online.
         <br><br>
         Below, you'll find information regarding the duration, timing and purpose of the daily server maintenance.
-        As a bonus, there is a <a class="underline hover:no-underline inline-block text-gray-800 font-bold" href="#timer">timer</a>
+        As a bonus, there is a <a class="underline hover:no-underline inline-block text-gray-800" href="#timer">timer</a>
         showing you the time until the next maintenance based on the usual schedule.
       </p>
     </template>

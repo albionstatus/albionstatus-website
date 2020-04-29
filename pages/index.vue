@@ -1,7 +1,7 @@
 <template>
   <div class="container px-4 pt-0 pb-6 mx-auto">
     <div class="flex-1 min-w-0">
-      <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+      <h1 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
         AlbionStatus - Your Server Status tracker
       </h1>
     </div>
@@ -10,7 +10,7 @@
       <p>
         AlbionStatus is your <span class="text-black">reliable</span> Albion Online server status tracker! Operating
         since <span class="text-black font-semibold">{{ $options.luxonDate }}</span> it was the
-        first Albion Online server status tracker <strong class="text-black">ever</strong>! Want to know if Albion is
+        first Albion Online server status tracker ever! Want to know if Albion is
         down? We got you covered.
       </p>
       <p>
@@ -36,7 +36,7 @@
         </a> which you can follow to stay up to date about the server status.
         Be sure to take a look into the
         <NuxtLink
-          class="font-semibold underline hover:no-underline inline-block text-gray-800 hover:text-black my-2 md:my-0"
+          class="underline hover:no-underline inline-block text-gray-800 hover:text-black my-2 md:my-0"
           to="/faq/"
         >
           FAQ
@@ -70,8 +70,12 @@
       Oh, great question! There are several more features planned:
     </p>
     <ul class="text-lg leading-loose text-gray-800 list-disc pl-12 mb-4">
-      <li>Uptime charts 📊 (partially done!)</li>
-      <li>Server status widget 🔌 (coming soon)</li>
+      <li>
+        <NuxtLink to="/charts/" class="inline-block underline hover:no-underline">
+          Uptime charts 📊
+        </NuxtLink> (partially done!)
+      </li>
+      <li>Server status widget 🔌</li>
       <li>CLI/Bot support 🤖</li>
     </ul>
     <p class="text-lg leading-loose text-gray-800">

@@ -2,18 +2,20 @@
   <VueFrappe
     id="uptime-chart-24-hours"
     type="bar"
+    title="Server uptime of the last 24 hours"
     :bar-options="{ stacked: true }"
     :labels="shiftedHourData.map(d => formattedHour(d.hour))"
     :height="650"
-    :colors="['#008F68', '#b13c28']"
+    :colors="['#868686', '#b13c28', '#008F68']"
     :tooltip-options="{
       formatTooltipX: formattedDateHour,
-      formatTooltipY: d => d + ' minutes'
+      formatTooltipY: d => `${d} minutes`
     }"
     :line-options="{regionFill: 1}"
     :data-sets="[
-      {name: 'online', values: shiftedHourData.map(d => d.onlineMinutes)},
+      {name: 'not tracked', values: shiftedHourData.map(d => 60 - d.offlineMinutes - d.onlineMinutes)},
       {name: 'offline', values: shiftedHourData.map(d => d.offlineMinutes)},
+      {name: 'online', values: shiftedHourData.map(d => d.onlineMinutes)},
     ]"
   />
 </template>
@@ -62,7 +64,8 @@ export default {
     this.fetchData()
   },
   mounted () {
-    setInterval(this.fetchData, 30 * 1000)
+    const handler = setInterval(this.fetchData, 30 * 1000)
+    this.$once('hook:beforeDestroy', () => { clearInterval(handler) })
   },
   methods: {
     async fetchData () {
