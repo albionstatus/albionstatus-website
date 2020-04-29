@@ -7,17 +7,20 @@
       </div>
       <div class="mt-6 border-t-2 border-gray-100 pt-10">
         <dl class="md:grid md:grid-cols-2 md:gap-32">
-          <div v-for="i in 2" :class="{ 'mt-16 md:mt-0': i-1 }" :key="i">
+          <div v-for="i in 2" :key="i" :class="{ 'mt-16 md:mt-0': i-1 }">
             <div v-for="({question, answer}, j) in splitContent[i-1]" :key="question" :class="{ 'mt-16': j }">
               <dt class="text-xl leading-6 font-medium text-gray-900">
                 {{ question }}
               </dt>
               <dd class="mt-2">
-                <p class="text-base leading-6 text-gray-700" v-html="answer" />
+                <p v-interpolation class="text-base leading-6 text-gray-700" v-html="answer" />
               </dd>
             </div>
           </div>
         </dl>
+      </div>
+      <div class="mt-8">
+        <slot name="outro" />
       </div>
     </div>
   </div>
@@ -26,6 +29,46 @@
 import { encodeAnswer } from '@/shared/schemaHelpers'
 
 export default {
+  directives: {
+    interpolation: {
+      bind (el) {
+        const navigate = (event) => {
+          const href = event.target.getAttribute('href')
+          event.preventDefault()
+          window.$nuxt.$router.push(href)
+        }
+
+        const links = Array.from(el.getElementsByTagName('a')).filter((link) => {
+          const href = link.getAttribute('href')
+          return href && href.startsWith('/')
+        })
+
+        const addListeners = (links) => {
+          links.forEach((link) => {
+            const href = link.getAttribute('href')
+            if (href && href.startsWith('/')) {
+              link.addEventListener('click', navigate, false)
+            }
+          })
+        }
+
+        const removeListeners = (links) => {
+          links.forEach(link => link.removeEventListener('click', navigate, false))
+        }
+
+        addListeners(links)
+
+        el.$componentUpdated = () => {
+          removeListeners(links)
+          window.$nuxt.$nextTick(() => addListeners(links))
+        }
+
+        el.$destroy = () => el.removeEventListener('click', removeListeners(links))
+      },
+      componentUpdated: el => el.$componentUpdated(),
+      unbind: el => el.$destroy()
+    }
+  },
   props: {
     content: {
       type: Array,
