@@ -1,42 +1,34 @@
 <template>
-  <footer>
-    <nav
-      class="w-full flex flex-col lg:flex-row items-center justify-between flex-wrap border-t border-green-400 bg-gray-100 p-6"
-    >
-      <p class="text-sm my-2 lg:my-0">
-        Powered by
-        <a
-          class="text-developmint-500 hover:text-developmint-300"
-          href="https://developmint.de?ref=albionstatus.com"
-          rel="noopener"
-          target="_blank"
-        >Developmint</a>
-        © 2016-{{ $options.currentYearNumbers }} - All rights reserved. Albion Online is a registered
-        trademark of Sandbox Interactive GmbH in Germany, and/or other countries.
-      </p>
-      <div>
-        <nuxt-link
-          no-prefetch
-          to="/privacy/"
-          class="gray-900 hover:underline inline-block my-2 lg:my-0"
-        >
-          Privacy
-        </nuxt-link>
-        &bull;
-        <nuxt-link
-          no-prefetch
-          to="/legal/"
-          class="gray-900 hover:underline inline-block my-2 lg:my-0"
-        >
-          Legal notice
-        </nuxt-link>
+  <footer class="bg-white">
+    <div class="max-w-screen-xl mx-auto py-6 md:py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+      <div class="flex justify-center">
+        <p class="text-center text-base leading-6 text-gray-400 max-w-3xl md:max-w-none">
+          Powered by
+          <a
+            class="text-developmint-300 hover:text-developmint-500"
+            href="https://developmint.de?ref=albionstatus.com"
+            rel="noopener"
+            target="_blank"
+          >Developmint</a>
+          &copy; {{ $options.currentYearNumbers }} &mdash; All rights reserved. Albion Online is a registered
+          trademark of Sandbox Interactive GmbH in Germany, and/or other countries.
+        </p>
       </div>
-    </nav>
+      <div class="flex justify-center items-center mt-4 text-sm md:mt-0">
+        <NuxtLink no-prefetch to="/privacy/" class="text-gray-400 hover:text-gray-500 inline-block my-2 lg:my-0">
+          Privacy
+        </NuxtLink>
+        <span class="mx-1 text-gray-400">&bull;</span>
+        <NuxtLink no-prefetch to="/legal/" class="text-gray-400 hover:text-gray-500 inline-block my-2 lg:my-0">
+          Legal notice
+        </NuxtLink>
+      </div>
+    </div>
   </footer>
 </template>
 
 <script>
 export default {
-  currentYearNumbers: (new Date()).getFullYear().toString().substr(-2)
+  currentYearNumbers: (new Date()).getFullYear().toString()
 }
 </script>
