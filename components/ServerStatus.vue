@@ -12,8 +12,7 @@
             </dd>
           </div>
           <div
-            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r"
-          >
+            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
             <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
               Last checked at
             </dt>
@@ -38,6 +37,17 @@
             </div>
           </dl>
         </Transition>
+        <dl class="mt-4 rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-1">
+          <div
+            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+            <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+              Operating since
+            </dt>
+            <dd class="order-1 text-4xl leading-none font-extrabold text-teal-600">
+              {{ operatingSince }}
+            </dd>
+          </div>
+        </dl>
       </div>
     </div>
   </div>
@@ -46,6 +56,7 @@
 <script>
 import { DateTime } from 'luxon'
 import * as NotificationService from '~/shared/NotificationService'
+import { DATE_OF_CREATION } from '@/shared/constants'
 
 /*
  * Constants
@@ -89,6 +100,16 @@ export default {
     },
     formattedLastChecked () {
       return this.lastCheckedAt && this.lastCheckedAt.toFormat('HH:mm:ss')
+    },
+    operatingSince () {
+      const units = ['years', 'months', 'days', 'hours']
+      const duration = DateTime.local().diff(DateTime.fromISO(DATE_OF_CREATION), units)
+
+      return units
+        .map(u => duration[u] ? `${Math.ceil(duration[u])} ${u}` : false)
+        .filter(Boolean)
+        .join(', ')
+        .replace(/,([^,]*)$/, ' and $1')
     }
   },
   watch: {
