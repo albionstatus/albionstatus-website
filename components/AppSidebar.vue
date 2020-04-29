@@ -70,7 +70,7 @@
     <!-- Static sidebar for desktop -->
     <div class="hidden md:flex md:flex-shrink-0">
       <div class="flex flex-col w-64 border-r border-gray-200 bg-white">
-        <div class="h-0 flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+        <div class="h-0 flex-1 flex flex-col pt-5 overflow-y-auto">
           <div class="flex justify-center items-center flex-shrink-0 px-4">
             <NuxtLink to="/" @click.native.prevent="jump()">
               <img class="h-16 w-auto" src="~/assets/logo.png" alt="AlbionStatus Logo">
@@ -96,11 +96,9 @@
               {{ name }}
             </NuxtLink>
           </nav>
-          <div>
-            <AdWrapperSidebar />
-          </div>
+          <AdWrapperSidebar />
         </div>
-        <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
+        <div class="flex-shrink-0 flex border-t border-gray-200 p-4 mt-8">
           <button class="w-full flex-shrink-0 group flex items-center" @click="authorizePushNotifications">
             <svg class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
               <path

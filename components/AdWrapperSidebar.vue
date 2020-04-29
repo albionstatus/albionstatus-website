@@ -1,11 +1,20 @@
 <template>
   <div v-if="notInLegalView" class="flex flex-wrap flex-col w-full text-center mx-auto">
     <template v-if="hasAdblock === false">
-      <Adsbygoogle :slot="adSlotId" class="w-full mx-auto mb-2" />
+      <adsbygoogle
+        :slot="adSlotId"
+        :ad-style="{
+          display: 'inline-block',
+          width: '100%',
+          'max-height': '250px'
+        }"
+        :ad-format="''"
+        class="w-full mx-auto max-h-64"
+      />
       <span class="mt-2 mb-1 text-sm text-gray-600">Advertisement</span>
     </template>
-    <div v-if="hasAdblock === true" class="mt-2 md:mt-8 mb-4 md:mb-16" aria-hidden="true">
-      <div class="inline-block py-4 px-8 border border-red-400 md:text-2xl underline">
+    <div v-if="hasAdblock === true" aria-hidden="true">
+      <div class="inline-block py-4 px-8 border border-red-400 md:text-xl py-8">
         Please support AlbionStatus by disabling your AdBlocker ❤
       </div>
     </div>
