@@ -199,7 +199,7 @@ export default {
         }
       },
       {
-        name: 'FAQ',
+        name: 'AlbionStatus FAQ',
         to: '/faq/',
         icon: {
           props: {
@@ -216,7 +216,7 @@ export default {
     ]
 
     const indexPath = '/'
-    const currentRoute = computed(() => ctx.root.$route.path)
+    const currentRoute = computed(() => ctx.root?.$route?.path)
     const jumpFn = (to = '/') => {
       const shouldGoToIndex = to === indexPath
 
@@ -227,7 +227,7 @@ export default {
 
       ctx.root.$router.go(0)
     }
-    const jump = currentRoute.value === indexPath ? jumpFn : undefined
+    const jump = currentRoute.value === indexPath ? jumpFn : () => {}
     return {
       links,
       closeSidebar: () => ctx.emit('input', false),

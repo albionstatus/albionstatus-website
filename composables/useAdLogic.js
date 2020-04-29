@@ -3,8 +3,8 @@ import { computed, onBeforeMount, ref } from '@vue/composition-api'
 const adSlotId = '2610490971'
 
 export default function (ctx) {
-  const currentPath = ctx.root?.$route?.path
-  const notInLegalView = computed(() => !['/legal', '/privacy'].includes(currentPath))
+  const currentPath = computed(() => ctx.root?.$route?.path)
+  const notInLegalView = computed(() => !['/legal', '/privacy'].includes(currentPath.value))
   const hasAdblock = ref(undefined)
   onBeforeMount(async () => {
     hasAdblock.value = await new Promise((resolve) => {
