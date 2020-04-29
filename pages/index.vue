@@ -1,11 +1,11 @@
 <template>
   <div class="container px-4 pt-0 pb-6 mx-auto">
     <div class="flex-1 min-w-0">
-      <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+      <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
         AlbionStatus - Your Server Status tracker
-      </h2>
+      </h1>
     </div>
-    <ServerStatus class="mt-16" />
+    <ServerStatus />
     <p class="text-lg pt-4 lg:pt-8 leading-loose font-serif text-gray-800">
       AlbionStatus is your <span class="text-black">reliable</span> Albion Online server status tracker! Operating
       since
