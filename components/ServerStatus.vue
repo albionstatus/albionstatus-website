@@ -76,17 +76,6 @@ export default {
     }
   },
   computed: {
-    iconComponent () {
-      const lookup = {
-        online: 'check',
-        offline: 'times',
-        default: 'question'
-      }
-
-      const componentName = lookup[this.status] || lookup.default
-
-      return () => import(`~/components/icons/${componentName}.svg`)
-    },
     statusClasses () {
       const lookup = {
         online: 'text-green-500',

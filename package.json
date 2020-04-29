@@ -25,7 +25,8 @@
     "luxon": "^1.19.3",
     "nuxt-edge": "^2.13.0-26448496.479e3ffe",
     "nuxt-svg-loader": "^1.0.1",
-    "v-tooltip": "^2.0.0-rc.31"
+    "v-tooltip": "^2.0.0-rc.31",
+    "vue2-frappe": "^1.0.29"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.2",
@@ -33,9 +34,6 @@
     "eslint": "^6.4.0",
     "eslint-loader": "^3.0.2",
     "husky": "^3.0.7"
-  },
-  "resolutions": {
-    "@babel/parser": "7.7.5"
   },
   "husky": {
     "hooks": {

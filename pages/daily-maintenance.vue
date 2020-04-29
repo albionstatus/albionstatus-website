@@ -1,7 +1,7 @@
 <template>
   <FaqTwoColumn :content="$options.content">
-    <template #head>
-      <h1 class="text-center text-4xl font-bold">
+    <template #heading>
+      <h1 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
         Daily Maintenance of the Albion Online Servers
       </h1>
     </template>
