@@ -43,7 +43,7 @@
             <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
               Operating since
             </dt>
-            <dd class="order-1 text-4xl leading-none font-extrabold text-teal-600">
+            <dd class="order-1 text-4xl leading-none font-extrabold text-gray-500">
               {{ operatingSince }}
             </dd>
           </div>
