@@ -8,7 +8,7 @@
   </FaqComponent>
 </template>
 <script>
-import FaqComponent from '@/components/FaqComponent'
+import FaqComponent from '@/components/FaqAccordion'
 
 export default {
   components: {

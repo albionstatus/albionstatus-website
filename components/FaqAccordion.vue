@@ -1,9 +1,7 @@
 <template>
   <div class="max-w-screen-xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-      <h1 class="text-center text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
-        <slot name="heading" />
-      </h1>
+      <slot name="heading" />
       <div class="mt-6 border-t-2 border-gray-200 pt-6">
         <dl>
           <div

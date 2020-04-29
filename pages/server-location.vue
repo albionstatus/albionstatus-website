@@ -1,30 +1,20 @@
 <template>
-  <div class="container p-4 mx-auto">
-    <h1 class="text-center text-4xl font-bold">
-      All about the Albion Online server location
-    </h1>
-    <p class="pt-8">
-      <span class="text-xl">Most people</span> are asking themselves where the Albion Online servers are located and if
-      they are the cause for possible lag spikes, rubberbanding or other bad online experiences.
-      Also it isn't clear to many Albion players how many server instances or
-      shards are actually available and how to switch between them.
-      <br><br>
-      In the following overview, you will find out!
-    </p>
-
-    <div v-for="({question, answer}) in $options.content" :key="question">
-      <h2 class="text-2xl pt-8">
-        {{ question }}
-      </h2>
-      <!-- eslint-disable-next-line vue/no-v-html -->
-      <p class="mt-4 max-w-4xl" v-html="answer" />
-    </div>
-  </div>
+  <FaqTwoColumn :content="$options.content">
+    <template #heading>
+      <h1 class="text-center text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
+        All about the Albion Online server location
+      </h1>
+    </template>
+  </FaqTwoColumn>
 </template>
 <script>
-import { encodeAnswer } from '@/shared/schemaHelpers'
+
+import FaqTwoColumn from '@/components/FaqTwoColumn'
 
 export default {
+  components: {
+    FaqTwoColumn
+  },
   content: [
     {
       question: 'How many Albion servers exist?',
@@ -71,6 +61,7 @@ export default {
   head () {
     const title = 'About the location of the Albion Online servers'
     const metaDescription = 'Where are the Albion servers located? Is the location the cause of bad in-game experiences? How many of them actually exist? Find an answer to these question on AlbionStatus'
+
     return {
       title,
       meta: [
@@ -88,23 +79,6 @@ export default {
           hid: 'og:description',
           name: 'og:description',
           content: metaDescription
-        }
-      ],
-      script: [
-        {
-          type: 'application/ld+json',
-          json: {
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: this.$options.content.map(content => ({
-              '@type': 'Question',
-              name: content.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: encodeAnswer(content.answer)
-              }
-            }))
-          }
         }
       ]
     }

@@ -35,9 +35,9 @@
                 </button>
               </div>
               <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-                <NuxtLink class="flex-shrink-0 flex items-center px-5" to="/" @click.native.prevent="jump()">
+                <a class="flex-shrink-0 flex items-center px-5" href="/" @click.prevent="jump">
                   <img class="h-16 w-auto" src="~/assets/logo.png" alt="AlbionStatus Logo">
-                </NuxtLink>
+                </a>
                 <nav class="mt-5 px-2">
                   <NuxtLink
                     v-for="({to, name, icon}, i) in links"
@@ -46,7 +46,6 @@
                     exact-active-class="bg-gray-100focus:outline-none hover:bg-gray-100 text-gray-900 focus:bg-gray-200"
                     :class="{'mt-1': i}"
                     class="group flex items-center px-2 py-2 text-sm leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
-                    @click.native.prevent="jump(to)"
                   >
                     <svg
                       class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
@@ -72,9 +71,9 @@
       <div class="flex flex-col w-64 border-r border-gray-200 bg-white">
         <div class="h-0 flex-1 flex flex-col pt-5 overflow-y-auto">
           <div class="flex justify-center items-center flex-shrink-0 px-4">
-            <NuxtLink to="/" @click.native.prevent="jump()">
+            <a href="/" @click.prevent="jump">
               <img class="h-16 w-auto" src="~/assets/logo.png" alt="AlbionStatus Logo">
-            </NuxtLink>
+            </a>
           </div>
           <!-- Sidebar component, swap this element with another sidebar if you like -->
           <nav class="mt-5 flex-1 px-2 bg-white">
@@ -85,7 +84,6 @@
               exact-active-class="bg-gray-100 hover:bg-gray-100 focus:outline-none text-gray-900 focus:bg-gray-200"
               :class="{'mt-1': i}"
               class="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-100 transition ease-in-out duration-150"
-              @click.native.prevent="jump(to)"
             >
               <svg
                 class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
@@ -118,7 +116,6 @@
 </template>
 
 <script>
-import { computed } from '@vue/composition-api'
 import AdWrapperSidebar from '@/components/AdWrapperSidebar'
 import { authorize } from '@/shared/NotificationService'
 
@@ -215,24 +212,16 @@ export default {
       }
     ]
 
-    const indexPath = '/'
-    const currentRoute = computed(() => ctx.root?.$route?.path)
-    const jumpFn = (to = '/') => {
-      const shouldGoToIndex = to === indexPath
-
-      if (!shouldGoToIndex) {
-        ctx.root.$router.push(to)
-        return
-      }
-
-      ctx.root.$router.go(0)
-    }
-    const jump = currentRoute.value === indexPath ? jumpFn : () => {}
     return {
       links,
       closeSidebar: () => ctx.emit('input', false),
-      authorizePushNotifications: () => { authorize() },
-      jump
+      authorizePushNotifications: () => { authorize() }
+    }
+  },
+  methods: {
+    jump () {
+      const indexPath = '/'
+      this.$route.path === indexPath ? this.$router.go(0) : this.$router.push(indexPath)
     }
   }
 }
