@@ -5,6 +5,16 @@
         All about the Albion Online server location
       </h1>
     </template>
+    <template #intro>
+      <p class="pt-8">
+        <span class="italic">Most people</span> are asking themselves where the Albion Online servers are
+        located and if they are the cause for possible lag spikes, rubberbanding or other bad online experiences.
+        Also it isn't clear to many Albion players how many server instances or shards are actually available and how to
+        switch between them.
+        <br><br>
+        In the following overview, you will find out!
+      </p>
+    </template>
   </FaqTwoColumn>
 </template>
 <script>

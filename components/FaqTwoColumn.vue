@@ -2,6 +2,9 @@
   <div class="bg-white">
     <div class="max-w-screen-3xl mx-auto pt-12 pb-16 sm:pt-16 px-4 sm:px-6 lg:pb-28 lg:px-8">
       <slot name="heading" />
+      <div>
+        <slot name="intro" />
+      </div>
       <div class="mt-6 border-t-2 border-gray-100 pt-10">
         <dl class="md:grid md:grid-cols-2 md:gap-32">
           <div v-for="i in 2" :class="{ 'mt-16 md:mt-0': i-1 }" :key="i">
