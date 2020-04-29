@@ -45,17 +45,16 @@ export default {
         hourArray.push(serverOnlineAtTime)
       }
 
-      const mappedHourData = multiDimensionalHourArray
-        .map((hourArray, index) => {
-          const offlineMinutes = hourArray.filter(d => !d).length
-          const totalMinutesTracked = hourArray.length
+      const mappedHourData = multiDimensionalHourArray.map((hourArray, index) => {
+        const offlineMinutes = hourArray.filter(d => !d).length
+        const totalMinutesTracked = hourArray.length
 
-          return {
-            onlineMinutes: totalMinutesTracked - offlineMinutes,
-            offlineMinutes,
-            hour: index
-          }
-        })
+        return {
+          onlineMinutes: totalMinutesTracked - offlineMinutes,
+          offlineMinutes,
+          hour: index
+        }
+      })
 
       return rotateArray(mappedHourData, (new Date()).getUTCHours())
     }

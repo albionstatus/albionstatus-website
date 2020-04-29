@@ -21,9 +21,7 @@
       </p>
     </template>
     <template #outro>
-      <ClientOnly>
-        <MaintenanceTimer />
-      </ClientOnly>
+      <MaintenanceTimer />
     </template>
   </FaqTwoColumn>
 </template>
@@ -33,7 +31,7 @@ import FaqTwoColumn from '~/components/FaqTwoColumn'
 export default {
   components: {
     FaqTwoColumn,
-    MaintenanceTimer: () => import('@/components/MaintenanceTimer.vue')
+    MaintenanceTimer: () => import('~/components/MaintenanceTimer')
   },
   content: [
     {
