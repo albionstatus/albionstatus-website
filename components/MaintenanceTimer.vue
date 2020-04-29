@@ -7,28 +7,26 @@
       <div class="max-w-4xl mx-auto">
         <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
           <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
-            <dt id="item-1" class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+            <dt id="item-1" class="order-2 mt-5 text-lg leading-6 font-medium text-gray-500">
               Start of the next scheduled maintenance
             </dt>
-            <dd class="order-1 text-3xl font-extrabold leading-none" aria-describedby="item-1">
+            <dd class="order-1 text-2xl font-extrabold leading-none" aria-describedby="item-1">
               {{ formattedStartOfNextMaintenance }}
             </dd>
           </div>
-          <div
-            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-            <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+          <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+            <dt class="order-2 text-lg leading-6 font-medium text-gray-500 mt-5">
               Usual end of the next scheduled maintenance
             </dt>
-            <dd class="order-1 text-3xl font-extrabold leading-none text-indigo-600">
+            <dd class="order-1 text-2xl font-extrabold leading-none text-indigo-600">
               {{ formattedEndOfNextMaintenance }}
             </dd>
           </div>
-          <div
-            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-            <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500 mt-3">
+          <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+            <dt class="order-2 text-lg leading-6 font-medium text-gray-500 mt-5">
               Time until the next scheduled maintenance
             </dt>
-            <dd class="order-1 text-2xl mt-2 font-extrabold leading-none text-indigo-600">
+            <dd class="order-1 text-2xl font-extrabold leading-none text-indigo-600">
               {{ formattedTimeUntilMaintenance }}
             </dd>
           </div>

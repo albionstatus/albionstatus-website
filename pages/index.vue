@@ -10,8 +10,7 @@
       <p>
         AlbionStatus is your <span class="text-black">reliable</span> Albion Online server status tracker! Operating
         since <span class="text-black font-semibold">{{ $options.luxonDate }}</span> it was the
-        first Albion Online server status tracker ever! Want to know if Albion is
-        down? We got you covered.
+        first Albion Online server status tracker ever! Want to know if Albion is down? We got you covered.
       </p>
       <p>
         The project was created when no server status page was available and the Albion Online
