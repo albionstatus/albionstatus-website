@@ -1,62 +1,64 @@
 <template>
-  <div class="text-center">
-    <div class="flex justify-center ">
-      <div class="bg-status rounded-full p-12 mb-4">
-        <transition
-          mode="out-in"
-          name="fade"
+  <div class="mt-16 pt-16 pb-12 bg-gray-100 rounded sm:pb-16">
+    <div class="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-2">
+          <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
+            <dt id="item-1" class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+              Server status
+            </dt>
+            <dd class="order-1 text-5xl leading-none font-extrabold" :class="statusClasses" aria-describedby="item-1">
+              {{ status }}
+            </dd>
+          </div>
+          <div
+            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r"
+          >
+            <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+              Last checked at
+            </dt>
+            <dd class="order-1 text-5xl leading-none font-extrabold text-indigo-600">
+              {{ formattedLastChecked || '...' }}
+            </dd>
+          </div>
+        </dl>
+        <Transition
+          enter-active-class="transition-opacity ease-linear duration-300"
+          enter-class="opacity-0"
+          enter-to-class="opacity-100"
+          leave-active-class="transition-opacity ease-linear duration-300"
+          leave-class="opacity-100"
+          leave-to-class="opacity-0"
         >
-          <component
-            :is="iconComponent"
-            :class="statusClasses"
-            class="w-32 fill-current"
-            role="presentation"
-          />
-        </transition>
+          <dl v-show="showMessage" class="mt-4 rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-1">
+            <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
+              <dd class="text-3xl leading-none text-center text-gray-700">
+                {{ message }}
+              </dd>
+            </div>
+          </dl>
+        </Transition>
+        <dl class="mt-4 rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-1">
+          <div
+            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r"
+          >
+            <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+              Operating since
+            </dt>
+            <dd class="order-1 text-4xl leading-none font-extrabold text-gray-500">
+              {{ operatingSince }}
+            </dd>
+          </div>
+        </dl>
       </div>
     </div>
-    <p class="text-gray-800 text-2xl md:text-5xl mb-3">
-      The servers are
-      <transition
-        mode="out-in"
-        name="fade"
-      >
-        <span
-          :key="statusClasses"
-          :class="statusClasses"
-          class="underline"
-        >
-          {{ status }}
-        </span>
-      </transition>
-    </p>
-    <transition
-      mode="out-in"
-      name="fade"
-    >
-      <p
-        v-if="showMessage"
-        :key="message"
-        class="text-grey-dark h4"
-      >
-        Message: {{ message }}
-      </p>
-    </transition>
-    <transition
-      mode="out-in"
-      name="fade"
-    >
-      <div v-if="lastCheckedAt">
-        <span class="text-grey-dark">Last checked at</span>
-        <time :datetime="lastCheckedAt.toISO()" :title="lastCheckedAt.toISO()"> {{ formattedLastChecked }}</time>
-      </div>
-    </transition>
   </div>
 </template>
 
 <script>
 import { DateTime } from 'luxon'
 import * as NotificationService from '~/shared/NotificationService'
+import { DATE_OF_CREATION } from '@/shared/constants'
 
 /*
  * Constants
@@ -76,22 +78,11 @@ export default {
     }
   },
   computed: {
-    iconComponent () {
-      const lookup = {
-        online: 'check',
-        offline: 'times',
-        default: 'question'
-      }
-
-      const componentName = lookup[this.status] || lookup.default
-
-      return () => import(`~/components/icons/${componentName}.svg`)
-    },
     statusClasses () {
       const lookup = {
-        online: 'text-green-700',
+        online: 'text-green-500',
         offline: 'text-red-800',
-        default: 'text-yellow-700'
+        default: 'text-yellow-400'
       }
       return lookup[this.status] || lookup.default
     },
@@ -100,6 +91,16 @@ export default {
     },
     formattedLastChecked () {
       return this.lastCheckedAt && this.lastCheckedAt.toFormat('HH:mm:ss')
+    },
+    operatingSince () {
+      const units = ['years', 'months', 'days', 'hours']
+      const duration = DateTime.local().diff(DateTime.fromISO(DATE_OF_CREATION), units)
+
+      return units
+        .map(u => duration[u] ? `${Math.ceil(duration[u])} ${u}` : false)
+        .filter(Boolean)
+        .join(', ')
+        .replace(/,([^,]*)$/, ' and $1')
     }
   },
   watch: {
@@ -115,9 +116,6 @@ export default {
   mounted () {
     this.getStatus()
     setInterval(this.getStatus, 30 * 1000)
-
-    // Ask for permission to send pushs
-    NotificationService.authorize()
   },
   methods: {
     async getStatus () {

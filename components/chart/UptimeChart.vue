@@ -1,33 +1,34 @@
 <template>
-  <svg
-    class="w-full mx-auto h-16 mt-4"
-    height="34"
-    preserveAspectRatio="none"
-    viewBox="0 0 355 75"
-  >
-    <chart-rect
-      v-for="({ percent, minutes, hour }, i) in shiftedHourData"
-      :key="i"
-      :minutes="minutes"
-      :percent="percent"
-      :hour="hour"
-      :position="i"
-    />
-  </svg>
+  <VueFrappe
+    id="uptime-chart-24-hours"
+    type="bar"
+    title="Server uptime of the last 24 hours"
+    :bar-options="{ stacked: true }"
+    :labels="shiftedHourData.map(d => formattedHour(d.hour))"
+    :height="650"
+    :colors="['#868686', '#b13c28', '#008F68']"
+    :tooltip-options="{
+      formatTooltipX: formattedDateHour,
+      formatTooltipY: d => `${d} minutes`
+    }"
+    :line-options="{regionFill: 1}"
+    :data-sets="[
+      {name: 'not tracked', values: shiftedHourData.map(d => 60 - d.offlineMinutes - d.onlineMinutes)},
+      {name: 'offline', values: shiftedHourData.map(d => d.offlineMinutes)},
+      {name: 'online', values: shiftedHourData.map(d => d.onlineMinutes)},
+    ]"
+  />
 </template>
 <script>
 import { DateTime } from 'luxon'
-import ChartRect from '~/components/chart/ChartRect'
-
-const roundPrecision = (n, p) => {
-  const f = 10 ** p
-  return Math.round(n * f) / f
-}
+import VueFrappe from 'vue2-frappe/src/components/Charts/Chart.vue'
 
 const rotateArray = (arr, n) => arr.slice(n, arr.length).concat(arr.slice(0, n))
 
 export default {
-  components: { ChartRect },
+  components: {
+    VueFrappe
+  },
   data () {
     return {
       data: []
@@ -44,17 +45,16 @@ export default {
         hourArray.push(serverOnlineAtTime)
       }
 
-      const mappedHourData = multiDimensionalHourArray
-        .map((hourArray, index) => {
-          const onlineMinutes = hourArray.filter(d => !d).length
-          const totalMinutesTracked = hourArray.length
+      const mappedHourData = multiDimensionalHourArray.map((hourArray, index) => {
+        const offlineMinutes = hourArray.filter(d => !d).length
+        const totalMinutesTracked = hourArray.length
 
-          return {
-            percent: roundPrecision(onlineMinutes * 100 / totalMinutesTracked, 2),
-            minutes: onlineMinutes,
-            hour: index
-          }
-        })
+        return {
+          onlineMinutes: totalMinutesTracked - offlineMinutes,
+          offlineMinutes,
+          hour: index
+        }
+      })
 
       return rotateArray(mappedHourData, (new Date()).getUTCHours())
     }
@@ -63,7 +63,8 @@ export default {
     this.fetchData()
   },
   mounted () {
-    setInterval(this.fetchData, 30 * 1000)
+    const handler = setInterval(this.fetchData, 30 * 1000)
+    this.$once('hook:beforeDestroy', () => { clearInterval(handler) })
   },
   methods: {
     async fetchData () {
@@ -71,6 +72,23 @@ export default {
 
       const { data } = await this.$axios.get(`?timestamp=${timestamp}`)
       this.data = data.reverse()
+    },
+    formattedDateHour (hourString) {
+      const day = this.isForToday(hourString) ? 'Today' : 'Yesterday'
+
+      return `${day} ${hourString} UTC`
+    },
+    formattedHour (d) {
+      return d < 12
+        ? `${d === 0 ? 12 : d}am`
+        : `${d === 12 ? 12 : d - 12}pm`
+    },
+    isForToday (hourIn12Format) {
+      const isPm = hourIn12Format.endsWith('pm')
+      const [hourNumberString] = hourIn12Format.match(/^(\d+)/)
+      const hour = Number(hourNumberString) + (isPm ? 12 : 0)
+
+      return hour < new Date().getUTCHours()
     }
   }
 }

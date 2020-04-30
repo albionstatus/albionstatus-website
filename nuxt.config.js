@@ -21,6 +21,10 @@ export default {
     trailingSlash: true
   },
 
+  plugins: [
+    '~/plugins/composition-api'
+  ],
+
   generate: {
     fallback: true
   },
@@ -53,12 +57,14 @@ export default {
       id: 'ca-pub-4749840658812364',
       analyticsUacct: analyticsUA,
       test: isDev
-
     }],
     '@nuxtjs/pwa',
     'nuxt-svg-loader',
-    '@nuxtjs/netlify-files',
     '@nuxtjs/sitemap'
+  ],
+  buildModules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/netlify-files'
   ],
 
   axios: {
@@ -77,10 +83,6 @@ export default {
     orientation: 'any',
     theme_color: colors.green['300']
   },
-
-  buildModules: [
-    '@nuxtjs/tailwindcss'
-  ],
 
   tailwindcss: {
     configPath: '~/tailwind.config.js',
@@ -111,6 +113,17 @@ export default {
 
   build: {
     publicPath: '/assets/',
+    loaders: {
+      vue: {
+        compilerOptions: {
+          whitespace: 'condense'
+        }
+      }
+    },
+    filenames: {
+      img: ({ isDev }) => isDev ? '[path][name].[ext]' : 'img/[name]-[hash:7].[ext]',
+      font: ({ isDev }) => isDev ? '[path][name].[ext]' : 'fonts/[name]-[hash:7].[ext]'
+    },
     extend (config, ctx) {
       if (!ctx.isClient) {
         return
