@@ -5,8 +5,7 @@
         :slot="adSlotId"
         :ad-style="{
           display: 'inline-block',
-          width: '100%',
-          'max-height': '250px'
+          height: '250px'
         }"
         :ad-format="''"
         class="w-full mx-auto mb-2"
