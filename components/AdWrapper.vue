@@ -10,7 +10,7 @@
         :ad-format="''"
         class="w-full mx-auto mb-2"
       />
-      <span class="mt-2 mb-1 text-sm text-gray-600">Advertisement</span>
+      <span class="mt-2 mb-1 text-center text-sm text-gray-400">Advertisement</span>
     </template>
     <div v-if="hasAdblock === true" class="rounded-md bg-yellow-50 px-4 py-8">
       <div class="flex items-center justify-center">
