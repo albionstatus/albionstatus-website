@@ -43,7 +43,7 @@ export default {
   },
 
   modules: [
-    '@nuxtjs/axios',
+    '@nuxt/http',
     ['@nuxtjs/google-analytics', {
       id: analyticsUA,
       disabled: () => document.cookie.includes('ga_optout=true'),
@@ -68,9 +68,13 @@ export default {
     '@nuxtjs/netlify-files'
   ],
 
-  axios: {
-    debug: isDev,
-    baseURL: 'https://api.albionstatus.com'
+  http: {
+    prefix: '/api/',
+    proxy: isDev
+  },
+
+  proxy: {
+    '/api/': { target: 'https://api.albionstatus.com/', pathRewrite: { '^/api/': '' } }
   },
 
   loading: { color: colors.developmint['500'] },

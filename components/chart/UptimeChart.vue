@@ -4,7 +4,7 @@
     type="bar"
     title="Server uptime of the last 24 hours"
     :bar-options="{ stacked: true }"
-    :labels="shiftedHourData.map(d => formattedHour(d.hour))"
+    :labels="labels"
     :height="650"
     :colors="['#868686', '#b13c28', '#008F68']"
     :tooltip-options="{
@@ -12,11 +12,7 @@
       formatTooltipY: d => `${d} minutes`
     }"
     :line-options="{regionFill: 1}"
-    :data-sets="[
-      {name: 'not tracked', values: shiftedHourData.map(d => 60 - d.offlineMinutes - d.onlineMinutes)},
-      {name: 'offline', values: shiftedHourData.map(d => d.offlineMinutes)},
-      {name: 'online', values: shiftedHourData.map(d => d.onlineMinutes)},
-    ]"
+    :data-sets="dataSets"
   />
 </template>
 <script>
@@ -28,6 +24,13 @@ const rotateArray = (arr, n) => arr.slice(n, arr.length).concat(arr.slice(0, n))
 export default {
   components: {
     VueFrappe
+  },
+  fetchOnServer: false,
+  async fetch () {
+    const timestamp = DateTime.utc().minus({ days: 1 }).toISO()
+
+    const data = await this.$http.$get(`?timestamp=${timestamp}`)
+    this.data = data.reverse()
   },
   data () {
     return {
@@ -57,22 +60,24 @@ export default {
       })
 
       return rotateArray(mappedHourData, (new Date()).getUTCHours())
+    },
+    labels () {
+      return this.shiftedHourData.map(d => this.formattedHour(d.hour))
+    },
+    dataSets () {
+      console.log('recalculated')
+      return [
+        { name: 'not tracked', values: this.shiftedHourData.map(d => 60 - d.offlineMinutes - d.onlineMinutes) },
+        { name: 'offline', values: this.shiftedHourData.map(d => d.offlineMinutes) },
+        { name: 'online', values: this.shiftedHourData.map(d => d.onlineMinutes) }
+      ]
     }
   },
-  beforeMount () {
-    this.fetchData()
-  },
   mounted () {
-    const handler = setInterval(this.fetchData, 30 * 1000)
+    const handler = setInterval(() => this.$fetch(), 30 * 1000)
     this.$once('hook:beforeDestroy', () => { clearInterval(handler) })
   },
   methods: {
-    async fetchData () {
-      const timestamp = DateTime.utc().minus({ days: 1 }).toISO()
-
-      const { data } = await this.$axios.get(`?timestamp=${timestamp}`)
-      this.data = data.reverse()
-    },
     formattedDateHour (hourString) {
       const day = this.isForToday(hourString) ? 'Today' : 'Yesterday'
 

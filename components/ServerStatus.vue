@@ -120,7 +120,7 @@ export default {
   methods: {
     async getStatus () {
       try {
-        const data = await this.$axios.$get('/current/')
+        const data = await this.$http.$get('current/')
         this.setStatus(data)
       } catch (e) {
         // eslint-disable-next-line no-console
