@@ -128,7 +128,8 @@ export default {
       }
     },
     setStatus (data) {
-      if (typeof data === 'undefined' || data.length === 0) {
+      const hasNoData = typeof data === 'undefined' || data.length === 0
+      if (hasNoData) {
         return
       }
       const [newestData] = data
