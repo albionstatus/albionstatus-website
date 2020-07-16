@@ -94,7 +94,9 @@
               {{ name }}
             </NuxtLink>
           </nav>
-          <AdWrapperSidebar />
+          <ClientOnly>
+            <AdWrapperSidebar />
+          </ClientOnly>
         </div>
         <div class="flex-shrink-0 flex border-t border-gray-200 p-4 mt-8">
           <button class="w-full flex-shrink-0 group flex items-center" @click="authorizePushNotifications">

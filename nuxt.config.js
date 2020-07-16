@@ -8,6 +8,7 @@ const baseUrl = 'https://www.albionstatus.com'
 
 export default {
   modern: isProd && 'client',
+  target: 'static',
   env: {
     baseUrl
   },
@@ -87,10 +88,6 @@ export default {
   tailwindcss: {
     configPath: '~/tailwind.config.js',
     cssPath: '~/assets/css/app.pcss'
-  },
-
-  purgeCSS: {
-    whitelistPatterns: [/fade/]
   },
 
   sitemap: {
