@@ -65,7 +65,6 @@ export default {
       return this.shiftedHourData.map(d => this.formattedHour(d.hour))
     },
     dataSets () {
-      console.log('recalculated')
       return [
         { name: 'not tracked', values: this.shiftedHourData.map(d => 60 - d.offlineMinutes - d.onlineMinutes) },
         { name: 'offline', values: this.shiftedHourData.map(d => d.offlineMinutes) },

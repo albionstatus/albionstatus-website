@@ -9,6 +9,7 @@ const baseUrl = 'https://www.albionstatus.com'
 export default {
   modern: isProd && 'client',
   target: 'static',
+  components: true,
   env: {
     baseUrl
   },
@@ -60,8 +61,9 @@ export default {
       test: isDev
     }],
     '@nuxtjs/pwa',
-    'nuxt-svg-loader',
-    '@nuxtjs/sitemap'
+    // 'nuxt-svg-loader',
+    '@nuxtjs/sitemap',
+    '@nuxt/content'
   ],
   buildModules: [
     '@nuxtjs/tailwindcss',
