@@ -1,4 +1,4 @@
-export const authorize = () => {
+export const authorizeNotification = () => {
   try {
     return Notification.requestPermission()
   } catch (error) {
@@ -7,7 +7,7 @@ export const authorize = () => {
   }
 }
 
-export const show = (title, options) => {
+export const showNotification = (title, options) => {
   const notification = new Notification(
     title || 'No title set on options object!', {
       dir: options.dir || 'auto',
@@ -22,4 +22,4 @@ export const show = (title, options) => {
   }
 }
 
-export const isSupported = typeof window !== 'undefined' && ('Notification' in window)
+export const isNotificationSendingSupported = typeof window !== 'undefined' && ('Notification' in window)

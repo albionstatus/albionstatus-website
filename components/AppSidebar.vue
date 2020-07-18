@@ -119,7 +119,7 @@
 
 <script>
 import AdWrapperSidebar from '@/components/AdWrapperSidebar'
-import { authorize } from '@/shared/NotificationService'
+import { authorizeNotification } from '@/shared/NotificationService'
 
 export default {
   components: {
@@ -217,7 +217,7 @@ export default {
     return {
       links,
       closeSidebar: () => ctx.emit('input', false),
-      authorizePushNotifications: () => { authorize() }
+      authorizePushNotifications: () => { authorizeNotification() }
     }
   },
   methods: {

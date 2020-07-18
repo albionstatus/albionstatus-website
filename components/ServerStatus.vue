@@ -57,18 +57,29 @@
 
 <script>
 import { DateTime } from 'luxon'
-import * as NotificationService from '~/shared/NotificationService'
+import { showNotification, isNotificationSendingSupported } from '~/shared/NotificationService'
 import { DATE_OF_CREATION } from '@/shared/constants'
 
 /*
  * Constants
  */
-const SERVER_STATUS_NOTIFICATION_TITLE = 'AlbionStatus - Server status changed'
-const SERVER_STATUS_NOTIFICATION_BODY_PREFIX = 'The server is now'
-const SERVER_STATUS_NOTIFICATION_TAG = 'server-status-notification'
-const SERVER_STATUS_NOTIFICATION_TIMEOUT = 10000
-const SERVER_STATUS_NOTIFICATION_ICON = ''
+const SERVER_STATUS_NOTIFICATION = {
+  TITLE: 'AlbionStatus - Server status changed',
+  BODY_PREFIX: 'The server is now',
+  TAG: 'server-status-notification',
+  TIMEOUT: 10000,
+  ICON: ''
+}
 export default {
+  async fetch () {
+    try {
+      const data = await this.$http.$get('/current/')
+      this.setStatus(data)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+    }
+  },
   data () {
     return {
       status: '???',
@@ -90,7 +101,7 @@ export default {
       return !['online', '???'].includes(this.status)
     },
     formattedLastChecked () {
-      return this.lastCheckedAt && this.lastCheckedAt.toFormat('HH:mm:ss')
+      return this.lastCheckedAt?.toFormat('HH:mm:ss')
     },
     operatingSince () {
       const units = ['years', 'months', 'days', 'hours']
@@ -105,8 +116,8 @@ export default {
   },
   watch: {
     status () {
+      // Ignore change from "???" to the real status
       if (this.isFirstCheck) {
-        // Ignore change from "???" to the real status
         this.isFirstCheck = false
         return
       }
@@ -115,39 +126,32 @@ export default {
   },
   mounted () {
     this.getStatus()
-    setInterval(this.getStatus, 30 * 1000)
+    setInterval(this.$fetch(), 30 * 1000)
   },
   methods: {
-    async getStatus () {
-      try {
-        const data = await this.$http.$get('current/')
-        this.setStatus(data)
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e)
-      }
-    },
     setStatus (data) {
       const hasNoData = typeof data === 'undefined' || data.length === 0
       if (hasNoData) {
         return
       }
       const [newestData] = data
-      // Track last status so we know when to inform the user
-      // of a status change.
+
+      // Track last status so we know when to inform the user of a status change
       this.status = newestData.current_status
       this.lastCheckedAt = DateTime.fromISO(newestData.created_at)
       this.message = newestData.message
     },
     displayServerStatusNotification () {
-      if (NotificationService.isSupported) {
-        NotificationService.show(SERVER_STATUS_NOTIFICATION_TITLE, {
-          body: `${SERVER_STATUS_NOTIFICATION_BODY_PREFIX} ${this.status}!`,
-          tag: SERVER_STATUS_NOTIFICATION_TAG,
-          closeAfter: SERVER_STATUS_NOTIFICATION_TIMEOUT,
-          icon: SERVER_STATUS_NOTIFICATION_ICON
-        })
+      if (!isNotificationSendingSupported) {
+        return
       }
+
+      showNotification(SERVER_STATUS_NOTIFICATION.TITLE, {
+        body: `${SERVER_STATUS_NOTIFICATION.BODY_PREFIX} ${this.status}!`,
+        tag: SERVER_STATUS_NOTIFICATION.TAG,
+        closeAfter: SERVER_STATUS_NOTIFICATION.TIMEOUT,
+        icon: SERVER_STATUS_NOTIFICATION.ICON
+      })
     }
   }
 }

@@ -28,6 +28,11 @@ export default {
   ],
 
   generate: {
+    cache: {
+      ignore: [
+        'content'
+      ]
+    },
     fallback: true
   },
 
