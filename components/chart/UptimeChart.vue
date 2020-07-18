@@ -1,19 +1,22 @@
 <template>
-  <VueFrappe
-    id="uptime-chart-24-hours"
-    type="bar"
-    title="Server uptime of the last 24 hours"
-    :bar-options="{ stacked: true }"
-    :labels="labels"
-    :height="650"
-    :colors="['#868686', '#b13c28', '#008F68']"
-    :tooltip-options="{
-      formatTooltipX: formattedDateHour,
-      formatTooltipY: d => `${d} minutes`
-    }"
-    :line-options="{regionFill: 1}"
-    :data-sets="dataSets"
-  />
+  <div style="min-height: 650px">
+    <VueFrappe
+      v-show="shouldDisplayChart"
+      id="uptime-chart-24-hours"
+      type="bar"
+      title="Server uptime of the last 24 hours"
+      :bar-options="{ stacked: true }"
+      :labels="labels"
+      :height="650"
+      :colors="['#868686', '#b13c28', '#008F68']"
+      :tooltip-options="{
+        formatTooltipX: formattedDateHour,
+        formatTooltipY: d => `${d} minutes`
+      }"
+      :line-options="{regionFill: 1}"
+      :data-sets="dataSets"
+    />
+  </div>
 </template>
 <script>
 import { DateTime } from 'luxon'
@@ -70,6 +73,9 @@ export default {
         { name: 'offline', values: this.shiftedHourData.map(d => d.offlineMinutes) },
         { name: 'online', values: this.shiftedHourData.map(d => d.onlineMinutes) }
       ]
+    },
+    shouldDisplayChart () {
+      return this.shiftedHourData.length && this.labels.length && this.dataSets[0]?.values.length
     }
   },
   mounted () {

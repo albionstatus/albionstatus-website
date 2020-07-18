@@ -6,7 +6,7 @@
       </h1>
     </div>
     <ServerStatus />
-    <NuxtContent :document="content" class="prose prose-xl mt-8 w-full max-w-none" />
+    <NuxtContent :document="content" class="prose lg:prose-lg mt-8 w-full max-w-none" />
   </div>
 </template>
 
