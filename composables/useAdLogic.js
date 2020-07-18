@@ -9,11 +9,11 @@ export default function (ctx) {
   onBeforeMount(async () => {
     hasAdblock.value = await new Promise((resolve) => {
       const element = document.createElement('ins')
-      element.classList.add('adsbygoogle')
+      element.classList.add('advertisement')
       element.style.cssText = 'height: 1px; width: 1px; background-color: transparent'
       document.body.appendChild(element)
       window.setTimeout(() => {
-        const isRemovingFakeAd = document.querySelector('.adsbygoogle')?.clientHeight === 0
+        const isRemovingFakeAd = document.querySelector('.advertisement')?.clientHeight === 0
         resolve(isRemovingFakeAd)
         document.body.removeChild(element)
       }, 100)
