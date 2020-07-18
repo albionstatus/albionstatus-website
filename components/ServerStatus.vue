@@ -80,10 +80,11 @@ export default {
       console.error(e)
     }
   },
+  fetchOnServer: false,
   data () {
     return {
       status: '???',
-      lastCheckedAt: null,
+      lastCheckedAt: undefined,
       message: '',
       isFirstCheck: true
     }
@@ -125,8 +126,7 @@ export default {
     }
   },
   mounted () {
-    this.getStatus()
-    setInterval(this.$fetch(), 30 * 1000)
+    setInterval(() => this.$fetch(), 30 * 1000)
   },
   methods: {
     setStatus (data) {
