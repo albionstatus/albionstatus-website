@@ -4,7 +4,8 @@
       <adsbygoogle
         :slot="adSlotId"
         :ad-style="{
-          display: 'inline-block'
+          display: 'inline-block',
+          height: '16rem'
         }"
         :ad-format="''"
         class="w-full mx-auto max-h-64"
