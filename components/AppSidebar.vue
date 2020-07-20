@@ -69,14 +69,14 @@
     <!-- Static sidebar for desktop -->
     <div class="hidden md:flex md:flex-shrink-0">
       <div class="flex flex-col w-64 border-r border-gray-200 bg-white">
-        <div class="h-0 flex-1 flex flex-col pt-5 overflow-y-auto overflow-x-hidden">
-          <div class="flex justify-center items-center flex-shrink-0 px-4">
+        <div class="h-0 flex-1 flex flex-col overflow-y-auto overflow-x-hidden">
+          <div class="flex justify-center items-center flex-shrink-0 pt-5 px-4">
             <a href="/" @click.prevent="jump">
               <img class="h-16 w-auto" src="~/assets/logo.png" alt="AlbionStatus Logo">
             </a>
           </div>
           <!-- Sidebar component, swap this element with another sidebar if you like -->
-          <nav class="mt-5 flex-1 px-2 bg-white">
+          <nav class="mt-5 px-2 bg-white">
             <NuxtLink
               v-for="({to, name, icon}, i) in links"
               :key="to + name"
@@ -95,7 +95,7 @@
             </NuxtLink>
           </nav>
           <ClientOnly>
-            <AdWrapperSidebar class="mt-4" />
+            <AdWrapperSidebar />
             <AdWrapperSidebar hide-label />
           </ClientOnly>
         </div>
