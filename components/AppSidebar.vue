@@ -69,7 +69,7 @@
     <!-- Static sidebar for desktop -->
     <div class="hidden md:flex md:flex-shrink-0">
       <div class="flex flex-col w-64 border-r border-gray-200 bg-white">
-        <div class="h-0 flex-1 flex flex-col pt-5 overflow-y-auto">
+        <div class="h-0 flex-1 flex flex-col pt-5 overflow-y-auto overflow-x-hidden">
           <div class="flex justify-center items-center flex-shrink-0 px-4">
             <a href="/" @click.prevent="jump">
               <img class="h-16 w-auto" src="~/assets/logo.png" alt="AlbionStatus Logo">
@@ -95,8 +95,8 @@
             </NuxtLink>
           </nav>
           <ClientOnly>
-            <AdWrapperSidebar />
-            <AdWrapperSidebar />
+            <AdWrapperSidebar class="mt-4" />
+            <AdWrapperSidebar hide-label />
           </ClientOnly>
         </div>
         <div class="flex-shrink-0 flex border-t border-gray-200 p-4 mt-8">
