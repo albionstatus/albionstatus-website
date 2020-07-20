@@ -99,7 +99,7 @@
             <AdWrapperSidebar hide-label />
           </ClientOnly>
         </div>
-        <div class="flex-shrink-0 flex border-t border-gray-200 p-4 mt-8">
+        <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
           <button class="w-full flex-shrink-0 group flex items-center" @click="authorizePushNotifications">
             <svg class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
               <path

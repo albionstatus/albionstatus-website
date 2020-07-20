@@ -5,10 +5,10 @@
         :slot="adSlotId"
         :ad-style="{
           display: 'inline-block',
-          height: '16rem'
+          height: '15rem'
         }"
         :ad-format="''"
-        class="w-full mx-auto max-h-64"
+        class="w-full mx-auto max-h-60"
       />
       <span v-show="!hideLabel" class="mt-2 mb-1 text-sm text-gray-400">Advertisement</span>
     </template>
