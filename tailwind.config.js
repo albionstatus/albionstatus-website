@@ -7,6 +7,10 @@ config.plugins = [
   require('@tailwindcss/typography')
 ]
 
+config.future = {
+  removeDeprecatedGapUtilities: true
+}
+
 config.theme.typography = {
   default: {
     css: {

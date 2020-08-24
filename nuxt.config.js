@@ -128,12 +128,21 @@ export default {
       font: ({ isDev }) => isDev ? '[path][name].[ext]' : 'fonts/[name]-[hash:7].[ext]'
     },
     extend (config, ctx) {
+      const imageRulePredicate = rule => rule.test && rule.test.test('.webp')
+      const imageLoaderRule = config.module.rules.find(imageRulePredicate)
+
+      if (!imageLoaderRule) {
+        console.error('Could not modify image loader rule!')
+        return
+      }
+      imageLoaderRule.test = /\.(png|jpe?g|gif|svg|webp|avif)$/i
       if (!ctx.isClient) {
         return
       }
       if (!ctx.isDev) {
         return
       }
+
       config.module.rules.push({
         enforce: 'pre',
         test: /\.(js|vue)$/,
