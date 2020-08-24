@@ -23,10 +23,6 @@ export default {
     trailingSlash: true
   },
 
-  plugins: [
-    '~/plugins/composition-api'
-  ],
-
   generate: {
     cache: {
       ignore: [
@@ -48,7 +44,7 @@ export default {
     twitterCard: 'summary'
   },
 
-  modules: [
+  buildModules: [
     '@nuxt/http',
     ['@nuxtjs/google-analytics', {
       id: analyticsUA,
@@ -68,9 +64,8 @@ export default {
     '@nuxtjs/pwa',
     // 'nuxt-svg-loader',
     '@nuxtjs/sitemap',
-    '@nuxt/content'
-  ],
-  buildModules: [
+    '@nuxt/content',
+    '@nuxtjs/composition-api',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/netlify-files'
   ],

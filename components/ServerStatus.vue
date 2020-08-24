@@ -18,7 +18,7 @@
               Last checked at
             </dt>
             <dd class="order-1 text-5xl leading-none font-extrabold text-indigo-600">
-              {{ formattedLastChecked || '...' }}
+              {{ formattedLastCheckedAt || '...' }}
             </dd>
           </div>
         </dl>
@@ -57,8 +57,9 @@
 
 <script>
 import { DateTime } from 'luxon'
-import { showNotification, isNotificationSendingSupported } from '~/shared/NotificationService'
 import { DATE_OF_CREATION } from '@/shared/constants'
+import { computed, defineComponent, onMounted, ref, useFetch, watch } from '@nuxtjs/composition-api'
+import { isNotificationSendingSupported, showNotification } from '~/shared/NotificationService'
 
 /*
  * Constants
@@ -70,78 +71,36 @@ const SERVER_STATUS_NOTIFICATION = {
   TIMEOUT: 10000,
   ICON: ''
 }
-export default {
-  async fetch () {
-    try {
-      const data = await this.$http.$get('/current/')
-      this.setStatus(data)
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e)
-    }
-  },
+export default defineComponent({
   fetchOnServer: false,
-  data () {
-    return {
-      status: '???',
-      lastCheckedAt: undefined,
-      message: '',
-      isFirstCheck: true
-    }
-  },
-  computed: {
-    statusClasses () {
+  setup (_, ctx) {
+    const status = ref('???')
+    const statusClasses = computed(() => {
       const lookup = {
         online: 'text-green-500',
         offline: 'text-red-800',
         default: 'text-yellow-400'
       }
-      return lookup[this.status] || lookup.default
-    },
-    showMessage () {
-      return !['online', '???'].includes(this.status)
-    },
-    formattedLastChecked () {
-      return this.lastCheckedAt?.toFormat('HH:mm:ss')
-    },
-    operatingSince () {
-      const units = ['years', 'months', 'days', 'hours']
-      const duration = DateTime.local().diff(DateTime.fromISO(DATE_OF_CREATION), units)
+      return lookup[status.value] || lookup.default
+    })
 
-      return units
-        .map(u => duration[u] ? `${Math.ceil(duration[u])} ${u}` : false)
-        .filter(Boolean)
-        .join(', ')
-        .replace(/,([^,]*)$/, ' and $1')
-    }
-  },
-  watch: {
-    status () {
+    const lastCheckedAt = ref(null)
+    const formattedLastCheckedAt = computed(() => lastCheckedAt.value?.toFormat('HH:mm:ss'))
+
+    const message = ref('')
+    const showMessage = computed(() => !['online', '???'].includes(status.value))
+
+    const isFirstCheck = ref(true)
+    watch(status, () => {
       // Ignore change from "???" to the real status
-      if (this.isFirstCheck) {
-        this.isFirstCheck = false
+      if (isFirstCheck) {
+        isFirstCheck.value = false
         return
       }
-      this.displayServerStatusNotification()
-    }
-  },
-  mounted () {
-    setInterval(() => this.$fetch(), 30 * 1000)
-  },
-  methods: {
-    setStatus (data) {
-      const hasNoData = typeof data === 'undefined' || data.length === 0
-      if (hasNoData) {
-        return
-      }
-      const [newestData] = data
+      displayServerStatusNotification()
+    })
 
-      // Track last status so we know when to inform the user of a status change
-      this.status = newestData.current_status
-      this.lastCheckedAt = DateTime.fromISO(newestData.created_at)
-      this.message = newestData.message
-    },
-    displayServerStatusNotification () {
+    function displayServerStatusNotification () {
       if (!isNotificationSendingSupported) {
         return
       }
@@ -153,6 +112,48 @@ export default {
         icon: SERVER_STATUS_NOTIFICATION.ICON
       })
     }
+
+    const units = ['years', 'months', 'days', 'hours']
+    const duration = DateTime.local().diff(DateTime.fromISO(DATE_OF_CREATION), units)
+
+    const operatingSince = units.map(u => duration[u] ? `${Math.ceil(duration[u])} ${u}` : false)
+      .filter(Boolean)
+      .join(', ')
+      .replace(/,([^,]*)$/, ' and $1')
+
+    const { fetch } = useFetch(async () => {
+      try {
+        const data = await ctx.root.$http.$get('/current/')
+        setStatus(data)
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e)
+      }
+    })
+    onMounted(() => { fetch() })
+
+    function setStatus (data) {
+      const hasNoData = typeof data === 'undefined' || data.length === 0
+      if (hasNoData) {
+        return
+      }
+
+      const [newestData] = data
+
+      // Track last status so we know when to inform the user of a status change
+      status.value = newestData.current_status
+      lastCheckedAt.value = DateTime.fromISO(newestData.created_at)
+      message.value = newestData.message
+    }
+
+    return {
+      status,
+      statusClasses,
+      formattedLastCheckedAt,
+      message,
+      showMessage,
+      operatingSince
+    }
   }
-}
+})
 </script>

@@ -46,6 +46,7 @@
                     exact-active-class="bg-gray-100focus:outline-none hover:bg-gray-100 text-gray-900 focus:bg-gray-200"
                     :class="{'mt-1': i}"
                     class="group flex items-center px-2 py-2 text-sm leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
+                    @click.native="closeSidebar"
                   >
                     <svg
                       class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
@@ -215,16 +216,18 @@ export default {
       }
     ]
 
+    const jump = () => {
+      const indexPath = '/'
+      ctx.root.$route.path === indexPath
+        ? ctx.root.$router.go(0)
+        : ctx.root.$router.push(indexPath)
+    }
+
     return {
       links,
+      jump,
       closeSidebar: () => ctx.emit('input', false),
       authorizePushNotifications: () => { authorizeNotification() }
-    }
-  },
-  methods: {
-    jump () {
-      const indexPath = '/'
-      this.$route.path === indexPath ? this.$router.go(0) : this.$router.push(indexPath)
     }
   }
 }

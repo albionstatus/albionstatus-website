@@ -33,8 +33,7 @@ export default {
     }
   },
   setup (_, ctx) {
-    const { hasAdblock, notInLegalView, adSlotId } = useAdLogic(ctx)
-    return { hasAdblock, notInLegalView, adSlotId }
+    return useAdLogic(ctx)
   }
 }
 </script>

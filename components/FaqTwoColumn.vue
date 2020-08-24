@@ -26,9 +26,12 @@
   </div>
 </template>
 <script>
-import { encodeAnswer } from '@/shared/schemaHelpers'
+import { computed, defineComponent, useMeta } from '@nuxtjs/composition-api'
+import { createFaqSchemaFromContent } from '~/shared/schemaHelpers'
 
-export default {
+const isInternalLink = href => href?.startsWith('/')
+
+export default defineComponent({
   directives: {
     interpolation: {
       bind (el) {
@@ -40,13 +43,13 @@ export default {
 
         const links = Array.from(el.getElementsByTagName('a')).filter((link) => {
           const href = link.getAttribute('href')
-          return href && href.startsWith('/')
+          return isInternalLink(href)
         })
 
         const addListeners = (links) => {
           links.forEach((link) => {
             const href = link.getAttribute('href')
-            if (href && href.startsWith('/')) {
+            if (isInternalLink(href)) {
               link.addEventListener('click', navigate, false)
             }
           })
@@ -75,34 +78,22 @@ export default {
       required: true
     }
   },
-  computed: {
-    splitContent () {
-      const middle = Math.floor(this.content.length / 2)
-      return [
-        this.content.slice(0, middle), this.content.slice(middle)
+  setup (props) {
+    const splitContent = computed(() => {
+      const middle = Math.floor(props.content.length / 2)
+      return [props.content.slice(0, middle), props.content.slice(middle)]
+    })
+
+    useMeta({
+      script: [
+        createFaqSchemaFromContent(props.content)
       ]
+    })
+
+    return {
+      splitContent
     }
   },
-  head () {
-    return {
-      script: [
-        {
-          type: 'application/ld+json',
-          json: {
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: this.content.map(content => ({
-              '@type': 'Question',
-              name: content.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: encodeAnswer(content.answer)
-              }
-            }))
-          }
-        }
-      ]
-    }
-  }
-}
+  head: {}
+})
 </script>

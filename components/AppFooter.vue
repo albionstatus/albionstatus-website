@@ -10,7 +10,7 @@
               rel="noopener"
               target="_blank"
             >Developmint</a>
-            &copy; {{ $options.currentYearNumbers }}</span>
+            &copy; {{ currentYearNumbers }}</span>
           <span class="md:block xl:inline-block xl:ml-1">
             All rights reserved. Albion Online is a registered
             trademark of Sandbox Interactive GmbH in Germany, and/or other countries.
@@ -32,6 +32,10 @@
 
 <script>
 export default {
-  currentYearNumbers: (new Date()).getFullYear().toString()
+  setup () {
+    return {
+      currentYearNumbers: (new Date()).getFullYear().toString()
+    }
+  }
 }
 </script>

@@ -40,52 +40,41 @@
   </div>
 </template>
 <script>
-import { encodeAnswer } from '@/shared/schemaHelpers'
+import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api'
+import { createFaqSchemaFromContent } from '@/shared/schemaHelpers'
 
-export default {
+export default defineComponent({
   props: {
     content: {
       type: Array,
       required: true
     }
   },
-  data () {
-    return {
-      expandedQuestionIndex: -1
-    }
-  },
-  methods: {
-    isExpanded (i) {
-      return this.expandedQuestionIndex === i
-    },
-    changeState (i) {
-      if (this.isExpanded(i)) {
-        this.expandedQuestionIndex = -1
+  setup (props) {
+    const NONE_EXPANDED = -1
+    const expandedQuestionIndex = ref(NONE_EXPANDED)
+    const isExpanded = i => expandedQuestionIndex.value === i
+
+    const changeState = (i) => {
+      if (isExpanded(i)) {
+        expandedQuestionIndex.value = NONE_EXPANDED
         return
       }
-      this.expandedQuestionIndex = i
+      expandedQuestionIndex.value = i
+    }
+
+    useMeta({
+      script: [
+        createFaqSchemaFromContent(props.content)
+      ]
+    })
+
+    return {
+      expandedQuestionIndex,
+      isExpanded,
+      changeState
     }
   },
-  head () {
-    return {
-      script: [
-        {
-          type: 'application/ld+json',
-          json: {
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: this.content.map(content => ({
-              '@type': 'Question',
-              name: content.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: encodeAnswer(content.answer)
-              }
-            }))
-          }
-        }
-      ]
-    }
-  }
-}
+  head: {}
+})
 </script>

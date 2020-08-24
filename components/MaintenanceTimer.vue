@@ -8,26 +8,30 @@
         <div class="max-w-4xl mx-auto">
           <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
             <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
-              <dt id="item-1" class="order-2 mt-5 text-lg leading-6 font-medium text-gray-500">
+              <dt id="start-next-maintenance" class="order-2 mt-5 text-lg leading-6 font-medium text-gray-500">
                 Start of the next scheduled maintenance
               </dt>
-              <dd class="order-1 text-2xl font-extrabold leading-none" aria-describedby="item-1">
+              <dd class="order-1 text-2xl font-extrabold leading-none" aria-describedby="start-next-maintenance">
                 {{ formattedStartOfNextMaintenance }}
               </dd>
             </div>
-            <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-              <dt class="order-2 text-lg leading-6 font-medium text-gray-500 mt-5">
+            <div
+              class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r"
+            >
+              <dt id="end-next-maintenance" class="order-2 text-lg leading-6 font-medium text-gray-500 mt-5">
                 Usual end of the next scheduled maintenance
               </dt>
-              <dd class="order-1 text-2xl font-extrabold leading-none text-indigo-600">
+              <dd class="order-1 text-2xl font-extrabold leading-none text-indigo-600" aria-describedby="end-next-maintenance">
                 {{ formattedEndOfNextMaintenance }}
               </dd>
             </div>
-            <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-              <dt class="order-2 text-lg leading-6 font-medium text-gray-500 mt-5">
+            <div
+              class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r"
+            >
+              <dt id="time-until-next-maintenance" class="order-2 text-lg leading-6 font-medium text-gray-500 mt-5">
                 Time until the next scheduled maintenance
               </dt>
-              <dd class="order-1 text-2xl font-extrabold leading-none text-indigo-600">
+              <dd class="order-1 text-2xl font-extrabold leading-none text-indigo-600" aria-describedby="time-until-next-maintenance">
                 {{ formattedTimeUntilMaintenance }}
               </dd>
             </div>
@@ -40,62 +44,39 @@
 
 <script>
 import { DateTime, Duration } from 'luxon'
+import { ref, computed, watchEffect } from '@nuxtjs/composition-api'
+import { useInterval } from '~/composables/useInterval'
 
 export default {
-  data () {
-    return {
-      start: DateTime.local(),
-      now: DateTime.local(),
-      startOfMaintenance: DateTime.utc().set({ minutes: 0, seconds: 0, hours: 10 }),
-      endOfMaintenance: DateTime.utc().set({ minutes: 30, seconds: 0, hours: 10 })
-    }
-  },
-  computed: {
-    formattedStartOfNextMaintenance () {
-      return this.startOfMaintenance.toLocaleString(DateTime.DATETIME_FULL)
-    },
-    formattedEndOfNextMaintenance () {
-      return this.endOfMaintenance.toLocaleString(DateTime.DATETIME_FULL)
-    },
-    formattedTimeUntilMaintenance () {
-      return Duration.fromObject(this.remaining).toFormat('hh \'hours\' mm \'minutes and\' ss \'seconds\'')
-    },
-    total () {
-      return this.startOfMaintenance.diff(this.start).toObject()
-    },
-    remaining () {
-      return this.startOfMaintenance.diff(this.now).toObject()
-    },
-    elapsed () {
-      return this.now.diff(this.start).toObject()
-    },
-    percent () {
-      return this.elapsed.milliseconds / this.total.milliseconds * 100
-    },
-    finished () {
-      return this.now >= this.startOfMaintenance
-    }
-  },
-  watch: {
-    now () {
-      if (this.finished) {
-        this.updateMaintenanceDate()
-      }
-    }
-  },
-  mounted () {
-    const handle = setInterval(() => {
-      this.now = DateTime.local()
-    }, 10)
+  setup () {
+    const now = ref(DateTime.local())
 
-    this.$once('hook:beforeDestroy', () => {
-      clearInterval(handle)
+    const startOfMaintenance = ref(DateTime.utc().set({ minutes: 0, seconds: 0, hours: 10 }))
+    const endOfMaintenance = ref(DateTime.utc().set({ minutes: 30, seconds: 0, hours: 10 }))
+
+    const remaining = computed(() => startOfMaintenance.value.diff(now.value).toObject())
+    const finished = computed(() => now.value >= startOfMaintenance.value)
+
+    const updateMaintenanceDate = () => {
+      startOfMaintenance.value = startOfMaintenance.value.plus({ days: 1 })
+      endOfMaintenance.value = endOfMaintenance.value.plus({ days: 1 })
+    }
+
+    useInterval(() => { now.value = DateTime.local() }, 10)
+    watchEffect(() => {
+      if (finished.value) {
+        updateMaintenanceDate()
+      }
     })
-  },
-  methods: {
-    updateMaintenanceDate () {
-      this.startOfMaintenance = this.startOfMaintenance.plus({ days: 1 })
-      this.endOfMaintenance = this.endOfMaintenance.plus({ days: 1 })
+
+    const formattedStartOfNextMaintenance = computed(() => startOfMaintenance.value.toLocaleString(DateTime.DATETIME_FULL))
+    const formattedEndOfNextMaintenance = computed(() => endOfMaintenance.value.toLocaleString(DateTime.DATETIME_FULL))
+    const formattedTimeUntilMaintenance = computed(() => Duration.fromObject(remaining.value).toFormat('hh \'hours\' mm \'minutes and\' ss \'seconds\''))
+
+    return {
+      formattedEndOfNextMaintenance,
+      formattedStartOfNextMaintenance,
+      formattedTimeUntilMaintenance
     }
   }
 }

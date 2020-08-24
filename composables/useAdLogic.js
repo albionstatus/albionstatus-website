@@ -1,4 +1,4 @@
-import { computed, onBeforeMount, ref } from '@vue/composition-api'
+import { computed, onBeforeMount, ref } from '@nuxtjs/composition-api'
 
 const adSlotId = '2610490971'
 
