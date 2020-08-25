@@ -26,6 +26,7 @@
     "luxon": "^1.25.0",
     "nuxt": "^2.14.3",
     "nuxt-svg-loader": "^1.0.1",
+    "nuxt-vitals": "^1.1.0",
     "vue2-frappe": "^1.2.3"
   },
   "devDependencies": {

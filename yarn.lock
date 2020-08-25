@@ -6686,6 +6686,13 @@ nuxt-svg-loader@^1.0.1:
     consola "^2.3.2"
     svg-to-vue-component "^0.3.1"
 
+nuxt-vitals@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/nuxt-vitals/-/nuxt-vitals-1.1.0.tgz#35b269267e410e277d3cec92092d6c4b8dcf324b"
+  integrity sha512-K1wndgtoKejYp4Z3GU2pmhKOVbZfRSi+nBXgJ9AxofpGHackosyslf0uWM/nO1nxHuM40YcvQ4Fevzw+AJ7H8w==
+  dependencies:
+    web-vitals "^0.2.1"
+
 nuxt@^2.14.3:
   version "2.14.3"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-2.14.3.tgz#1e1fb762d407dc275253360b87f3257c609b4dfd"
@@ -10001,6 +10008,11 @@ web-streams-polyfill@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-3.0.0.tgz#c8bcb1e2ec1820088ca201674486a0f1feae848b"
   integrity sha512-tcZlIJ+VBxuDXdRFF3PCZTJ3yUISGklG4hkl3CDGOlZ8XwpN90L5YsJNoSPH72wZ4nbsatE/OfIaxfM3p+6W7w==
+
+web-vitals@^0.2.1:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-0.2.4.tgz#ec3df43c834a207fd7cdefd732b2987896e08511"
+  integrity sha512-6BjspCO9VriYy12z356nL6JBS0GYeEcA457YyRzD+dD6XYCQ75NKhcOHUMHentOE7OcVCIXXDvOm0jKFfQG2Gg==
 
 webpack-bundle-analyzer@^3.8.0:
   version "3.8.0"

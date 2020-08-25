@@ -63,11 +63,15 @@ export default {
     }],
     '@nuxtjs/pwa',
     // 'nuxt-svg-loader',
-    '@nuxtjs/sitemap',
     '@nuxt/content',
     '@nuxtjs/composition-api',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/netlify-files'
+    '@nuxtjs/netlify-files',
+    ['nuxt-vitals', {
+      trackingID: analyticsUA,
+      debug: isDev
+    }],
+    '@nuxtjs/sitemap'
   ],
 
   http: {
