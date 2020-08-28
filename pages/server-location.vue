@@ -64,7 +64,7 @@ export default {
         possible. Thus, you also can not change the server you are playing on.`
     },
     {
-      question: 'How do I check my ping or latency when playing Albion Online?',
+      question: 'How do I see my ping or latency when playing Albion Online?',
       answer: 'When you are in the game, type <code class="bg-gray-100 px-1">/ping</code>. Then, the ping will be shown in the lower-right corner of the screen.'
     }
   ],
