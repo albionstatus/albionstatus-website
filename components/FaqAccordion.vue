@@ -9,14 +9,13 @@
             :key="question"
             :class="{'mt-6 border-t border-gray-200 pt-6': i}"
           >
-            <dt class="text-lg leading-7">
-              <!-- Expand/collapse question button -->
+            <div class="text-lg leading-7">
               <button
                 class="text-left w-full flex justify-between items-start text-gray-400 focus:outline-none focus:text-gray-900"
                 :aria-label="isExpanded(i) ? 'Collapse Question' : 'Expand Question'"
                 @click="changeState(i)"
               >
-                <span class="font-medium text-gray-900" v-html="question" />
+                <h2 class="font-medium text-gray-900" v-html="question" />
                 <span class="ml-6 h-7 flex items-center">
                   <svg
                     :class="{ '-rotate-180': isExpanded(i) }"
@@ -29,10 +28,8 @@
                   </svg>
                 </span>
               </button>
-            </dt>
-            <dd class="mt-2 pr-12">
-              <p v-show="isExpanded(i)" class="text-base leading-6 text-gray-500" v-html="answer" />
-            </dd>
+            </div>
+            <p v-show="isExpanded(i)" class="text-base leading-6 text-gray-500 mt-2 pr-12" v-html="answer" />
           </div>
         </dl>
       </div>
