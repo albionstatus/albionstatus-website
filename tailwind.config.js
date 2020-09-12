@@ -8,7 +8,8 @@ config.plugins = [
 ]
 
 config.future = {
-  removeDeprecatedGapUtilities: true
+  removeDeprecatedGapUtilities: true,
+  purgeLayersByDefault: true
 }
 
 config.theme.typography = {
