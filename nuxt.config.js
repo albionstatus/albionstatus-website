@@ -13,6 +13,10 @@ export default {
   env: {
     baseUrl
   },
+  features: {
+    transitions: false,
+    asyncData: false
+  },
   head: {
     title: '',
     titleTemplate: s => s ? `${s} | AlbionStatus` : 'AlbionStatus - Is Albion Down?',
@@ -24,11 +28,6 @@ export default {
   },
 
   generate: {
-    cache: {
-      ignore: [
-        'content'
-      ]
-    },
     fallback: true
   },
 

@@ -9,7 +9,9 @@ config.plugins = [
 
 config.future = {
   removeDeprecatedGapUtilities: true,
-  purgeLayersByDefault: true
+  purgeLayersByDefault: true,
+  defaultLineHeights: true,
+  standardFontWeights: true
 }
 
 config.theme.typography = {
