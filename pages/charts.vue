@@ -9,23 +9,25 @@
 </template>
 
 <script>
+import { useContext, useFetch, ref, useMeta, defineComponent } from '@nuxtjs/composition-api'
 import UptimeChart from '~/components/chart/UptimeChart'
-export default {
+
+export default defineComponent({
   components: {
     UptimeChart
   },
-  async fetch () {
-    this.content = await this.$content('charts').fetch()
-  },
-  data () {
-    return {
-      content: {}
-    }
-  },
-  head () {
+  setup () {
+    const content = ref({})
+
+    const { $content } = useContext()
+
+    useFetch(async () => {
+      content.value = await $content('charts').fetch()
+    })
+
     const title = 'Albion Uptime Charts'
     const metaDescription = 'See how many Albion server outage have happened in the last 24 hours in our dynamic uptime charts.'
-    return {
+    useMeta({
       title,
       meta: [
         {
@@ -44,7 +46,12 @@ export default {
           content: metaDescription
         }
       ]
+    })
+
+    return {
+      content
     }
-  }
-}
+  },
+  head: {}
+})
 </script>

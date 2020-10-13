@@ -11,19 +11,23 @@
 </template>
 
 <script>
+import { defineComponent, ref, useContext, useFetch } from '@nuxtjs/composition-api'
 import ServerStatus from '~/components/ServerStatus'
 
-export default {
+export default defineComponent({
   components: {
     ServerStatus
   },
-  async fetch () {
-    this.content = await this.$content('index').fetch()
-  },
-  data () {
+  setup () {
+    const content = ref({})
+    const { $content } = useContext()
+    useFetch(async () => {
+      content.value = await $content('index').fetch()
+    })
+
     return {
-      content: {}
+      content
     }
   }
-}
+})
 </script>

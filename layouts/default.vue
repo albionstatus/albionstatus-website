@@ -27,28 +27,26 @@
 </template>
 
 <script>
+import { defineComponent, useMeta, ref } from '@nuxtjs/composition-api'
+import { useCanonical } from '@/composables/useCanonical'
 import AppSidebar from '~/components/AppSidebar'
 
-export default {
+export default defineComponent({
   components: {
     AppSidebar,
     AdWrapper: () => import('~/components/AdWrapper'),
     AppFooter: () => import('~/components/AppFooter')
   },
-  data () {
+  setup (props, ctx) {
+    useMeta({
+      link: [
+        useCanonical(ctx)
+      ]
+    })
     return {
-      isSidebarShown: false
+      isSidebarShown: ref(false)
     }
   },
-  head () {
-    const baseUrl = process.env.baseUrl
-    const { path } = this.$route
-    const pathWithSlash = path.endsWith('/') ? path : `${path}/`
-    return {
-      link: [
-        { rel: 'canonical', href: `${baseUrl}${pathWithSlash}` }
-      ]
-    }
-  }
-}
+  head: {}
+})
 </script>

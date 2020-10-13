@@ -4,22 +4,30 @@
 
 <script>
 
-export default {
-  async fetch () {
-    this.content = await this.$content('legal').fetch()
-  },
-  data () {
-    return {
-      content: {}
-    }
-  },
-  head () {
-    return {
-      title: 'Legal',
+import { defineComponent, ref, useContext, useFetch, useMeta } from '@nuxtjs/composition-api'
+
+export default defineComponent({
+  setup () {
+    const content = ref({})
+
+    const { $content } = useContext()
+
+    useFetch(async () => {
+      content.value = await $content('legal').fetch()
+    })
+
+    const title = 'Legal'
+    useMeta({
+      title,
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' }
       ]
+    })
+
+    return {
+      content
     }
-  }
-}
+  },
+  head: {}
+})
 </script>
