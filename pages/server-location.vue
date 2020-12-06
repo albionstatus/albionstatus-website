@@ -39,7 +39,7 @@ export default {
         But the disadvantages, including latency and inter-server disconnects, outweighed the advantages.`
     },
     {
-      question: 'Does the server location negatively influences the game experience?',
+      question: 'Does the server location negatively influence the game experience?',
       answer: `
         Generally speaking, it <span class="font-medium">should not influence your game experience</span>.
         95% of the Albion Online players have a ping below 150, according to the developers of the game.
