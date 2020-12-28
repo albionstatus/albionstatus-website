@@ -57,7 +57,7 @@ export default {
         RTS games like Dota or Starcraft, players can even play the game well with "high pings" of 150.`
     },
     {
-      question: 'Are there EU or OCE servers avaailable for Albion?',
+      question: 'Are there EU or OCE servers available for Albion?',
       answer: `
         As explained in the previous answers, there is <span class="font-medium">no european or australian/oceanic server for Albion Online</span>
         As long as the Albion developers will stick to the single server principle, a dedicated server for european players is not
