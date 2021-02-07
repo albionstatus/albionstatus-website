@@ -11,18 +11,13 @@
 </template>
 
 <script>
-import ServerStatus from '~/components/ServerStatus'
+import { useBasicContent } from '~/composables/useContent'
 
 export default {
-  components: {
-    ServerStatus
-  },
-  async fetch () {
-    this.content = await this.$content('index').fetch()
-  },
-  data () {
+  setup () {
+    const { content } = useBasicContent('index')
     return {
-      content: {}
+      content
     }
   }
 }

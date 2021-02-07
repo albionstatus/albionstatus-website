@@ -9,17 +9,13 @@
 </template>
 
 <script>
-import UptimeChart from '~/components/chart/UptimeChart'
+import { useBasicContent } from '~/composables/useContent'
+
 export default {
-  components: {
-    UptimeChart
-  },
-  async fetch () {
-    this.content = await this.$content('charts').fetch()
-  },
-  data () {
+  setup () {
+    const { content } = useBasicContent('charts')
     return {
-      content: {}
+      content
     }
   },
   head () {

@@ -21,18 +21,12 @@
       </p>
     </template>
     <template #outro>
-      <MaintenanceTimer />
+      <LazyMaintenanceTimer />
     </template>
   </FaqTwoColumn>
 </template>
 <script>
-import FaqTwoColumn from '~/components/FaqTwoColumn'
-
 export default {
-  components: {
-    FaqTwoColumn,
-    MaintenanceTimer: () => import('~/components/MaintenanceTimer')
-  },
   content: [
     {
       question: 'How long does the server maintenance usually last?',

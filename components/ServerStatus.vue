@@ -58,7 +58,7 @@
 <script>
 import { DateTime } from 'luxon'
 import { DATE_OF_CREATION } from '@/shared/constants'
-import { computed, defineComponent, onMounted, ref, useFetch, watch } from '@nuxtjs/composition-api'
+import { computed, defineComponent, onMounted, ref, useContext, useFetch, watch } from '@nuxtjs/composition-api'
 import { isNotificationSendingSupported, showNotification } from '~/shared/NotificationService'
 
 /*
@@ -73,7 +73,7 @@ const SERVER_STATUS_NOTIFICATION = {
 }
 export default defineComponent({
   fetchOnServer: false,
-  setup (_, ctx) {
+  setup () {
     const status = ref('???')
     const statusClasses = computed(() => {
       const lookup = {
@@ -121,9 +121,11 @@ export default defineComponent({
       .join(', ')
       .replace(/,([^,]*)$/, ' and $1')
 
+    const { $http } = useContext()
+
     const { fetch } = useFetch(async () => {
       try {
-        const data = await ctx.root.$http.$get('/current/')
+        const data = await $http.$get('/current/')
         setStatus(data)
       } catch (e) {
         // eslint-disable-next-line no-console

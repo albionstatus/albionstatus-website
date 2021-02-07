@@ -114,7 +114,7 @@ export default {
   },
 
   netlifyFiles: {
-    existingFilesDirectory: './netlify'
+    existingFilesDirectory: './netlify-files'
   },
 
   build: {

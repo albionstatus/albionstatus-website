@@ -129,7 +129,7 @@ export default {
       required: true
     }
   },
-  setup (props, ctx) {
+  setup (_, ctx) {
     const links = [
       {
         name: 'Server status',

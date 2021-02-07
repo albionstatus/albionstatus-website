@@ -46,8 +46,8 @@
 import useAdLogic from '@/composables/useAdLogic'
 
 export default {
-  setup (_, ctx) {
-    return useAdLogic(ctx)
+  setup () {
+    return useAdLogic()
   }
 }
 </script>

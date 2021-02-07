@@ -8,12 +8,7 @@
   </FaqComponent>
 </template>
 <script>
-import FaqComponent from '@/components/FaqAccordion'
-
 export default {
-  components: {
-    FaqComponent
-  },
   content: [
     {
       question: 'What is AlbionStatus?',

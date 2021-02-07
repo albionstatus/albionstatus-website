@@ -19,12 +19,7 @@
 </template>
 <script>
 
-import FaqTwoColumn from '@/components/FaqTwoColumn'
-
 export default {
-  components: {
-    FaqTwoColumn
-  },
   content: [
     {
       question: 'How many Albion servers exist?',

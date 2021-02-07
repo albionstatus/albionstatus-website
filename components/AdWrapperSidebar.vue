@@ -32,8 +32,8 @@ export default {
       default: false
     }
   },
-  setup (_, ctx) {
-    return useAdLogic(ctx)
+  setup () {
+    return useAdLogic()
   }
 }
 </script>

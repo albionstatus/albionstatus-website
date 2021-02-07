@@ -3,14 +3,13 @@
 </template>
 
 <script>
+import { useBasicContent } from '~/composables/useContent'
 
 export default {
-  async fetch () {
-    this.content = await this.$content('privacy').fetch()
-  },
-  data () {
+  setup () {
+    const { content } = useBasicContent('privacy')
     return {
-      content: {}
+      content
     }
   },
   head () {

@@ -17,27 +17,21 @@
         <main class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <Nuxt />
           <ClientOnly>
-            <AdWrapper class="mt-8" />
+            <LazyAdWrapper class="mt-8" />
           </ClientOnly>
         </main>
-        <AppFooter />
+        <LazyAppFooter />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AppSidebar from '~/components/AppSidebar'
-
+import { ref } from '@nuxtjs/composition-api'
 export default {
-  components: {
-    AppSidebar,
-    AdWrapper: () => import('~/components/AdWrapper'),
-    AppFooter: () => import('~/components/AppFooter')
-  },
-  data () {
+  setup () {
     return {
-      isSidebarShown: false
+      isSidebarShown: ref(false)
     }
   },
   head () {

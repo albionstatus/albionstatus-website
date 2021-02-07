@@ -9,13 +9,16 @@
   </a>
 </template>
 <script>
+import { useContext } from '@nuxtjs/composition-api'
+
 export default {
-  setup (_, ctx) {
+  setup () {
+    const { route, app: { router } } = useContext()
     const jump = () => {
       const indexPath = '/'
-      ctx.root.$route.path === indexPath
-        ? ctx.root.$router.go(0)
-        : ctx.root.$router.push(indexPath)
+      route.value.path === indexPath
+        ? router.go(0)
+        : router.push(indexPath)
     }
 
     const imageName = 'logo_small'
