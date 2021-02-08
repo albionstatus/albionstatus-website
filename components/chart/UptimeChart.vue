@@ -21,6 +21,7 @@
 <script>
 import { DateTime } from 'luxon'
 import VueFrappe from 'vue2-frappe/src/components/Charts/Chart.vue'
+import { computed, onBeforeUnmount, onMounted, ref, useContext, useFetch } from '@nuxtjs/composition-api'
 
 const rotateArray = (arr, n) => arr.slice(n, arr.length).concat(arr.slice(0, n))
 
@@ -29,22 +30,32 @@ export default {
     VueFrappe
   },
   fetchOnServer: false,
-  async fetch () {
-    const timestamp = DateTime.utc().minus({ days: 1 }).toISO()
+  setup () {
+    const { $http } = useContext()
+    const data = ref([])
+    const handler = ref(null)
 
-    const data = await this.$http.$get(`?timestamp=${timestamp}`)
-    this.data = data.reverse()
-  },
-  data () {
-    return {
-      data: []
-    }
-  },
-  computed: {
-    shiftedHourData () {
+    const { fetch } = useFetch(async () => {
+      const timestamp = DateTime.utc().minus({ days: 1 }).toISO()
+
+      const res = await $http.$get(`?timestamp=${timestamp}`)
+      data.value = res.reverse()
+    })
+
+    onMounted(() => {
+      handler.value = setInterval(() => fetch(), 30 * 1000)
+    })
+    onBeforeUnmount(() => {
+      clearInterval(handler.value)
+    })
+    const formattedHour = d => d < 12
+      ? `${d === 0 ? 12 : d}am`
+      : `${d === 12 ? 12 : d - 12}pm`
+
+    const shiftedHourData = computed(() => {
       const multiDimensionalHourArray = Array.from({ length: 24 }, () => [])
 
-      for (const currentData of this.data) {
+      for (const currentData of data.value) {
         const hourFromCreatedAtDate = Number(currentData.created_at.slice(11, 13))
         const hourArray = multiDimensionalHourArray[hourFromCreatedAtDate]
         const serverOnlineAtTime = currentData.current_status === 'online'
@@ -63,43 +74,33 @@ export default {
       })
 
       return rotateArray(mappedHourData, (new Date()).getUTCHours())
-    },
-    labels () {
-      return this.shiftedHourData.map(d => this.formattedHour(d.hour))
-    },
-    dataSets () {
-      return [
-        { name: 'not tracked', values: this.shiftedHourData.map(d => 60 - d.offlineMinutes - d.onlineMinutes) },
-        { name: 'offline', values: this.shiftedHourData.map(d => d.offlineMinutes) },
-        { name: 'online', values: this.shiftedHourData.map(d => d.onlineMinutes) }
-      ]
-    },
-    shouldDisplayChart () {
-      return this.shiftedHourData.length && this.labels.length && this.dataSets[0]?.values.length
-    }
-  },
-  mounted () {
-    const handler = setInterval(() => this.$fetch(), 30 * 1000)
-    this.$once('hook:beforeDestroy', () => { clearInterval(handler) })
-  },
-  methods: {
-    formattedDateHour (hourString) {
-      const day = this.isForToday(hourString) ? 'Today' : 'Yesterday'
+    })
+    const labels = computed(() => shiftedHourData.value.map(d => formattedHour(d.hour)))
+    const dataSets = computed(() => [
+      { name: 'not tracked', values: shiftedHourData.value.map(d => 60 - d.offlineMinutes - d.onlineMinutes) },
+      { name: 'offline', values: shiftedHourData.value.map(d => d.offlineMinutes) },
+      { name: 'online', values: shiftedHourData.value.map(d => d.onlineMinutes) }
+    ])
+    const shouldDisplayChart = computed(() => shiftedHourData.value.length &&
+        labels.value.length &&
+        dataSets.value[0]?.values.length
+    )
 
-      return `${day} ${hourString} UTC`
-    },
-    formattedHour (d) {
-      return d < 12
-        ? `${d === 0 ? 12 : d}am`
-        : `${d === 12 ? 12 : d - 12}pm`
-    },
-    isForToday (hourIn12Format) {
+    const isForToday = (hourIn12Format) => {
       const isPm = hourIn12Format.endsWith('pm')
       const [hourNumberString] = hourIn12Format.match(/^(\d+)/)
       const hour = Number(hourNumberString) + (isPm ? 12 : 0)
 
       return hour < new Date().getUTCHours()
     }
+
+    const formattedDateHour = (hourString) => {
+      const day = isForToday(hourString) ? 'Today' : 'Yesterday'
+
+      return `${day} ${hourString} UTC`
+    }
+
+    return { dataSets, labels, shouldDisplayChart, formattedDateHour }
   }
 }
 </script>
