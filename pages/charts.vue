@@ -1,8 +1,8 @@
 <template>
   <div class="container mx-auto p-4">
-    <h1 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
+    <Heading>
       Uptime Charts for Albion Online
-    </h1>
+    </Heading>
     <NuxtContent :document="content" class="py-4 prose lg:prose-lg max-w-none" />
     <UptimeChart class="mt-8" />
   </div>

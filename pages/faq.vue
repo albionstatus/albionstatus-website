@@ -1,11 +1,11 @@
 <template>
-  <FaqComponent :content="$options.content">
+  <FaqAccordion :content="$options.content">
     <template #heading>
-      <h1 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
+      <Heading>
         FAQ - Frequently Asked Questions about AlbionStatus
-      </h1>
+      </Heading>
     </template>
-  </FaqComponent>
+  </FaqAccordion>
 </template>
 <script>
 export default {

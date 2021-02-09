@@ -1,8 +1,8 @@
 <template>
   <section class="flex flex-col items-center mt-6">
-    <h1 class="my-2">
+    <Heading class="my-2">
       Nothing to see here!
-    </h1>
+    </Heading>
     <p class="leading-loose mt-4">
       Looks like you took a wrong path!
     </p>

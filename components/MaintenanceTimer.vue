@@ -1,9 +1,9 @@
 <template>
   <ClientOnly>
     <div class="mt-16">
-      <h2 id="timer" class="text-xl leading-9 font-bold text-gray-900 sm:text-2xl sm:leading-10">
+      <Heading id="timer" tag="h2" look="h1">
         Maintenance timer
-      </h2>
+      </Heading>
       <div class="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
         <div class="max-w-4xl mx-auto">
           <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">

@@ -24,9 +24,9 @@
           </svg>
         </div>
         <div class="mx-3">
-          <h3 class="text-2xl leading-5 font-medium text-yellow-800">
+          <Heading tag="h3" class="text-yellow-800">
             Please support AlbionStatus by disabling your AdBlocker
-          </h3>
+          </Heading>
         </div>
         <div>
           <svg class="h-8 w-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">

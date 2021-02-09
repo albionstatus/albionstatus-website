@@ -1,9 +1,9 @@
 <template>
   <FaqTwoColumn :content="$options.content">
     <template #heading>
-      <h1 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
+      <Heading>
         All about the Albion Online server location
-      </h1>
+      </Heading>
     </template>
     <template #intro>
       <p class="pt-8">

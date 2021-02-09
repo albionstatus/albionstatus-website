@@ -15,7 +15,7 @@
                 :aria-label="isExpanded(i) ? 'Collapse Question' : 'Expand Question'"
                 @click="changeState(i)"
               >
-                <h2 class="font-medium text-gray-900" v-html="question" />
+                <Heading tag="h2" v-html="question" />
                 <span class="ml-6 h-7 flex items-center">
                   <svg
                     :class="{ '-rotate-180': isExpanded(i) }"

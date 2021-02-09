@@ -9,9 +9,9 @@
         <div class="md:grid md:grid-cols-2 md:gap-32">
           <div v-for="i in 2" :key="i" :class="{ 'mt-16 md:mt-0': i-1 }">
             <div v-for="({question, answer}, j) in splitContent[i-1]" :key="question" :class="{ 'mt-16': j }">
-              <h2 class="text-xl leading-6 font-medium text-gray-900">
+              <Heading tag="h2" class="text-xl leading-6">
                 {{ question }}
-              </h2>
+              </Heading>
               <p v-interpolation class="text-base leading-6 text-gray-700 mt-2" v-html="answer" />
             </div>
           </div>
