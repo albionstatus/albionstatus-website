@@ -30,8 +30,8 @@
 
 export default {
   head () {
-    const title = 'About the location of the Albion Online servers'
-    const metaDescription = 'Where are the Albion servers located? Is the location the cause of bad in-game experiences? How many of them actually exist? Find an answer to these question on AlbionStatus'
+    const title = 'Season 11 Schedule'
+    const metaDescription = 'Read more about the schedule of the current Albion Online season, reset days and territory claiming'
 
     return {
       title,
