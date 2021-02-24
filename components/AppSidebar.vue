@@ -93,7 +93,6 @@
           </nav>
           <ClientOnly>
             <AdWrapperSidebar />
-            <AdWrapperSidebar hide-label />
           </ClientOnly>
         </div>
         <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
