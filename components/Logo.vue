@@ -9,11 +9,12 @@
   </a>
 </template>
 <script>
-import { useContext } from '@nuxtjs/composition-api'
+import { useRoute, useRouter } from '@nuxtjs/composition-api'
 
 export default {
   setup () {
-    const { route, app: { router } } = useContext()
+    const router = useRouter()
+    const route = useRoute()
     const jump = () => {
       const indexPath = '/'
       route.value.path === indexPath
