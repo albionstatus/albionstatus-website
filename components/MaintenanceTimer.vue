@@ -51,8 +51,8 @@ export default defineComponent({
   setup () {
     const now = ref(DateTime.local())
 
-    const startOfMaintenance = ref(DateTime.utc().set({ minutes: 0, seconds: 0, hours: 10 }))
-    const endOfMaintenance = ref(DateTime.utc().set({ minutes: 30, seconds: 0, hours: 10 }))
+    const startOfMaintenance = ref(DateTime.utc().set({ minute: 0, second: 0, hour: 10 }))
+    const endOfMaintenance = ref(DateTime.utc().set({ minute: 30, second: 0, hour: 10 }))
 
     const remaining = computed(() => startOfMaintenance.value.diff(now.value).toObject())
     const finished = computed(() => now.value >= startOfMaintenance.value)

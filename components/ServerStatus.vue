@@ -56,10 +56,11 @@
 </template>
 
 <script lang="ts">
-import { DateTime } from 'luxon'
+import { DateTime, Duration, DurationUnit } from 'luxon'
 import { DATE_OF_CREATION } from '@/shared/constants'
 import { computed, defineComponent, onMounted, ref, useContext, useFetch, watch } from '@nuxtjs/composition-api'
 import { isNotificationSendingSupported, showNotification } from '~/shared/NotificationService'
+import { ChartApiResponse } from '~/types'
 
 /*
  * Constants
@@ -74,9 +75,9 @@ const SERVER_STATUS_NOTIFICATION = {
 export default defineComponent({
   fetchOnServer: false,
   setup () {
-    const status = ref('???')
+    const status = ref<string>('???')
     const statusClasses = computed(() => {
-      const lookup = {
+      const lookup: Record<string, string> = {
         online: 'text-green-500',
         offline: 'text-red-800',
         default: 'text-yellow-400'
@@ -84,7 +85,7 @@ export default defineComponent({
       return lookup[status.value] || lookup.default
     })
 
-    const lastCheckedAt = ref(null)
+    const lastCheckedAt = ref<DateTime | null>(null)
     const formattedLastCheckedAt = computed(() => lastCheckedAt.value?.toFormat('HH:mm:ss'))
 
     const message = ref('')
@@ -106,17 +107,17 @@ export default defineComponent({
       }
 
       showNotification(SERVER_STATUS_NOTIFICATION.TITLE, {
-        body: `${SERVER_STATUS_NOTIFICATION.BODY_PREFIX} ${this.status}!`,
+        body: `${SERVER_STATUS_NOTIFICATION.BODY_PREFIX} ${status.value}!`,
         tag: SERVER_STATUS_NOTIFICATION.TAG,
         closeAfter: SERVER_STATUS_NOTIFICATION.TIMEOUT,
         icon: SERVER_STATUS_NOTIFICATION.ICON
       })
     }
 
-    const units = ['years', 'months', 'days', 'hours']
+    const units: (DurationUnit & keyof Duration)[] = ['years', 'months', 'days', 'hours']
     const duration = DateTime.local().diff(DateTime.fromISO(DATE_OF_CREATION), units)
 
-    const operatingSince = units.map(u => duration[u] ? `${Math.ceil(duration[u])} ${u}` : false)
+    const operatingSince = units.map(u => duration[u] && `${Math.ceil(duration[u])} ${u}`)
       .filter(Boolean)
       .join(', ')
       .replace(/,([^,]*)$/, ' and $1')
@@ -125,7 +126,7 @@ export default defineComponent({
 
     const { fetch } = useFetch(async () => {
       try {
-        const data = await $http.$get('/current/')
+        const data = await $http.$get<ChartApiResponse[]>('/current/')
         setStatus(data)
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -134,9 +135,8 @@ export default defineComponent({
     })
     onMounted(() => { fetch() })
 
-    function setStatus (data) {
-      const hasNoData = typeof data === 'undefined' || data.length === 0
-      if (hasNoData) {
+    function setStatus (data?: ChartApiResponse[]) {
+      if (!data || data.length === 0) {
         return
       }
 
@@ -145,7 +145,7 @@ export default defineComponent({
       // Track last status so we know when to inform the user of a status change
       status.value = newestData.current_status
       lastCheckedAt.value = DateTime.fromISO(newestData.created_at)
-      message.value = newestData.message
+      message.value = newestData.message ?? ''
     }
 
     return {

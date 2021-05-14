@@ -24,8 +24,9 @@ import { DateTime } from 'luxon'
 import VueFrappe from 'vue2-frappe/src/components/Charts/Chart.vue'
 import { computed, ref, useContext, useFetch } from '@nuxtjs/composition-api'
 import { useIntervalFn } from '@vueuse/core'
+import { ChartApiResponse, ProcessedChartDatapoint } from '~/types'
 
-const rotateArray = (arr, n) => arr.slice(n, arr.length).concat(arr.slice(0, n))
+const rotateArray = (arr: Array<any>, n: number) => arr.slice(n, arr.length).concat(arr.slice(0, n))
 
 export default {
   components: {
@@ -34,24 +35,24 @@ export default {
   fetchOnServer: false,
   setup () {
     const { $http } = useContext()
-    const data = ref([])
+    const data = ref<ChartApiResponse[]>([])
 
     const { fetch } = useFetch(async () => {
       const timestamp = DateTime.utc().minus({ days: 1 }).toISO()
 
-      const res = await $http.$get(`?timestamp=${timestamp}`)
+      const res = await $http.$get<ChartApiResponse[]>(`?timestamp=${timestamp}`)
       data.value = res.reverse()
     })
 
     const THIRTY_SECONDS = 30 * 1000
     useIntervalFn(() => { fetch() }, THIRTY_SECONDS)
 
-    const formattedHour = d => d < 12
+    const formattedHour = (d: number) => d < 12
       ? `${d === 0 ? 12 : d}am`
       : `${d === 12 ? 12 : d - 12}pm`
 
-    const shiftedHourData = computed(() => {
-      const multiDimensionalHourArray = Array.from({ length: 24 }, () => [])
+    const shiftedHourData = computed(() : ProcessedChartDatapoint[] => {
+      const multiDimensionalHourArray: Array<Array<boolean>> = Array.from({ length: 24 }, () => [])
 
       for (const currentData of data.value) {
         const hourFromCreatedAtDate = Number(currentData.created_at.slice(11, 13))
@@ -84,15 +85,15 @@ export default {
         dataSets.value[0]?.values.length
     )
 
-    const isForToday = (hourIn12Format) => {
+    const isForToday = (hourIn12Format: string) => {
       const isPm = hourIn12Format.endsWith('pm')
-      const [hourNumberString] = hourIn12Format.match(/^(\d+)/)
+      const [hourNumberString] = hourIn12Format.match(/^(\d+)/) ?? []
       const hour = Number(hourNumberString) + (isPm ? 12 : 0)
 
       return hour < new Date().getUTCHours()
     }
 
-    const formattedDateHour = (hourString) => {
+    const formattedDateHour = (hourString: string) => {
       const day = isForToday(hourString) ? 'Today' : 'Yesterday'
 
       return `${day} ${hourString} UTC`

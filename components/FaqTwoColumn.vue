@@ -25,36 +25,51 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useMeta } from '@nuxtjs/composition-api'
+import { computed, defineComponent, PropType, useMeta } from '@nuxtjs/composition-api'
 import { createFaqSchemaFromContent } from '~/shared/schemaHelpers'
+import { FaqContent } from '~/types'
 
-const isInternalLink = href => href?.startsWith('/')
+const isInternalLink = (href: string | undefined) => href?.startsWith('/')
+
+type InterpolationEl = HTMLElement & {
+  $componentUpdated?: Function,
+  $destroy?: Function
+}
 
 export default defineComponent({
   directives: {
     interpolation: {
-      bind (el) {
-        const navigate = (event) => {
-          const href = event.target.getAttribute('href')
+      bind (el: InterpolationEl) {
+        const navigate = (event: Event) => {
+          const target = event.target as HTMLElement
+          const href = target.getAttribute('href')
+
+          if (!href) {
+            return
+          }
           event.preventDefault()
           window.$nuxt.$router.push(href)
         }
 
         const links = Array.from(el.getElementsByTagName('a')).filter((link) => {
           const href = link.getAttribute('href')
-          return isInternalLink(href)
+          return href && isInternalLink(href)
         })
 
-        const addListeners = (links) => {
+        const addListeners = (links: Element[]) => {
           links.forEach((link) => {
             const href = link.getAttribute('href')
+            if (!href) {
+              return
+            }
+
             if (isInternalLink(href)) {
               link.addEventListener('click', navigate, false)
             }
           })
         }
 
-        const removeListeners = (links) => {
+        const removeListeners = (links: Element[]) => {
           links.forEach(link => link.removeEventListener('click', navigate, false))
         }
 
@@ -67,13 +82,13 @@ export default defineComponent({
 
         el.$destroy = () => removeListeners(links)
       },
-      componentUpdated: el => el.$componentUpdated(),
-      unbind: el => el.$destroy()
+      componentUpdated: (el: InterpolationEl) => el.$componentUpdated?.(),
+      unbind: (el: InterpolationEl) => el.$destroy?.()
     }
   },
   props: {
     content: {
-      type: Array,
+      type: Array as PropType<FaqContent[]>,
       required: true
     }
   },

@@ -5,10 +5,11 @@
 </template>
 
 <script lang="ts">
+import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
 
-import { computed, defineComponent } from '@nuxtjs/composition-api'
+type HeadingTag = 'h1' | 'h2' | 'h3'
 
-const styles = {
+const styles: Record<string, string> = {
   h1: 'text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10',
   h2: 'font-medium text-gray-900',
   h3: 'text-2xl leading-5 font-medium'
@@ -17,11 +18,11 @@ const styles = {
 export default defineComponent({
   props: {
     tag: {
-      type: String,
+      type: String as PropType<HeadingTag>,
       default: 'h1'
     },
     look: {
-      type: String,
+      type: String as PropType<string>,
       default: ''
     }
   },

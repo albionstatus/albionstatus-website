@@ -37,22 +37,23 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api'
+import { defineComponent, PropType, ref, useMeta } from '@nuxtjs/composition-api'
 import { createFaqSchemaFromContent } from '@/shared/schemaHelpers'
+import { FaqContent } from '~/types'
 
 export default defineComponent({
   props: {
     content: {
-      type: Array,
+      type: Array as PropType<FaqContent[]>,
       required: true
     }
   },
   setup (props) {
     const NONE_EXPANDED = -1
     const expandedQuestionIndex = ref(NONE_EXPANDED)
-    const isExpanded = i => expandedQuestionIndex.value === i
+    const isExpanded = (i: number) => expandedQuestionIndex.value === i
 
-    const changeState = (i) => {
+    const changeState = (i: number) => {
       if (isExpanded(i)) {
         expandedQuestionIndex.value = NONE_EXPANDED
         return

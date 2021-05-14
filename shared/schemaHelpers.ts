@@ -1,6 +1,8 @@
-export const encodeAnswer = answer => answer.replace(/"/g, '\'').replace(/\\n/g, '').trim()
+import { FaqContent } from '~/types'
 
-export const createFaqSchemaFromContent = content => ({
+export const encodeAnswer = (answer: string) => answer.replace(/"/g, '\'').replace(/\\n/g, '').trim()
+
+export const createFaqSchemaFromContent = (content: FaqContent[]) => ({
   type: 'application/ld+json',
   json: {
     '@context': 'https://schema.org',

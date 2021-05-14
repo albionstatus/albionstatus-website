@@ -7,7 +7,8 @@ export const authorizeNotification = () => {
   }
 }
 
-export const showNotification = (title, options) => {
+// eslint-disable-next-line no-undef
+export const showNotification = (title: string, options: NotificationOptions & { closeAfter?: number }) => {
   const notification = new Notification(
     title || 'No title set on options object!', {
       dir: options.dir || 'auto',

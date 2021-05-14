@@ -27,9 +27,9 @@ export default defineComponent({
     const sizes = [{ px: '64', res: 1 }, { px: '128', res: 2 }]
     const extensions = ['png', 'webp', 'avif']
 
-    const imageSourceSet = {}
+    const imageSourceSet: Record<string, string> = {}
 
-    const buildImageSource = (size, ext, name) => `${require(`@/assets/${name}_${size.px}.${ext}`)} ${size.res}x`
+    const buildImageSource = (size: {px: string, res: number}, ext: string, name: string) => `${require(`@/assets/${name}_${size.px}.${ext}`)} ${size.res}x`
 
     for (const ext of extensions) {
       imageSourceSet[ext] = sizes.map(size => buildImageSource(size, ext, imageName)).join(', ')
@@ -40,5 +40,4 @@ export default defineComponent({
       imageSourceSet
     }
   }
-}
-)</script>
+})</script>
