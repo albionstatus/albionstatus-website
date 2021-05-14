@@ -13,25 +13,29 @@ const createBaitElement = () => {
 
   return element
 }
-const checkForAdblock = (resolve) => {
+
+const checkForAdblock = () => new Promise<boolean>((resolve) => {
   const bait = createBaitElement()
   setTimeout(() => {
     const possibleElement = window.getComputedStyle(bait, null)
     const hasDetectedAd = possibleElement?.getPropertyValue('display') === 'none' || possibleElement?.getPropertyValue('visibility') === 'hidden'
-    const didNotLoadAnalytics = document.querySelector('.adsbygoogle')?.dataset.adsbygoogleStatus !== 'done'
+
+    const adElement = document.querySelector('.adsbygoogle')
+
+    const didNotLoadAnalytics = adElement instanceof HTMLElement ? adElement?.dataset.adsbygoogleStatus !== 'done' : true
     document.body.removeChild(bait)
     resolve(hasDetectedAd || didNotLoadAnalytics)
   }, 1)
-}
+})
 
 export default function () {
   const route = useRoute()
   const currentPath = computed(() => route.value.path)
   const notInLegalView = computed(() => !['/legal', '/privacy'].includes(currentPath.value))
-  const hasAdblock = ref(undefined)
+  const hasAdblock = ref(false)
   onBeforeMount(() => {
     window.addEventListener('load', async () => {
-      hasAdblock.value = await new Promise(checkForAdblock)
+      hasAdblock.value = await checkForAdblock()
     }, { once: true })
   })
 

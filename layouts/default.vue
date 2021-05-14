@@ -26,9 +26,9 @@
   </div>
 </template>
 
-<script>
-import { ref } from '@nuxtjs/composition-api'
-export default {
+<script lang="ts">
+import { defineComponent, ref } from '@nuxtjs/composition-api'
+export default defineComponent({
   setup () {
     return {
       isSidebarShown: ref(false)
@@ -45,4 +45,4 @@ export default {
     }
   }
 }
-</script>
+)</script>

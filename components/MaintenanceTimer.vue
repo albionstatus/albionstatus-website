@@ -42,12 +42,12 @@
   </ClientOnly>
 </template>
 
-<script>
+<script lang="ts">
 import { DateTime, Duration } from 'luxon'
-import { ref, computed, watchEffect } from '@nuxtjs/composition-api'
+import { ref, computed, watchEffect, defineComponent } from '@nuxtjs/composition-api'
 import { useIntervalFn } from '@vueuse/core'
 
-export default {
+export default defineComponent({
   setup () {
     const now = ref(DateTime.local())
 
@@ -80,4 +80,4 @@ export default {
     }
   }
 }
-</script>
+)</script>

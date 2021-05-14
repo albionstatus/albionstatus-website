@@ -8,10 +8,11 @@
     </picture>
   </a>
 </template>
-<script>
-import { useRoute, useRouter } from '@nuxtjs/composition-api'
 
-export default {
+<script lang="ts">
+import { defineComponent, useRoute, useRouter } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   setup () {
     const router = useRouter()
     const route = useRoute()
@@ -40,4 +41,4 @@ export default {
     }
   }
 }
-</script>
+)</script>

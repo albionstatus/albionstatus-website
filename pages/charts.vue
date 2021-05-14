@@ -8,10 +8,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 import { useBasicContent } from '~/composables/useContent'
 
-export default {
+export default defineComponent({
   setup () {
     const { content } = useBasicContent('charts')
     return {
@@ -42,5 +43,4 @@ export default {
       ]
     }
   }
-}
-</script>
+})</script>

@@ -8,10 +8,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import useAdLogic from '@/composables/useAdLogic'
+import { defineComponent } from '@nuxtjs/composition-api'
 
-export default {
+export default defineComponent({
   props: {
     hideLabel: {
       type: Boolean,
@@ -21,5 +22,5 @@ export default {
   setup () {
     return useAdLogic()
   }
-}
+})
 </script>

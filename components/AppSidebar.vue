@@ -114,11 +114,12 @@
   </div>
 </template>
 
-<script>
-import AdWrapperSidebar from '@/components/AdWrapperSidebar'
+<script lang="ts">
+import AdWrapperSidebar from '@/components/AdWrapperSidebar.vue'
 import { authorizeNotification } from '@/shared/NotificationService'
+import { defineComponent } from '@nuxtjs/composition-api'
 
-export default {
+export default defineComponent({
   components: {
     AdWrapperSidebar
   },
@@ -223,4 +224,4 @@ export default {
     }
   }
 }
-</script>
+)</script>

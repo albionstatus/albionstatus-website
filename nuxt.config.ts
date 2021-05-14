@@ -1,3 +1,4 @@
+import { NuxtConfig } from '@nuxt/types'
 import { colors } from './tailwind/values'
 
 const analyticsUA = 'UA-62902757-9'
@@ -6,7 +7,7 @@ const isProd = !isDev
 
 const baseUrl = 'https://www.albionstatus.com'
 
-export default {
+export default <NuxtConfig> {
   modern: isProd && 'client',
   target: 'static',
   components: true,
@@ -65,6 +66,7 @@ export default {
     '@nuxt/content',
     '@nuxtjs/composition-api/module',
     '@nuxtjs/tailwindcss',
+    '@nuxt/typescript-build',
     '@nuxtjs/netlify-files',
     ['nuxt-vitals', {
       trackingID: analyticsUA,

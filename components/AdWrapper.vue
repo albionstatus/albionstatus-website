@@ -30,12 +30,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import useAdLogic from '@/composables/useAdLogic'
+import { defineComponent } from '@nuxtjs/composition-api'
 
-export default {
+export default defineComponent({
   setup () {
     return useAdLogic()
   }
-}
+})
 </script>

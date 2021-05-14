@@ -4,9 +4,9 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
 
-import { computed } from '@nuxtjs/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
 const styles = {
   h1: 'text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10',
@@ -14,7 +14,7 @@ const styles = {
   h3: 'text-2xl leading-5 font-medium'
 }
 
-export default {
+export default defineComponent({
   props: {
     tag: {
       type: String,
@@ -30,5 +30,5 @@ export default {
       classes: computed(() => props.look ? styles[props.look] ?? '' : styles[props.tag])
     }
   }
-}
+})
 </script>

@@ -23,7 +23,8 @@
     </section>
   </div>
 </template>
-<script>
+
+<script lang="ts">
 import { computed, defineComponent, useMeta } from '@nuxtjs/composition-api'
 import { createFaqSchemaFromContent } from '~/shared/schemaHelpers'
 
@@ -64,7 +65,7 @@ export default defineComponent({
           window.$nuxt.$nextTick(() => addListeners(links))
         }
 
-        el.$destroy = () => el.removeEventListener('click', removeListeners(links))
+        el.$destroy = () => removeListeners(links)
       },
       componentUpdated: el => el.$componentUpdated(),
       unbind: el => el.$destroy()

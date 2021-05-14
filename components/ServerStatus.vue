@@ -55,7 +55,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { DateTime } from 'luxon'
 import { DATE_OF_CREATION } from '@/shared/constants'
 import { computed, defineComponent, onMounted, ref, useContext, useFetch, watch } from '@nuxtjs/composition-api'

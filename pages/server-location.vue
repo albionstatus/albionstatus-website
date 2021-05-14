@@ -17,9 +17,11 @@
     </template>
   </FaqTwoColumn>
 </template>
-<script>
+<script lang="ts">
 
-export default {
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   content: [
     {
       question: 'How many Albion servers exist?',
@@ -88,5 +90,5 @@ export default {
       ]
     }
   }
-}
+})
 </script>

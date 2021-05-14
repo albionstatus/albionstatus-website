@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -32,7 +32,10 @@
     "vue2-frappe": "^1.2.3"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^6.0.0",
+    "@nuxt/types": "^2.15.6",
+    "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/eslint-config-typescript": "^6.0.0",
+    "@types/luxon": "^1.26.5",
     "babel-eslint": "^10.0.3",
     "eslint": "^7.26.0",
     "eslint-loader": "^4.0.2",

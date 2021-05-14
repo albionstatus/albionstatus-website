@@ -20,10 +20,10 @@
 
 <script>
 import { DateTime, Duration } from 'luxon'
-import { ref, computed } from '@nuxtjs/composition-api'
+import { ref, computed, defineComponent } from '@nuxtjs/composition-api'
 import { useIntervalFn } from '@vueuse/core'
 
-export default {
+export default defineComponent({
   props: {
     number: {
       type: Number,
@@ -43,7 +43,9 @@ export default {
 
     useIntervalFn(() => { now.value = DateTime.local() }, 10)
 
-    const formattedTimeUntilEndOfSeason = computed(() => finished.value ? 'Ended already' : Duration.fromObject(remaining.value).toFormat('dd \'days\' hh \'hours\' mm \'minutes and\' ss \'seconds\''))
+    const formattedTimeUntilEndOfSeason = computed(() => finished.value
+      ? 'Ended already'
+      : Duration.fromObject(remaining.value).toFormat('dd \'days\' hh \'hours\' mm \'minutes and\' ss \'seconds\''))
 
     return {
       formattedTimeUntilEndOfSeason,
@@ -53,5 +55,5 @@ export default {
       finished
     }
   }
-}
+})
 </script>

@@ -25,8 +25,11 @@
     </template>
   </FaqTwoColumn>
 </template>
-<script>
-export default {
+
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   content: [
     {
       question: 'How long does the server maintenance usually last?',
@@ -93,4 +96,4 @@ export default {
     }
   }
 }
-</script>
+)</script>

@@ -36,7 +36,7 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api'
 import { createFaqSchemaFromContent } from '@/shared/schemaHelpers'
 
