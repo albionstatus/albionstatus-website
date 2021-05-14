@@ -12,6 +12,9 @@
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "prepare": "husky install"
   },
+  "engines": {
+    "node": ">=14"
+  },
   "dependencies": {
     "@nuxt/content": "^1.14.0",
     "@nuxt/http": "^0.6.4",
