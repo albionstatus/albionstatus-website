@@ -21,6 +21,8 @@
 
 <script lang="ts">
 import { DateTime } from 'luxon'
+
+// @ts-ignore
 import VueFrappe from 'vue2-frappe/src/components/Charts/Chart.vue'
 import { computed, ref, useContext, useFetch } from '@nuxtjs/composition-api'
 import { useIntervalFn } from '@vueuse/core'
