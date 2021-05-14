@@ -21,7 +21,7 @@
 <script>
 import { DateTime, Duration } from 'luxon'
 import { ref, computed } from '@nuxtjs/composition-api'
-import { useInterval } from '~/composables/useInterval'
+import { useIntervalFn } from '@vueuse/core'
 
 export default {
   props: {
@@ -41,7 +41,7 @@ export default {
     const remaining = computed(() => endOfSeason.value.diff(now.value).toObject())
     const finished = computed(() => now.value >= endOfSeason.value)
 
-    useInterval(() => { now.value = DateTime.local() }, 10)
+    useIntervalFn(() => { now.value = DateTime.local() }, 10)
 
     const formattedTimeUntilEndOfSeason = computed(() => finished.value ? 'Ended already' : Duration.fromObject(remaining.value).toFormat('dd \'days\' hh \'hours\' mm \'minutes and\' ss \'seconds\''))
 

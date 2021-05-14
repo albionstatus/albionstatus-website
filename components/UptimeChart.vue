@@ -21,7 +21,8 @@
 <script>
 import { DateTime } from 'luxon'
 import VueFrappe from 'vue2-frappe/src/components/Charts/Chart.vue'
-import { computed, onBeforeUnmount, onMounted, ref, useContext, useFetch } from '@nuxtjs/composition-api'
+import { computed, ref, useContext, useFetch } from '@nuxtjs/composition-api'
+import { useIntervalFn } from '@vueuse/core'
 
 const rotateArray = (arr, n) => arr.slice(n, arr.length).concat(arr.slice(0, n))
 
@@ -33,7 +34,6 @@ export default {
   setup () {
     const { $http } = useContext()
     const data = ref([])
-    const handler = ref(null)
 
     const { fetch } = useFetch(async () => {
       const timestamp = DateTime.utc().minus({ days: 1 }).toISO()
@@ -42,12 +42,9 @@ export default {
       data.value = res.reverse()
     })
 
-    onMounted(() => {
-      handler.value = setInterval(() => fetch(), 30 * 1000)
-    })
-    onBeforeUnmount(() => {
-      clearInterval(handler.value)
-    })
+    const THIRTY_SECONDS = 30 * 1000
+    useIntervalFn(() => { fetch() }, THIRTY_SECONDS)
+
     const formattedHour = d => d < 12
       ? `${d === 0 ? 12 : d}am`
       : `${d === 12 ? 12 : d - 12}pm`

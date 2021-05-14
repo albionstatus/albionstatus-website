@@ -45,7 +45,7 @@
 <script>
 import { DateTime, Duration } from 'luxon'
 import { ref, computed, watchEffect } from '@nuxtjs/composition-api'
-import { useInterval } from '~/composables/useInterval'
+import { useIntervalFn } from '@vueuse/core'
 
 export default {
   setup () {
@@ -62,7 +62,7 @@ export default {
       endOfMaintenance.value = endOfMaintenance.value.plus({ days: 1 })
     }
 
-    useInterval(() => { now.value = DateTime.local() }, 10)
+    useIntervalFn(() => { now.value = DateTime.local() }, 10)
     watchEffect(() => {
       if (finished.value) {
         updateMaintenanceDate()

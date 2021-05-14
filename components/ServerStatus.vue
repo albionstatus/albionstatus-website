@@ -93,7 +93,7 @@ export default defineComponent({
     const isFirstCheck = ref(true)
     watch(status, () => {
       // Ignore change from "???" to the real status
-      if (isFirstCheck) {
+      if (isFirstCheck.value) {
         isFirstCheck.value = false
         return
       }

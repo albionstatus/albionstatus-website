@@ -63,7 +63,7 @@ export default {
     '@nuxtjs/pwa',
     // 'nuxt-svg-loader',
     '@nuxt/content',
-    '@nuxtjs/composition-api',
+    '@nuxtjs/composition-api/module',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/netlify-files',
     ['nuxt-vitals', {
