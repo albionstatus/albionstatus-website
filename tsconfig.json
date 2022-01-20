@@ -27,8 +27,12 @@
       "@types/node",
       "@nuxt/types",
       "@nuxt/content",
-      "@nuxt/http"
+      "@nuxt/http",
+      "unplugin-vue2-script-setup/types"
     ]
+  },
+  "vueCompilerOptions": {
+    "experimentalCompatMode": 2
   },
   "exclude": [
     "node_modules",

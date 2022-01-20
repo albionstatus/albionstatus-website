@@ -12,7 +12,13 @@
           </svg>
         </div>
         <div class="mx-3">
-          <Heading tag="a" href="https://www.patreon.com/albionstatus" rel="noopener" target="_blank" class="text-yellow-800 underline hover:no-underline">
+          <Heading
+            tag="a"
+            href="https://www.patreon.com/albionstatus"
+            rel="noopener"
+            target="_blank"
+            class="text-yellow-800 underline hover:no-underline"
+          >
             Please support us on Patreon!
           </Heading>
         </div>
@@ -30,13 +36,8 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import useAdLogic from '@/composables/useAdLogic'
-import { defineComponent } from '@nuxtjs/composition-api'
 
-export default defineComponent({
-  setup () {
-    return useAdLogic()
-  }
-})
+const { notInLegalView } = useAdLogic()
 </script>

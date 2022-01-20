@@ -5,9 +5,9 @@
       <div class="mt-6 border-t-2 border-gray-200 pt-6">
         <dl>
           <div
-            v-for="({question, answer}, i) in content"
+            v-for="({ question, answer }, i) in content"
             :key="question"
-            :class="{'mt-6 border-t border-gray-200 pt-6': i}"
+            :class="{ 'mt-6 border-t border-gray-200 pt-6': i }"
           >
             <div class="text-lg leading-7">
               <button
@@ -24,55 +24,51 @@
                     fill="none"
                     viewBox="0 0 24 24"
                   >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </span>
               </button>
             </div>
-            <p v-show="isExpanded(i)" class="text-base leading-6 text-gray-500 mt-2 pr-12" v-html="answer" />
+            <p
+              v-show="isExpanded(i)"
+              class="text-base leading-6 text-gray-500 mt-2 pr-12"
+              v-html="answer"
+            />
           </div>
         </dl>
       </div>
     </div>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, PropType, ref, useMeta } from '@nuxtjs/composition-api'
+<script setup lang="ts">
+import { ref, useMeta } from '@nuxtjs/composition-api'
 import { createFaqSchemaFromContent } from '@/shared/schemaHelpers'
 import { FaqContent } from '~/types'
 
-export default defineComponent({
-  props: {
-    content: {
-      type: Array as PropType<FaqContent[]>,
-      required: true
-    }
-  },
-  setup (props) {
-    const NONE_EXPANDED = -1
-    const expandedQuestionIndex = ref(NONE_EXPANDED)
-    const isExpanded = (i: number) => expandedQuestionIndex.value === i
+const props = defineProps<{
+  content: FaqContent[]
+}>()
 
-    const changeState = (i: number) => {
-      if (isExpanded(i)) {
-        expandedQuestionIndex.value = NONE_EXPANDED
-        return
-      }
-      expandedQuestionIndex.value = i
-    }
+const NONE_EXPANDED = -1
+const expandedQuestionIndex = ref(NONE_EXPANDED)
+const isExpanded = (i: number) => expandedQuestionIndex.value === i
 
-    useMeta({
-      script: [
-        createFaqSchemaFromContent(props.content)
-      ]
-    })
+const changeState = (i: number) => {
+  if (isExpanded(i)) {
+    expandedQuestionIndex.value = NONE_EXPANDED
+    return
+  }
+  expandedQuestionIndex.value = i
+}
 
-    return {
-      expandedQuestionIndex,
-      isExpanded,
-      changeState
-    }
-  },
-  head: {}
+useMeta({
+  script: [
+    createFaqSchemaFromContent(props.content)
+  ]
 })
 </script>
