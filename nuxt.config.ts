@@ -56,17 +56,17 @@ export default <NuxtConfig> {
         { field: 'anonymizeIp', value: true }
       ]
     }],
-    /* ['@nuxtjs/google-adsense', {
+    ['@nuxtjs/google-adsense', {
       id: 'ca-pub-4749840658812364',
       analyticsUacct: analyticsUA,
       test: isDev
-    }], */
+    }],
     '@nuxtjs/pwa',
     // 'nuxt-svg-loader',
     '@nuxt/content',
     '@nuxtjs/composition-api/module',
     '@nuxtjs/tailwindcss',
-    '@nuxt/typescript-build',
+    ['@nuxt/typescript-build', { typeCheck: false }],
     '@nuxtjs/netlify-files',
     ['nuxt-vitals', {
       trackingID: analyticsUA,
