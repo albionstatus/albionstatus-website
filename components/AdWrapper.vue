@@ -1,6 +1,18 @@
 <template>
   <div v-if="notInLegalView" class="flex flex-wrap flex-col mx-auto w-full mb-2 mt-8">
-    <div class="rounded-md bg-yellow-50 px-4 py-8">
+    <template v-if="hasAdblock === false">
+      <adsbygoogle
+        :slot="adSlotId"
+        :ad-style="{
+          display: 'inline-block',
+          height: '250px'
+        }"
+        :ad-format="''"
+        class="w-full mx-auto mb-2"
+      />
+      <span class="mt-2 mb-1 text-center text-sm text-gray-400">Advertisement</span>
+    </template>
+    <div v-if="hasAdblock === true" class="rounded-md bg-yellow-50 px-4 py-8">
       <div class="flex items-center justify-center">
         <div class="flex-shrink-0">
           <svg class="h-8 w-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -12,8 +24,8 @@
           </svg>
         </div>
         <div class="mx-3">
-          <Heading tag="a" href="https://www.patreon.com/albionstatus" rel="noopener" target="_blank" class="text-yellow-800 underline hover:no-underline">
-            Please support us on Patreon!
+          <Heading tag="h3" class="text-yellow-800">
+            Please support AlbionStatus by disabling your AdBlocker
           </Heading>
         </div>
         <div>
@@ -30,13 +42,8 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import useAdLogic from '@/composables/useAdLogic'
-import { defineComponent } from '@nuxtjs/composition-api'
 
-export default defineComponent({
-  setup () {
-    return useAdLogic()
-  }
-})
+const { notInLegalView, hasAdblock, adSlotId } = useAdLogic()
 </script>

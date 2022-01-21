@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "vue-tsc --noEmit && nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
@@ -20,7 +20,7 @@
     "@nuxt/http": "^0.6.4",
     "@nuxt/types": "^2.15.6",
     "@nuxt/typescript-build": "^2.1.0",
-    "@nuxtjs/composition-api": "^0.23.4",
+    "@nuxtjs/composition-api": "^0.31.0",
     "@nuxtjs/eslint-config-typescript": "^6.0.0",
     "@nuxtjs/google-adsense": "^1.3.0",
     "@nuxtjs/google-analytics": "^2.0.2",
@@ -30,15 +30,16 @@
     "@nuxtjs/tailwindcss": "^4.1.2",
     "@tailwindcss/typography": "^0.4.0",
     "@tailwindcss/ui": "^0.7.2",
-    "@types/luxon": "^1.26.5",
-    "@vueuse/core": "^4.11.0",
-    "luxon": "^1.27.0",
+    "@types/luxon": "^2.0.8",
+    "@vueuse/core": "^7.5.1",
+    "luxon": "^2.3.0",
     "nuxt": "^2.15.6",
     "nuxt-svg-loader": "^1.0.1",
     "nuxt-vitals": "^1.1.0",
     "vue2-frappe": "^1.2.3"
   },
   "devDependencies": {
+    "@vue/runtime-dom": "^3.2.26",
     "eslint": "^7.26.0",
     "eslint-loader": "^4.0.2",
     "husky": "^6.0.0"

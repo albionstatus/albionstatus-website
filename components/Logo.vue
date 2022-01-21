@@ -9,35 +9,32 @@
   </a>
 </template>
 
-<script lang="ts">
-import { defineComponent, useRoute, useRouter } from '@nuxtjs/composition-api'
+<script setup lang="ts">
+import { useRoute, useRouter } from '@nuxtjs/composition-api'
 
-export default defineComponent({
-  setup () {
-    const router = useRouter()
-    const route = useRoute()
-    const jump = () => {
-      const indexPath = '/'
-      route.value.path === indexPath
-        ? router.go(0)
-        : router.push(indexPath)
-    }
+const router = useRouter()
+const route = useRoute()
+const jump = () => {
+  const indexPath = '/'
+  route.value.path === indexPath
+    ? router.go(0)
+    : router.push(indexPath)
+}
 
-    const imageName = 'logo_small'
-    const sizes = [{ px: '64', res: 1 }, { px: '128', res: 2 }]
-    const extensions = ['png', 'webp', 'avif']
+const imageName = 'logo_small'
+const sizes = [{ px: '64', res: 1 }, { px: '128', res: 2 }]
+const extensions = ['png', 'webp', 'avif']
 
-    const imageSourceSet: Record<string, string> = {}
+const imageSourceSet: Record<string, string> = {}
 
-    const buildImageSource = (size: {px: string, res: number}, ext: string, name: string) => `${require(`@/assets/${name}_${size.px}.${ext}`)} ${size.res}x`
+type ImageSize = {
+  px: string,
+  res: number
+}
+const buildImageSource = (size: ImageSize, ext: string, name: string) => `${require(`@/assets/${name}_${size.px}.${ext}`)} ${size.res}x`
 
-    for (const ext of extensions) {
-      imageSourceSet[ext] = sizes.map(size => buildImageSource(size, ext, imageName)).join(', ')
-    }
+for (const ext of extensions) {
+  imageSourceSet[ext] = sizes.map(size => buildImageSource(size, ext, imageName)).join(', ')
+}
 
-    return {
-      jump,
-      imageSourceSet
-    }
-  }
-})</script>
+</script>

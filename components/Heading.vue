@@ -4,8 +4,8 @@
   </component>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
+<script setup lang="ts">
+import { computed } from '@nuxtjs/composition-api'
 
 type HeadingTag = 'h1' | 'h2' | 'h3'
 
@@ -15,21 +15,10 @@ const styles: Record<string, string> = {
   h3: 'text-2xl leading-5 font-medium'
 }
 
-export default defineComponent({
-  props: {
-    tag: {
-      type: String as PropType<HeadingTag>,
-      default: 'h1'
-    },
-    look: {
-      type: String as PropType<string>,
-      default: ''
-    }
-  },
-  setup (props) {
-    return {
-      classes: computed(() => props.look ? styles[props.look] ?? '' : styles[props.tag])
-    }
-  }
-})
+const props = withDefaults(defineProps<{
+  tag: HeadingTag,
+  look: string
+}>(), { tag: 'h1', look: '' })
+
+const classes = computed(() => props.look ? styles[props.look] ?? '' : styles[props.tag])
 </script>
