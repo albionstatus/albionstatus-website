@@ -76,9 +76,7 @@
 <script setup lang="ts">
 import { DateTime } from 'luxon'
 import type { DurationUnits } from 'luxon'
-import { useContext, useFetch, ref, computed, watch, onMounted } from '@nuxtjs/composition-api'
 import { DATE_OF_CREATION } from '@/shared/constants'
-import { isNotificationSendingSupported, showNotification } from '~/shared/NotificationService'
 import { ChartApiResponse } from '~/types'
 
 /*
@@ -93,8 +91,8 @@ const SERVER_STATUS_NOTIFICATION = {
 }
 
 const status = ref('???')
-const statusClassLookup: Record<string, string> = {
-  online: 'text-green-500',
+const statusClassLookup = {
+  online: 'text-green-700',
   offline: 'text-red-800',
   default: 'text-yellow-400'
 }
@@ -116,17 +114,21 @@ watch(status, () => {
   displayServerStatusNotification()
 })
 
-function displayServerStatusNotification () {
-  if (!isNotificationSendingSupported) {
-    return
-  }
-
-  showNotification(SERVER_STATUS_NOTIFICATION.TITLE, {
+const { isSupported, show, close } = useWebNotification({
+  title: SERVER_STATUS_NOTIFICATION.TITLE, 
     body: `${SERVER_STATUS_NOTIFICATION.BODY_PREFIX} ${status.value}!`,
     tag: SERVER_STATUS_NOTIFICATION.TAG,
-    closeAfter: SERVER_STATUS_NOTIFICATION.TIMEOUT,
     icon: SERVER_STATUS_NOTIFICATION.ICON
-  })
+})
+
+function displayServerStatusNotification () {
+  if(!isSupported.value) {
+    return
+  }
+  show()
+  setTimeout(() => {
+    close()
+  }, SERVER_STATUS_NOTIFICATION.TIMEOUT)
 }
 
 const units: DurationUnits = ['years', 'months', 'days', 'hours']
@@ -136,35 +138,24 @@ const operatingSince = units.map(u => duration.get(u) && `${Math.ceil(duration.g
   .join(', ')
   .replace(/,([^,]*)$/, ' and $1')
 
-const { $http } = useContext()
-
-const { fetch } = useFetch(async () => {
-  try {
-    const data = await $http.$get<ChartApiResponse[]>('/current/')
-    setStatus(data)
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e)
-  }
-})
-onMounted(() => { fetch() })
-
-function setStatus (data?: ChartApiResponse[]) {
-  if (!data || data.length === 0) {
+const { data, refresh } = useFetch<ChartApiResponse[]>('/api/status/current/', { server: false })
+watch(data, (data) => {
+  if(!data.length){
     return
   }
+  setStatus(data)
+})
 
+useIntervalFn(() => {
+  refresh()
+}, 30 * 1000)
+
+function setStatus (data: ChartApiResponse[]) {
   const [newestData] = data
 
   // Track last status so we know when to inform the user of a status change
   status.value = newestData.current_status
   lastCheckedAt.value = DateTime.fromISO(newestData.created_at)
   message.value = newestData.message ?? ''
-}
-</script>
-
-<script lang="ts">
-export default {
-  fetchOnServer: false
 }
 </script>

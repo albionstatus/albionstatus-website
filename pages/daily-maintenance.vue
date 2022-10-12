@@ -1,5 +1,5 @@
 <template>
-  <FaqTwoColumn :content="$options.content">
+  <FaqTwoColumn :content="content">
     <template #heading>
       <Heading>
         Daily Maintenance of the Albion Online Servers
@@ -26,11 +26,9 @@
   </FaqTwoColumn>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  content: [
+<script setup lang="ts">
+const
+  content = [
     {
       question: 'How long does the server maintenance usually last?',
       answer: `
@@ -70,30 +68,28 @@ export default defineComponent({
       chests are changing their location after the downtime and will respawn somewhere with full capacities.
       `
     }
-  ],
-  head () {
-    const title = 'Daily Maintenance of the Albion Online Servers'
-    const metaDescription = 'Find out about the daily server maintenance for Albion Online. When does it happen? How long does it take? And what will be done during it?'
-    return {
-      title,
-      meta: [
-        {
-          hid: 'og:title',
-          name: 'og:title',
-          content: title
-        },
-        {
-          hid: 'description',
-          name: 'description',
-          content: metaDescription
-        },
-        {
-          hid: 'og:description',
-          name: 'og:description',
-          content: metaDescription
-        }
-      ]
+  ]
+const title = 'Daily Maintenance of the Albion Online Servers'
+const metaDescription = 'Find out about the daily server maintenance for Albion Online. When does it happen? How long does it take? And what will be done during it?'
+
+useHead({
+  title,
+  meta: [
+    {
+      hid: 'og:title',
+      name: 'og:title',
+      content: title
+    },
+    {
+      hid: 'description',
+      name: 'description',
+      content: metaDescription
+    },
+    {
+      hid: 'og:description',
+      name: 'og:description',
+      content: metaDescription
     }
-  }
-}
-)</script>
+  ]
+})
+</script>

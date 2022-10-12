@@ -15,7 +15,7 @@
       </div>
     </template>
     <div v-if="hasAdblock === true" aria-hidden="true">
-      <div class="inline-block py-4 px-8 border border-red-400 md:text-xl py-8">
+      <div class="inline-block px-8 border border-red-400 md:text-xl py-8">
         Please support AlbionStatus by disabling your AdBlocker ❤
       </div>
     </div>

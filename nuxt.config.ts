@@ -1,22 +1,14 @@
-import { NuxtConfig } from '@nuxt/types'
-import { colors } from './tailwind/values'
-
-const analyticsUA = 'UA-62902757-9'
-const isDev = process.env.NODE_ENV !== 'production'
-const isProd = !isDev
+const ANALYTICS_UA = 'UA-62902757-9'
+const IS_DEV = process.env.NODE_ENV !== 'production'
 
 const baseUrl = 'https://www.albionstatus.com'
 
-export default <NuxtConfig> {
-  modern: isProd && 'client',
-  target: 'static',
-  components: true,
-  env: {
-    baseUrl
-  },
-  features: {
-    transitions: false,
-    asyncData: false
+export default defineNuxtConfig({
+  ssr: false,
+  runtimeConfig: {
+    public: {
+      baseUrl
+    }
   },
   head: {
     title: '',
@@ -29,24 +21,15 @@ export default <NuxtConfig> {
   },
 
   generate: {
-    fallback: true
+    fallback: '200.html'
   },
 
-  meta: {
-    name: 'AlbionStatus - Albion Online server status',
-    author: 'Developmint',
-    description: 'AlbionStatus is the only reliable Albion Online server status tracker. Find out if Albion is down' +
-      ' in a splitsecond, no matter if the downtime is caused by the daily maintenance or an outage.',
-    ogSiteName: 'AlbionStatus',
-    mobileAppIOs: true,
-    ogHost: 'https://albionstatus.com',
-    twitterSite: '@AlbionStatus',
-    twitterCard: 'summary'
+  typescript: {
+    strict: true
   },
 
-  buildModules: [
-    '@nuxt/http',
-    ['@nuxtjs/google-analytics', {
+  modules: [
+    /* ['@nuxtjs/google-analytics', {
       id: analyticsUA,
       disabled: () => document.cookie.includes('ga_optout=true'),
       debug: {
@@ -60,73 +43,41 @@ export default <NuxtConfig> {
       id: 'ca-pub-4749840658812364',
       analyticsUacct: analyticsUA,
       test: isDev
-    }],
-    '@nuxtjs/pwa',
-    // 'nuxt-svg-loader',
+    }], */
+    '@kevinmarrec/nuxt-pwa',
     '@nuxt/content',
-    '@nuxtjs/composition-api/module',
     '@nuxtjs/tailwindcss',
-    ['@nuxt/typescript-build', { typeCheck: false }],
-    '@nuxtjs/netlify-files',
-    ['nuxt-vitals', {
-      trackingID: analyticsUA,
-      debug: isDev
-    }],
-    '@nuxtjs/sitemap'
+    '@vueuse/nuxt',
+    '@nuxtjs-alt/proxy'
   ],
 
-  http: {
-    prefix: '/api/',
-    proxy: isDev
-  },
-
   proxy: {
-    '/api/': { target: 'https://api.albionstatus.com/', pathRewrite: { '^/api/': '' } }
-  },
-
-  loading: { color: colors.developmint['500'] },
-
-  manifest: {
-    lang: 'en',
-    short_name: 'AlbionStatus',
-    start_url: '/',
-    display: 'standalone',
-    background_color: '#FFFFFF',
-    orientation: 'any',
-    theme_color: colors.green['300']
-  },
-
-  tailwindcss: {
-    configPath: '~/tailwind.config.js',
-    cssPath: '~/assets/css/app.pcss'
-  },
-
-  sitemap: {
-    hostname: baseUrl,
-    exclude: [
-      '/legal',
-      '/privacy'
-    ],
-    defaults: {
-      changefreq: 'daily',
-      priority: 1,
-      lastmodrealtime: true
-    },
-    trailingSlash: true
-  },
-
-  netlifyFiles: {
-    existingFilesDirectory: './netlify-files'
-  },
-
-  build: {
-    publicPath: '/assets/',
-    loaders: {
-      vue: {
-        compilerOptions: {
-          whitespace: 'condense'
-        }
-      }
+    '^/api/status/': {
+      target: 'https://api.albionstatus.com/',
+      rewrite: (path: string) => path.replace(/^\/api\/status/, '')
     }
+  },
+
+  pwa: {
+    meta: {
+      name: 'AlbionStatus - Albion Online server status',
+      author: 'Developmint',
+      description: 'AlbionStatus is the only reliable Albion Online server status tracker. Find out if Albion is down' +
+        ' in a splitsecond, no matter if the downtime is caused by the daily maintenance or an outage.',
+      ogSiteName: 'AlbionStatus',
+      ogHost: 'https://albionstatus.com',
+      twitterSite: '@AlbionStatus',
+      twitterCard: 'summary'
+    },
+    manifest: {
+      lang: 'en',
+      short_name: 'AlbionStatus',
+      start_url: '/',
+      display: 'standalone',
+      background_color: '#FFFFFF',
+    }
+  },
+  build: {
+    publicPath: '/assets/'
   }
-}
+})

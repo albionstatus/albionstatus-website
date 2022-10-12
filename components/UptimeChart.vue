@@ -1,107 +1,106 @@
 <template>
-  <div style="min-height: 650px">
-    <VueFrappe
-      v-show="shouldDisplayChart"
-      id="uptime-chart-24-hours"
-      type="bar"
-      title="Server uptime of the last 24 hours"
-      :bar-options="{ stacked: true }"
-      :labels="labels"
-      :height="650"
-      :colors="['#868686', '#b13c28', '#008F68']"
-      :tooltip-options="{
-        formatTooltipX: formattedDateHour,
-        formatTooltipY: d => `${d} minutes`
-      }"
-      :line-options="{regionFill: 1}"
-      :data-sets="dataSets"
-    />
-  </div>
+  <Bar cssClasses="max-w-full xl:h-[500px]" :chart-options="chartOptions" :chart-data="chartData" />
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { DateTime } from 'luxon'
-
-// @ts-ignore
-import VueFrappe from 'vue2-frappe/src/components/Charts/Chart.vue'
-import { computed, ref, useContext, useFetch } from '@nuxtjs/composition-api'
 import { useIntervalFn } from '@vueuse/core'
 import { ChartApiResponse, ProcessedChartDatapoint } from '~/types'
+import { Bar } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ChartOptions } from 'chart.js'
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 const rotateArray = (arr: Array<any>, n: number) => arr.slice(n, arr.length).concat(arr.slice(0, n))
 
-export default {
-  components: {
-    VueFrappe
+const { data, refresh } = useAsyncData<ChartApiResponse[]>(async () => {
+  const timestamp = DateTime.utc().minus({ days: 1 }).toISO()
+
+  const res = await $fetch<ChartApiResponse[]>(`/api/status/?timestamp=${timestamp}`)
+  return res.slice().reverse()
+})
+
+const THIRTY_SECONDS = 30 * 1000
+useIntervalFn(() => { refresh() }, THIRTY_SECONDS)
+
+const formattedHour = (d: number) => d < 12
+  ? `${d === 0 ? 12 : d}am`
+  : `${d === 12 ? 12 : d - 12}pm`
+
+const shiftedHourData = computed((): ProcessedChartDatapoint[] => {
+  const multiDimensionalHourArray: boolean[][] = Array.from({ length: 24 }, () => [])
+
+  data.value?.forEach(currentData => {
+    const hourFromCreatedAtDate = Number(currentData.created_at.slice(11, 13))
+    const hourArray = multiDimensionalHourArray[hourFromCreatedAtDate]
+    const serverOnlineAtTime = currentData.current_status === 'online'
+    hourArray.push(serverOnlineAtTime)
+  })
+
+  const mappedHourData = multiDimensionalHourArray.map((hourArray, index) => {
+    const offlineMinutes = hourArray.filter(d => !d).length
+    const totalMinutesTracked = hourArray.length
+
+    return {
+      onlineMinutes: totalMinutesTracked - offlineMinutes,
+      offlineMinutes,
+      hour: index
+    }
+  })
+
+  return rotateArray(mappedHourData, (new Date()).getUTCHours())
+})
+const labels = computed(() => shiftedHourData.value.map(d => formattedHour(d.hour)))
+const datasets = computed(() => [
+  { label: 'not tracked', data: shiftedHourData.value.map(d => 60 - d.offlineMinutes - d.onlineMinutes), backgroundColor: '#868686' },
+  { label: 'offline', data: shiftedHourData.value.map(d => d.offlineMinutes), backgroundColor: '#b13c28', },
+  { label: 'online', data: shiftedHourData.value.map(d => d.onlineMinutes), backgroundColor: '#008F68' }
+])
+const chartData = computed(() => {
+  return {
+    labels: labels.value,
+    datasets: datasets.value
+  }
+})
+
+const isForToday = (hourIn12Format: string) => {
+  const isPm = hourIn12Format.endsWith('pm')
+  const [hourNumberString] = hourIn12Format.match(/^(\d+)/) ?? []
+  const hour = Number(hourNumberString) + ((isPm && hourNumberString !== '12') ? 12 : 0)
+
+  return hour < new Date().getUTCHours()
+}
+
+const formattedDateHour = (hourString: string) => {
+  const day = isForToday(hourString) ? 'Today' : 'Yesterday'
+
+  return `${day} ${hourString} UTC`
+}
+
+const chartOptions: ChartOptions = {
+  plugins: {
+    title: {
+      display: true,
+      text: "Server uptime of the last 24 hours"
+    },
+    tooltip: {
+      mode: 'index',
+      callbacks: {
+        title: ([tooltipItem]) => formattedDateHour(tooltipItem.label),
+      },
+      filter: (ctx) => ctx.formattedValue !== '0'
+    }
   },
-  fetchOnServer: false,
-  setup () {
-    const { $http } = useContext()
-    const data = ref<ChartApiResponse[]>([])
-
-    const { fetch } = useFetch(async () => {
-      const timestamp = DateTime.utc().minus({ days: 1 }).toISO()
-
-      const res = await $http.$get<ChartApiResponse[]>(`?timestamp=${timestamp}`)
-      data.value = res.reverse()
-    })
-
-    const THIRTY_SECONDS = 30 * 1000
-    useIntervalFn(() => { fetch() }, THIRTY_SECONDS)
-
-    const formattedHour = (d: number) => d < 12
-      ? `${d === 0 ? 12 : d}am`
-      : `${d === 12 ? 12 : d - 12}pm`
-
-    const shiftedHourData = computed(() : ProcessedChartDatapoint[] => {
-      const multiDimensionalHourArray: Array<Array<boolean>> = Array.from({ length: 24 }, () => [])
-
-      for (const currentData of data.value) {
-        const hourFromCreatedAtDate = Number(currentData.created_at.slice(11, 13))
-        const hourArray = multiDimensionalHourArray[hourFromCreatedAtDate]
-        const serverOnlineAtTime = currentData.current_status === 'online'
-        hourArray.push(serverOnlineAtTime)
-      }
-
-      const mappedHourData = multiDimensionalHourArray.map((hourArray, index) => {
-        const offlineMinutes = hourArray.filter(d => !d).length
-        const totalMinutesTracked = hourArray.length
-
-        return {
-          onlineMinutes: totalMinutesTracked - offlineMinutes,
-          offlineMinutes,
-          hour: index
-        }
-      })
-
-      return rotateArray(mappedHourData, (new Date()).getUTCHours())
-    })
-    const labels = computed(() => shiftedHourData.value.map(d => formattedHour(d.hour)))
-    const dataSets = computed(() => [
-      { name: 'not tracked', values: shiftedHourData.value.map(d => 60 - d.offlineMinutes - d.onlineMinutes) },
-      { name: 'offline', values: shiftedHourData.value.map(d => d.offlineMinutes) },
-      { name: 'online', values: shiftedHourData.value.map(d => d.onlineMinutes) }
-    ])
-    const shouldDisplayChart = computed(() => shiftedHourData.value.length &&
-        labels.value.length &&
-        dataSets.value[0]?.values.length
-    )
-
-    const isForToday = (hourIn12Format: string) => {
-      const isPm = hourIn12Format.endsWith('pm')
-      const [hourNumberString] = hourIn12Format.match(/^(\d+)/) ?? []
-      const hour = Number(hourNumberString) + (isPm ? 12 : 0)
-
-      return hour < new Date().getUTCHours()
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    x: {
+      stacked: true,
+    },
+    y: {
+      stacked: true
     }
-
-    const formattedDateHour = (hourString: string) => {
-      const day = isForToday(hourString) ? 'Today' : 'Yesterday'
-
-      return `${day} ${hourString} UTC`
-    }
-
-    return { dataSets, labels, shouldDisplayChart, formattedDateHour }
   }
 }
+
 </script>

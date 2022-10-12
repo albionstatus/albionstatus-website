@@ -26,33 +26,29 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 
-export default {
-  head () {
-    const title = 'Season 12 Schedule'
-    const metaDescription = 'Read more about the schedule of the current Albion Online season, reset days and territory claiming'
+const title = 'Season 12 Schedule'
+const metaDescription = 'Read more about the schedule of the current Albion Online season, reset days and territory claiming'
 
-    return {
-      title,
-      meta: [
-        {
-          hid: 'og:title',
-          name: 'og:title',
-          content: title
-        },
-        {
-          hid: 'description',
-          name: 'description',
-          content: metaDescription
-        },
-        {
-          hid: 'og:description',
-          name: 'og:description',
-          content: metaDescription
-        }
-      ]
+useHead({
+  title,
+  meta: [
+    {
+      hid: 'og:title',
+      name: 'og:title',
+      content: title
+    },
+    {
+      hid: 'description',
+      name: 'description',
+      content: metaDescription
+    },
+    {
+      hid: 'og:description',
+      name: 'og:description',
+      content: metaDescription
     }
-  }
-}
+  ]
+})
 </script>
