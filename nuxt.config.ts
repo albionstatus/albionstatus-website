@@ -7,17 +7,16 @@ export default defineNuxtConfig({
   ssr: false,
   runtimeConfig: {
     public: {
-      baseUrl
+      baseUrl,
+      analyticsUA: ANALYTICS_UA,
     }
   },
-  head: {
-    title: '',
-    titleTemplate: s => s ? `${s} | AlbionStatus` : 'AlbionStatus - Is Albion Down?',
-    noscript: [{ innerHTML: 'This website requires JavaScript.' }]
-  },
-
-  router: {
-    trailingSlash: true
+  app: {
+    head: {
+      title: '',
+      titleTemplate: s => s ? `${s} | AlbionStatus` : 'AlbionStatus - Is Albion Down?',
+      noscript: [{ innerHTML: 'This website requires JavaScript.' }]
+    },
   },
 
   generate: {
@@ -38,12 +37,12 @@ export default defineNuxtConfig({
       set: [
         { field: 'anonymizeIp', value: true }
       ]
-    }],
-    ['@nuxtjs/google-adsense', {
-      id: 'ca-pub-4749840658812364',
-      analyticsUacct: analyticsUA,
-      test: isDev
     }], */
+    ['~/modules/adsense/src/module.ts', {
+      id: 'ca-pub-4749840658812364',
+      analyticsUacct: ANALYTICS_UA,
+      test: false
+    }],
     '@kevinmarrec/nuxt-pwa',
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
