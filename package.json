@@ -8,8 +8,7 @@
     "dev": "nuxi dev",
     "build": "nuxi build",
     "generate": "nuxi generate",
-    "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
-    "prepare": "husky install"
+    "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore ."
   },
   "engines": {
     "node": ">=16"
@@ -32,8 +31,7 @@
   "devDependencies": {
     "@types/luxon": "^3.0.1",
     "eslint": "^8.25.0",
-    "eslint-loader": "^4.0.2",
-    "husky": "^8.0.1"
+    "eslint-loader": "^4.0.2"
   },
   "resolutions": {
     "@types/node": "18.8.0"
