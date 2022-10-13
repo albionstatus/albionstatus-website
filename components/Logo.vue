@@ -10,14 +10,5 @@
 </template>
 
 <script setup lang="ts">
-
-const router = useRouter()
-const route = useRoute()
-const jump = () => {
-  const indexPath = '/'
-  route.path === indexPath
-    ? router.go(0)
-    : router.push(indexPath)
-}
-
+const { jump } = useJump()
 </script>

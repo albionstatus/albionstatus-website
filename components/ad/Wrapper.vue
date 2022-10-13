@@ -1,7 +1,7 @@
 <template>
   <div v-if="notInLegalView" class="flex flex-wrap flex-col mx-auto w-full mb-2 mt-8">
     <template v-if="hasAdblock === false">
-      <adsbygoogle
+      <Adsbygoogle
         :slot="adSlotId"
         :ad-style="{
           display: 'inline-block',
@@ -43,7 +43,5 @@
 </template>
 
 <script setup lang="ts">
-import useAdLogic from '@/composables/useAdLogic'
-
 const { notInLegalView, hasAdblock, adSlotId } = useAdLogic()
 </script>
