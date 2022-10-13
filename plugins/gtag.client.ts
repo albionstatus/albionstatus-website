@@ -10,8 +10,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       params: {
         anonymize_ip: true,
       },
-    },
-    useDebugger: true,
+    }
   })
 
   const router = useRouter();
