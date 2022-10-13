@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-const title = 'Albion Uptime Charts'
+const title = 'Albion Uptime Charts | AlbionStatus'
 const metaDescription = 'See how many Albion server outage have happened in the last 24 hours in our dynamic uptime charts.'
 
 useHead({

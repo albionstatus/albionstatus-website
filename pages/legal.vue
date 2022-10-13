@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Legal',
+  title: 'Legal | AlbionStatus',
   meta: [
     { hid: 'robots', name: 'robots', content: 'noindex' }
   ]

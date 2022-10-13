@@ -13,8 +13,6 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: '',
-      titleTemplate: s => s ? `${s} | AlbionStatus` : 'AlbionStatus - Is Albion Down?',
       noscript: [{ innerHTML: 'This website requires JavaScript.' }]
     },
   },

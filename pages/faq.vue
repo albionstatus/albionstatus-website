@@ -50,7 +50,7 @@ const content = [
         ' href="https://github.com/manniL/albionstatus-website/" rel="noopener">GitHub repository</a> for all information!'
   }
 ]
-const title = 'FAQ - Frequently Asked Questions'
+const title = 'FAQ - Frequently Asked Questions | AlbionStatus'
 const metaDescription = 'Read the answers to the most frequently asked questions about AlbionStatus and it\'s services'
 useHead({
   title,

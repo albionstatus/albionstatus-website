@@ -69,7 +69,7 @@ const
       `
     }
   ]
-const title = 'Daily Maintenance of the Albion Online Servers'
+const title = 'Daily Maintenance of the Albion Online Servers | AlbionStatus'
 const metaDescription = 'Find out about the daily server maintenance for Albion Online. When does it happen? How long does it take? And what will be done during it?'
 
 useHead({

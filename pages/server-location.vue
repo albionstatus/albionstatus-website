@@ -61,7 +61,7 @@ const content = [
     answer: 'When you are in the game, type <code class="bg-gray-100 px-1">/ping</code>. Then, the ping will be shown in the lower-right corner of the screen.'
   }
 ]
-const title = 'About the location of the Albion Online servers'
+const title = 'About the location of the Albion Online servers | AlbionStatus'
 const metaDescription = 'Where are the Albion servers located? Is the location the cause of bad in-game experiences? How many of them actually exist? Find an answer to these question on AlbionStatus'
 
 useHead({
