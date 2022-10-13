@@ -29,7 +29,7 @@
 import { createFaqSchemaFromContent } from '~/shared/schemaHelpers'
 import { FaqContent } from '~/types'
 
-// TODO: v-interpolate
+// TODO: v-interpolate equivalent at some point?
 const props = defineProps<{content: FaqContent[]}>()
 
 const splitContent = computed(() => {
