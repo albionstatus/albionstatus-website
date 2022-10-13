@@ -5,7 +5,7 @@
     </Heading>
     <AppContent class="py-4 prose lg:prose-lg max-w-none" />
     <ClientOnly>
-      <UptimeChart class="mt-8" />
+      <LazyUptimeChart class="mt-8" />
     </ClientOnly>
   </div>
 </template>
