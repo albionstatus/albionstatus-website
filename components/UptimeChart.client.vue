@@ -59,12 +59,10 @@ const datasets = computed(() => [
   { label: 'online', data: shiftedHourData.value.map(d => Math.min(60, d.onlineMinutes)), backgroundColor: '#008F68' }
 ])
 
-const chartData = computed(() => {
-  return {
-    labels: labels.value,
-    datasets: datasets.value
-  }
-})
+const chartData = computed(() => ({
+  labels: labels.value,
+  datasets: datasets.value
+}))
 
 const isForToday = (hourIn12Format: string) => {
   const isPm = hourIn12Format.endsWith('pm')
