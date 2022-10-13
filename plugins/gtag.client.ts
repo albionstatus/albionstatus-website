@@ -6,7 +6,10 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   nuxtApp.vueApp.use(VueGtag, {
     property: {
-      id
+      id,
+      params: {
+        anonymize_ip: true,
+      },
     },
     useDebugger: true,
   })

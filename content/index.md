@@ -1,3 +1,7 @@
+---
+title: 'AlbionStatus - Is Albion Down?'
+description: 'AlbionStatus is the only reliable Albion Online server status tracker. Find out if Albion is down  in a splitsecond, no matter if the downtime is caused by the daily maintenance or an outage.'
+---
 AlbionStatus is your reliable Albion Online server status tracker!
 Operating since **<operating-since></operating-since>** it was the first Albion Online server status tracker ever!
 Want to know if Albion is down? We got you covered.

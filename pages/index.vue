@@ -1,8 +1,3 @@
-<script setup lang="ts">
-useHead({
-  title: 'AlbionStatus - Is Albion Down?',
-})
-</script>
 <template>
   <div class="px-4 pt-0 pb-6 mx-auto">
     <div class="flex-1 min-w-0">

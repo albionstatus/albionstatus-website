@@ -9,29 +9,3 @@
     </ClientOnly>
   </div>
 </template>
-
-<script setup lang="ts">
-const title = 'Albion Uptime Charts | AlbionStatus'
-const metaDescription = 'See how many Albion server outage have happened in the last 24 hours in our dynamic uptime charts.'
-
-useHead({
-  title,
-  meta: [
-    {
-      hid: 'og:title',
-      name: 'og:title',
-      content: title
-    },
-    {
-      hid: 'description',
-      name: 'description',
-      content: metaDescription
-    },
-    {
-      hid: 'og:description',
-      name: 'og:description',
-      content: metaDescription
-    }
-  ]
-})
-</script>

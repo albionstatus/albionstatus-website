@@ -1,34 +1,6 @@
-<template>
-  <FaqTwoColumn :content="content">
-    <template #heading>
-      <Heading>
-        Daily Maintenance of the Albion Online Servers
-      </Heading>
-    </template>
-    <template #intro>
-      <p class="pt-8">
-        The daily maintenance is an important part of Albion Online. Every player should be aware of it.
-        Nothing is more annoying then trying to play the game and see that the maintenance is ongoing.
-        Luckily, our
-        <NuxtLink class="underline hover:no-underline inline-block text-gray-800" to="/">
-          server status tracker
-        </NuxtLink>
-        will tell you when the servers are back online.
-        <br><br>
-        Below, you'll find information regarding the duration, timing and purpose of the daily server maintenance.
-        As a bonus, there is a <a class="underline hover:no-underline inline-block text-gray-800" href="#timer">timer</a>
-        showing you the time until the next maintenance based on the usual schedule.
-      </p>
-    </template>
-    <template #outro>
-      <LazyMaintenanceTimer />
-    </template>
-  </FaqTwoColumn>
-</template>
 
 <script setup lang="ts">
-const
-  content = [
+const content = [
     {
       question: 'How long does the server maintenance usually last?',
       answer: `
@@ -93,3 +65,31 @@ useHead({
   ]
 })
 </script>
+
+<template>
+  <FaqTwoColumn :content="content">
+    <template #heading>
+      <Heading>
+        Daily Maintenance of the Albion Online Servers
+      </Heading>
+    </template>
+    <template #intro>
+      <p class="pt-8">
+        The daily maintenance is an important part of Albion Online. Every player should be aware of it.
+        Nothing is more annoying then trying to play the game and see that the maintenance is ongoing.
+        Luckily, our
+        <NuxtLink class="underline hover:no-underline inline-block text-gray-800" to="/">
+          server status tracker
+        </NuxtLink>
+        will tell you when the servers are back online.
+        <br><br>
+        Below, you'll find information regarding the duration, timing and purpose of the daily server maintenance.
+        As a bonus, there is a <a class="underline hover:no-underline inline-block text-gray-800" href="#timer">timer</a>
+        showing you the time until the next maintenance based on the usual schedule.
+      </p>
+    </template>
+    <template #outro>
+      <LazyMaintenanceTimer />
+    </template>
+  </FaqTwoColumn>
+</template>

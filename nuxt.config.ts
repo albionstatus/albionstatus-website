@@ -1,10 +1,8 @@
 const ANALYTICS_UA = 'UA-62902757-9'
-const IS_DEV = process.env.NODE_ENV !== 'production'
 
 const baseUrl = 'https://www.albionstatus.com'
 
 export default defineNuxtConfig({
-  ssr: false,
   runtimeConfig: {
     public: {
       baseUrl,
@@ -26,20 +24,9 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    /* ['@nuxtjs/google-analytics', {
-      id: analyticsUA,
-      disabled: () => document.cookie.includes('ga_optout=true'),
-      debug: {
-        sendHitTask: isProd
-      },
-      set: [
-        { field: 'anonymizeIp', value: true }
-      ]
-    }], */
     ['~/modules/adsense/src/module.ts', {
       id: 'ca-pub-4749840658812364',
-      analyticsUacct: ANALYTICS_UA,
-      test: false
+      analyticsUacct: ANALYTICS_UA
     }],
     '@kevinmarrec/nuxt-pwa',
     '@nuxt/content',
@@ -73,8 +60,5 @@ export default defineNuxtConfig({
       display: 'standalone',
       background_color: '#FFFFFF',
     }
-  },
-  build: {
-    publicPath: '/assets/'
   }
 })
