@@ -2,6 +2,7 @@ node_modules
 *.log
 .nuxt
 dist
+.output
 
 # Intellij idea
 .idea
