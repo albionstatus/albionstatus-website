@@ -54,9 +54,9 @@ const shiftedHourData = computed((): ProcessedChartDatapoint[] => {
 })
 const labels = computed(() => shiftedHourData.value.map(d => formattedHour(d.hour)))
 const datasets = computed(() => [
-  { label: 'not tracked', data: shiftedHourData.value.map(d => 60 - d.offlineMinutes - d.onlineMinutes), backgroundColor: '#868686' },
-  { label: 'offline', data: shiftedHourData.value.map(d => d.offlineMinutes), backgroundColor: '#b13c28', },
-  { label: 'online', data: shiftedHourData.value.map(d => d.onlineMinutes), backgroundColor: '#008F68' }
+  { label: 'not tracked', data: shiftedHourData.value.map(d => Math.max(0, 60 - d.offlineMinutes - d.onlineMinutes)), backgroundColor: '#868686' },
+  { label: 'offline', data: shiftedHourData.value.map(d => Math.min(60, d.offlineMinutes)), backgroundColor: '#b13c28', },
+  { label: 'online', data: shiftedHourData.value.map(d => Math.min(60, d.onlineMinutes)), backgroundColor: '#008F68' }
 ])
 
 const chartData = computed(() => {
