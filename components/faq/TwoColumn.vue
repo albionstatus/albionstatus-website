@@ -12,8 +12,7 @@
               <Heading tag="h2" class="text-xl leading-6">
                 {{ question }}
               </Heading>
-              <!-- use directive here-->
-              <p class="text-base leading-6 text-gray-700 mt-2" v-html="answer" />
+              <p v-interpolate class="text-base leading-6 text-gray-700 mt-2" v-html="answer" />
             </div>
           </div>
         </div>
@@ -28,14 +27,17 @@
 <script setup lang="ts">
 import { createFaqSchemaFromContent } from '~/shared/schemaHelpers'
 import { FaqContent } from '~/types'
+import { createInterpolateDirective } from '~/directives/v-interpolate';
 
-// TODO: v-interpolate equivalent at some point?
-const props = defineProps<{content: FaqContent[]}>()
+const props = defineProps<{ content: FaqContent[] }>()
 
 const splitContent = computed(() => {
   const middle = Math.floor(props.content.length / 2)
   return [props.content.slice(0, middle), props.content.slice(middle)]
 })
+
+const router = useRouter()
+const vInterpolate = createInterpolateDirective(router)
 
 useHead({
   script: [
