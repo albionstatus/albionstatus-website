@@ -7,7 +7,7 @@ import { DateTime } from 'luxon'
 import { useIntervalFn } from '@vueuse/core'
 import { ChartApiResponse, ProcessedChartDatapoint } from '~/types'
 import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ChartOptions } from 'chart.js'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ChartOptions, BarOptions } from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
@@ -77,7 +77,7 @@ const formattedDateHour = (hourString: string) => {
   return `${day} ${hourString} UTC`
 }
 
-const chartOptions: ChartOptions = {
+const chartOptions: ChartOptions<'bar'> = {
   plugins: {
     title: {
       display: true,
