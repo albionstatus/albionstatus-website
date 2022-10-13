@@ -15,8 +15,12 @@ export default defineNuxtConfig({
     },
   },
 
-  generate: {
-    fallback: '200.html'
+  nitro: {
+    prerender: {
+      routes: [
+        '/404.html'
+      ]
+    }
   },
 
   typescript: {
