@@ -18,6 +18,8 @@ const { data, refresh } = useAsyncData<ChartApiResponse[]>(async () => {
 
   const res = await $fetch<ChartApiResponse[]>(`/api/status/?timestamp=${timestamp}`)
   return res.slice().reverse()
+}, {
+  server: false,
 })
 
 const THIRTY_SECONDS = 30 * 1000
@@ -56,6 +58,7 @@ const datasets = computed(() => [
   { label: 'offline', data: shiftedHourData.value.map(d => d.offlineMinutes), backgroundColor: '#b13c28', },
   { label: 'online', data: shiftedHourData.value.map(d => d.onlineMinutes), backgroundColor: '#008F68' }
 ])
+
 const chartData = computed(() => {
   return {
     labels: labels.value,
