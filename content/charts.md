@@ -1,3 +1,7 @@
+---
+title: 'Albion Uptime Charts | AlbionStatus'
+description: 'See how many Albion server outage have happened in the last 24 hours in our dynamic uptime charts'
+---
 To find out about recent outages, past [maintenance periods](/daily-maintenance/) or possible server errors, we have
 created dynamic uptime charts.
 The current stacked bar chart shows the uptime of the Albion servers from the last 24 hours grouped by the hour.

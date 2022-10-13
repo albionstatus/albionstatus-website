@@ -2,64 +2,37 @@
   <div class="flex">
     <!-- Off-canvas menu for mobile -->
     <div class="md:hidden">
-      <Transition
-        enter-active-class="transition-opacity ease-linear duration-300"
-        enter-class="opacity-0"
-        enter-to-class="opacity-100"
-        leave-active-class="transition-opacity ease-linear duration-300"
-        leave-class="opacity-100"
-        leave-to-class="opacity-0"
-      >
-        <div v-show="value" class="fixed inset-0 flex z-40">
-          <div v-show="value" class="fixed inset-0">
+      <Transition enter-active-class="transition-opacity ease-linear duration-300" enter-class="opacity-0"
+        enter-to-class="opacity-100" leave-active-class="transition-opacity ease-linear duration-300"
+        leave-class="opacity-100" leave-to-class="opacity-0">
+        <div v-show="modelValue" class="fixed inset-0 flex z-40">
+          <div v-show="modelValue" class="fixed inset-0">
             <div class="absolute inset-0 bg-gray-600 opacity-75" />
           </div>
-          <Transition
-            enter-active-class="transition ease-in-out duration-300 transform"
-            enter-class="-translate-x-full"
-            enter-to-class="translate-x-0"
-            leave-active-class="transition ease-in-out duration-300 transform"
-            leave-class="translate-x-0"
-            leave-to-class="-translate-x-full"
-          >
-            <div v-show="value" class="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+          <Transition enter-active-class="transition ease-in-out duration-300 transform" enter-class="-translate-x-full"
+            enter-to-class="translate-x-0" leave-active-class="transition ease-in-out duration-300 transform"
+            leave-class="translate-x-0" leave-to-class="-translate-x-full">
+            <div v-show="modelValue" class="relative flex-1 flex flex-col max-w-xs w-full bg-white">
               <div class="absolute top-0 right-0 -mr-14 p-1">
                 <button
                   class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600"
-                  aria-label="Close sidebar"
-                  @click="closeSidebar"
-                >
-                  <svg
-                    class="h-6 w-6 text-white"
-                    stroke="currentColor"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
+                  aria-label="Close sidebar" @click="closeSidebar">
+                  <svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
               <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                 <Logo class="flex-shrink-0 flex items-center px-5" />
                 <nav class="mt-5 px-2">
-                  <NuxtLink
-                    v-for="({ to, name, icon }, i) in links"
-                    :key="to + name"
-                    :to="to"
+                  <NuxtLink v-for="({ to, name, icon }, i) in links" :key="to + name" :to="to"
                     exact-active-class="bg-gray-100focus:outline-none hover:bg-gray-100 text-gray-900 focus:bg-gray-200"
                     :class="{ 'mt-1': i }"
                     class="group flex items-center px-2 py-2 text-sm leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150"
-                    @click.native="closeSidebar"
-                  >
+                    @click.native="closeSidebar">
                     <svg
                       class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
-                      v-bind="icon.props"
-                    >
+                      v-bind="icon.props">
                       <path v-bind="icon.path" />
                     </svg>
                     {{ name }}
@@ -84,18 +57,13 @@
           </div>
           <!-- Sidebar component, swap this element with another sidebar if you like -->
           <nav class="mt-5 px-2 bg-white">
-            <NuxtLink
-              v-for="({ to, name, icon }, i) in links"
-              :key="to + name"
-              :to="to"
+            <NuxtLink v-for="({ to, name, icon }, i) in links" :key="to + name" :to="to"
               exact-active-class="bg-gray-100 hover:bg-gray-100 focus:outline-none text-gray-900 focus:bg-gray-200"
               :class="{ 'mt-1': i }"
-              class="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-100 transition ease-in-out duration-150"
-            >
+              class="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-100 transition ease-in-out duration-150">
               <svg
                 class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
-                v-bind="icon.props"
-              >
+                v-bind="icon.props">
                 <path v-bind="icon.path" />
               </svg>
               {{ name }}
@@ -106,20 +74,14 @@
           </ClientOnly>
         </div>
         <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
-          <button
-            class="w-full flex-shrink-0 group flex items-center"
-            @click="authorizePushNotifications"
-          >
+          <button class="w-full flex-shrink-0 group flex items-center" @click="authorizePushNotifications">
             <svg class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
               <path
                 d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
-                clip-rule="evenodd"
-                fill-rule="evenodd"
-              />
+                clip-rule="evenodd" fill-rule="evenodd" />
             </svg>
-            <span
-              class="ml-4 inline-block text-sm leading-5 font-medium text-gray-700 group-hover:text-gray-900"
-            >Get push notifications</span>
+            <span class="ml-4 inline-block text-sm leading-5 font-medium text-gray-700 group-hover:text-gray-900">Get
+              push notifications</span>
           </button>
         </div>
       </div>
@@ -127,19 +89,17 @@
   </div>
 </template>
 <script setup lang="ts">
-import AdWrapperSidebar from '@/components/AdWrapperSidebar.vue'
-import { authorizeNotification as authorizePushNotifications } from '@/shared/NotificationService'
 
 defineProps({
-  value: {
+  modelValue: {
     type: Boolean,
     required: true
   }
 })
 
-const emits = defineEmits<{(e: 'input', value: boolean): void }>()
+const emits = defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
 
-const closeSidebar = () => emits('input', false)
+const closeSidebar = () => emits('update:modelValue', false)
 
 const links = [
   {
@@ -227,4 +187,13 @@ const links = [
     }
   }
 ]
+
+const authorizePushNotifications = () => {
+  try {
+    return Notification.requestPermission()
+  } catch (error) {
+    // Safari fix
+    Notification.requestPermission(() => { })
+  }
+}
 </script>

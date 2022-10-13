@@ -1,47 +1,41 @@
 {
   "name": "albionstatus-website",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "The frontend of https://www.albionstatus.com",
   "author": "Alexander Lichter <npm@lichter.io>",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "vue-tsc --noEmit && nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
-    "prepare": "husky install"
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate",
+    "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore ."
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "dependencies": {
-    "@nuxt/content": "^1.14.0",
-    "@nuxt/http": "^0.6.4",
-    "@nuxt/types": "^2.15.6",
-    "@nuxt/typescript-build": "^2.1.0",
-    "@nuxtjs/composition-api": "^0.31.0",
-    "@nuxtjs/eslint-config-typescript": "^6.0.0",
-    "@nuxtjs/google-adsense": "^1.3.0",
-    "@nuxtjs/google-analytics": "^2.0.2",
-    "@nuxtjs/netlify-files": "^1.0.0",
-    "@nuxtjs/pwa": "^3.3.5",
-    "@nuxtjs/sitemap": "^2.0.1",
-    "@nuxtjs/tailwindcss": "^4.1.2",
-    "@tailwindcss/typography": "^0.4.0",
-    "@tailwindcss/ui": "^0.7.2",
-    "@types/luxon": "^2.0.8",
-    "@vueuse/core": "^7.5.1",
-    "luxon": "^2.3.0",
-    "nuxt": "^2.15.6",
-    "nuxt-svg-loader": "^1.0.1",
-    "nuxt-vitals": "^1.1.0",
-    "vue2-frappe": "^1.2.3"
+    "@kevinmarrec/nuxt-pwa": "^0.7.2",
+    "@nuxt/content": "^2.1.1",
+    "@nuxtjs-alt/proxy": "^1.3.5",
+    "@nuxtjs/eslint-config-typescript": "^11.0.0",
+    "@nuxtjs/google-adsense": "^2.0.0",
+    "@nuxtjs/tailwindcss": "^5.3.5",
+    "@tailwindcss/typography": "^0.5.7",
+    "@vueuse/core": "^9.3.0",
+    "@vueuse/nuxt": "^9.3.0",
+    "chart.js": "^3.9.1",
+    "luxon": "^3.0.4",
+    "nuxt": "3.0.0-rc.11",
+    "vue-chart-3": "^3.1.8",
+    "vue-chartjs": "^4.1.2",
+    "vue-gtag-next": "^1.14.0"
   },
   "devDependencies": {
-    "@vue/runtime-dom": "^3.2.26",
-    "eslint": "^7.26.0",
-    "eslint-loader": "^4.0.2",
-    "husky": "^6.0.0"
+    "@types/luxon": "^3.0.1",
+    "eslint": "^8.25.0",
+    "eslint-loader": "^4.0.2"
+  },
+  "resolutions": {
+    "@types/node": "18.8.0"
   }
 }

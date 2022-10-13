@@ -1,4 +1,4 @@
-import { computed, onBeforeMount, ref, useRoute } from '@nuxtjs/composition-api'
+import { computed, onBeforeMount, ref, useRoute } from '#imports'
 
 const adSlotId = '2610490971'
 
@@ -30,7 +30,7 @@ const checkForAdblock = () => new Promise<boolean>((resolve) => {
 
 export default function () {
   const route = useRoute()
-  const currentPath = computed(() => route.value.path)
+  const currentPath = computed(() => route.path)
   const notInLegalView = computed(() => !['/legal', '/privacy'].includes(currentPath.value))
   const hasAdblock = ref(false)
   onBeforeMount(() => {

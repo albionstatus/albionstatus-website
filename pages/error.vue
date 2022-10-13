@@ -6,12 +6,12 @@
     <p class="leading-loose mt-4">
       Looks like you took a wrong path!
     </p>
-    <nuxt-link
+    <NuxtLink
       to="/"
       class="gray-900 my-4"
     >
       Back
-    </nuxt-link>
+  </NuxtLink>
     <img src="https://thecatapi.com/api/images/get?format=src&type=gif">
   </section>
 </template>

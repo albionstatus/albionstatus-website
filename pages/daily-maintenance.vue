@@ -1,36 +1,6 @@
-<template>
-  <FaqTwoColumn :content="$options.content">
-    <template #heading>
-      <Heading>
-        Daily Maintenance of the Albion Online Servers
-      </Heading>
-    </template>
-    <template #intro>
-      <p class="pt-8">
-        The daily maintenance is an important part of Albion Online. Every player should be aware of it.
-        Nothing is more annoying then trying to play the game and see that the maintenance is ongoing.
-        Luckily, our
-        <NuxtLink class="underline hover:no-underline inline-block text-gray-800" to="/">
-          server status tracker
-        </NuxtLink>
-        will tell you when the servers are back online.
-        <br><br>
-        Below, you'll find information regarding the duration, timing and purpose of the daily server maintenance.
-        As a bonus, there is a <a class="underline hover:no-underline inline-block text-gray-800" href="#timer">timer</a>
-        showing you the time until the next maintenance based on the usual schedule.
-      </p>
-    </template>
-    <template #outro>
-      <LazyMaintenanceTimer />
-    </template>
-  </FaqTwoColumn>
-</template>
 
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  content: [
+<script setup lang="ts">
+const content = [
     {
       question: 'How long does the server maintenance usually last?',
       answer: `
@@ -70,30 +40,56 @@ export default defineComponent({
       chests are changing their location after the downtime and will respawn somewhere with full capacities.
       `
     }
-  ],
-  head () {
-    const title = 'Daily Maintenance of the Albion Online Servers'
-    const metaDescription = 'Find out about the daily server maintenance for Albion Online. When does it happen? How long does it take? And what will be done during it?'
-    return {
-      title,
-      meta: [
-        {
-          hid: 'og:title',
-          name: 'og:title',
-          content: title
-        },
-        {
-          hid: 'description',
-          name: 'description',
-          content: metaDescription
-        },
-        {
-          hid: 'og:description',
-          name: 'og:description',
-          content: metaDescription
-        }
-      ]
+  ]
+const title = 'Daily Maintenance of the Albion Online Servers | AlbionStatus'
+const metaDescription = 'Find out about the daily server maintenance for Albion Online. When does it happen? How long does it take? And what will be done during it?'
+
+useHead({
+  title,
+  meta: [
+    {
+      hid: 'og:title',
+      name: 'og:title',
+      content: title
+    },
+    {
+      hid: 'description',
+      name: 'description',
+      content: metaDescription
+    },
+    {
+      hid: 'og:description',
+      name: 'og:description',
+      content: metaDescription
     }
-  }
-}
-)</script>
+  ]
+})
+</script>
+
+<template>
+  <FaqTwoColumn :content="content">
+    <template #heading>
+      <Heading>
+        Daily Maintenance of the Albion Online Servers
+      </Heading>
+    </template>
+    <template #intro>
+      <p class="pt-8">
+        The daily maintenance is an important part of Albion Online. Every player should be aware of it.
+        Nothing is more annoying then trying to play the game and see that the maintenance is ongoing.
+        Luckily, our
+        <NuxtLink class="underline hover:no-underline inline-block text-gray-800" to="/">
+          server status tracker
+        </NuxtLink>
+        will tell you when the servers are back online.
+        <br><br>
+        Below, you'll find information regarding the duration, timing and purpose of the daily server maintenance.
+        As a bonus, there is a <a class="underline hover:no-underline inline-block text-gray-800" href="#timer">timer</a>
+        showing you the time until the next maintenance based on the usual schedule.
+      </p>
+    </template>
+    <template #outro>
+      <LazyMaintenanceTimer />
+    </template>
+  </FaqTwoColumn>
+</template>

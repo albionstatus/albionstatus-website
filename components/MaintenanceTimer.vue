@@ -1,5 +1,33 @@
+
+<script setup lang="ts">
+import { DateTime, Duration } from 'luxon'
+
+const now = ref(DateTime.local())
+
+const startOfMaintenance = ref(DateTime.utc().set({ minute: 0, second: 0, hour: 10 }))
+const endOfMaintenance = ref(DateTime.utc().set({ minute: 30, second: 0, hour: 10 }))
+
+const remaining = computed(() => startOfMaintenance.value.diff(now.value).toObject())
+const finished = computed(() => now.value >= startOfMaintenance.value)
+
+const updateMaintenanceDate = () => {
+  startOfMaintenance.value = startOfMaintenance.value.plus({ days: 1 })
+  endOfMaintenance.value = endOfMaintenance.value.plus({ days: 1 })
+}
+
+useIntervalFn(() => { now.value = DateTime.local() }, 10)
+watchEffect(() => {
+  if (finished.value) {
+    updateMaintenanceDate()
+  }
+})
+
+const formattedStartOfNextMaintenance = computed(() => startOfMaintenance.value.toLocaleString(DateTime.DATETIME_FULL))
+const formattedEndOfNextMaintenance = computed(() => endOfMaintenance.value.toLocaleString(DateTime.DATETIME_FULL))
+const formattedTimeUntilMaintenance = computed(() => Duration.fromObject(remaining.value).toFormat('hh \'hours\' mm \'minutes and\' ss \'seconds\''))
+
+</script>
 <template>
-  <ClientOnly>
     <div class="mt-16">
       <Heading id="timer" tag="h2" look="h1">
         Maintenance timer
@@ -59,36 +87,4 @@
         </div>
       </div>
     </div>
-  </ClientOnly>
 </template>
-
-<script setup lang="ts">
-import { DateTime, Duration } from 'luxon'
-import { ref, computed, watchEffect } from '@nuxtjs/composition-api'
-import { useIntervalFn } from '@vueuse/core'
-
-const now = ref(DateTime.local())
-
-const startOfMaintenance = ref(DateTime.utc().set({ minute: 0, second: 0, hour: 10 }))
-const endOfMaintenance = ref(DateTime.utc().set({ minute: 30, second: 0, hour: 10 }))
-
-const remaining = computed(() => startOfMaintenance.value.diff(now.value).toObject())
-const finished = computed(() => now.value >= startOfMaintenance.value)
-
-const updateMaintenanceDate = () => {
-  startOfMaintenance.value = startOfMaintenance.value.plus({ days: 1 })
-  endOfMaintenance.value = endOfMaintenance.value.plus({ days: 1 })
-}
-
-useIntervalFn(() => { now.value = DateTime.local() }, 10)
-watchEffect(() => {
-  if (finished.value) {
-    updateMaintenanceDate()
-  }
-})
-
-const formattedStartOfNextMaintenance = computed(() => startOfMaintenance.value.toLocaleString(DateTime.DATETIME_FULL))
-const formattedEndOfNextMaintenance = computed(() => endOfMaintenance.value.toLocaleString(DateTime.DATETIME_FULL))
-const formattedTimeUntilMaintenance = computed(() => Duration.fromObject(remaining.value).toFormat('hh \'hours\' mm \'minutes and\' ss \'seconds\''))
-
-</script>

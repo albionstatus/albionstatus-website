@@ -1,40 +1,23 @@
 <template>
   <a href="/" @click.prevent="jump">
     <picture class="h-16 w-auto">
-      <source type="image/avif" :srcset="imageSourceSet.avif">
-      <source type="image/webp" :srcset="imageSourceSet.webp">
-      <source type="image/png" :srcset="imageSourceSet.png">
+      <source type="image/avif" srcset="~/assets/logo_small_128.avif 2x, ~/assets/logo_small_64.avif 1x">
+      <source type="image/webp" srcset="~/assets/logo_small_128.webp 2x, ~/assets/logo_small_64.webp 1x">
+      <source type="image/png" srcset="~/assets/logo_small_128.png 2x, ~/assets/logo_small_64.png 1x">
       <img src="~/assets/logo_small_128.png" alt="AlbionStatus Logo">
     </picture>
   </a>
 </template>
 
 <script setup lang="ts">
-import { useRoute, useRouter } from '@nuxtjs/composition-api'
 
 const router = useRouter()
 const route = useRoute()
 const jump = () => {
   const indexPath = '/'
-  route.value.path === indexPath
+  route.path === indexPath
     ? router.go(0)
     : router.push(indexPath)
-}
-
-const imageName = 'logo_small'
-const sizes = [{ px: '64', res: 1 }, { px: '128', res: 2 }]
-const extensions = ['png', 'webp', 'avif']
-
-const imageSourceSet: Record<string, string> = {}
-
-type ImageSize = {
-  px: string,
-  res: number
-}
-const buildImageSource = (size: ImageSize, ext: string, name: string) => `${require(`@/assets/${name}_${size.px}.${ext}`)} ${size.res}x`
-
-for (const ext of extensions) {
-  imageSourceSet[ext] = sizes.map(size => buildImageSource(size, ext, imageName)).join(', ')
 }
 
 </script>

@@ -46,7 +46,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, useMeta } from '@nuxtjs/composition-api'
 import { createFaqSchemaFromContent } from '@/shared/schemaHelpers'
 import { FaqContent } from '~/types'
 
@@ -66,7 +65,7 @@ const changeState = (i: number) => {
   expandedQuestionIndex.value = i
 }
 
-useMeta({
+useHead({
   script: [
     createFaqSchemaFromContent(props.content)
   ]

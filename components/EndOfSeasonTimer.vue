@@ -20,7 +20,6 @@
 
 <script setup lang="ts">
 import { DateTime, Duration } from 'luxon'
-import { ref, computed } from '@nuxtjs/composition-api'
 import { useIntervalFn } from '@vueuse/core'
 
 const props = defineProps<{

@@ -1,39 +1,17 @@
-const config = require('./tailwind/config')
+/** @type {import('tailwindcss').Config} */
 
-config.plugins = [
-  require('@tailwindcss/ui')({
-    layout: 'sidebar'
-  }),
-  require('@tailwindcss/typography')
-]
-
-config.future = {
-  removeDeprecatedGapUtilities: true,
-  purgeLayersByDefault: true,
-  defaultLineHeights: true,
-  standardFontWeights: true
-}
-
-config.theme.typography = {
-  default: {
-    css: {
-      a: {
-        '&:hover': {
-          textDecoration: 'none'
+module.exports = {
+  plugins: [
+    require('@tailwindcss/typography')
+  ],
+  theme: {
+    extend: {
+      colors: {
+        developmint: {
+          500: "#199922",
+          300: "#75c17a"
         }
       }
     }
   }
 }
-
-config.purge = {
-  content: [
-    'components/**/*.vue',
-    'layouts/**/*.vue',
-    'pages/**/*.vue',
-    'plugins/**/*.js',
-    'nuxt.config.js'
-  ]
-}
-
-module.exports = config

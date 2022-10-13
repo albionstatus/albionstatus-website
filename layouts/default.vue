@@ -13,9 +13,9 @@
           </svg>
         </button>
       </div>
-      <div class="bg-gray-50 flex-1 relative z-0 overflow-y-auto pt-2 pb-6 focus:outline-none md:py-6" tabindex="0">
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-          <Nuxt />
+      <div class="bg-gray-50 flex-1 flex flex-col justify-between relative z-0 overflow-y-auto pt-2 md:pt-6 focus:outline-none" tabindex="0">
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grow">
+          <slot />
           <ClientOnly>
             <LazyAdWrapper class="mt-8" />
           </ClientOnly>
@@ -26,23 +26,15 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api'
-export default defineComponent({
-  setup () {
-    return {
-      isSidebarShown: ref(false)
-    }
-  },
-  head () {
-    const baseUrl = process.env.baseUrl
-    const { path } = this.$route
-    const pathWithSlash = path.endsWith('/') ? path : `${path}/`
-    return {
-      link: [
-        { rel: 'canonical', href: `${baseUrl}${pathWithSlash}` }
-      ]
-    }
-  }
-}
-)</script>
+<script setup lang="ts">
+const isSidebarShown = ref(false)
+const { baseUrl } = useRuntimeConfig()
+const { path } = useRoute()
+const pathWithSlash = path.endsWith('/') ? path : `${path}/`
+
+useHead({
+  link: [
+    { rel: 'canonical', href: `${baseUrl}${pathWithSlash}` }
+  ]
+})
+</script>

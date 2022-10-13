@@ -1,2 +1,2 @@
 https://albionstatus.com/* https://www.albionstatus.com/:splat 301!
-/api/* https://api.albionstatus.com/:splat 200!
+/api/status/* https://api.albionstatus.com/:splat 200!

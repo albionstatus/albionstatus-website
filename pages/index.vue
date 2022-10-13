@@ -4,12 +4,6 @@
       <Heading>AlbionStatus - Your Server Status tracker</Heading>
     </div>
     <ServerStatus />
-    <NuxtContent :document="content" class="prose lg:prose-lg mt-8 w-full max-w-none" />
+    <AppContent class="prose lg:prose-lg mt-8 w-full max-w-none" />
   </div>
 </template>
-
-<script setup lang="ts">
-import { useBasicContent } from '~/composables/useContent'
-
-const { content } = useBasicContent('index')
-</script>
