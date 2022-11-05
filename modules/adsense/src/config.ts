@@ -1,4 +1,3 @@
-
 export interface ModuleOptions {
   tag?: string,
   id?: string,
@@ -12,10 +11,8 @@ export interface ModuleOptions {
   test?: boolean
 }
 
-
-export const DEFAULTS : ModuleOptions = {
+export const DEFAULTS: ModuleOptions = {
   tag: 'adsbygoogle',
-  id: null,
   pageLevelAds: false,
   includeQuery: false,
   analyticsUacct: '',
@@ -25,7 +22,6 @@ export const DEFAULTS : ModuleOptions = {
   onPageLoad: false,
   pauseOnLoad: false
 }
-
 
 // Default client ID for testing
 export const TEST_ID = 'ca-google'

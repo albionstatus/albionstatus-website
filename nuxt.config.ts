@@ -6,13 +6,13 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseUrl,
-      analyticsUA: ANALYTICS_UA,
+      analyticsUA: ANALYTICS_UA
     }
   },
   app: {
     head: {
       noscript: [{ innerHTML: 'This website requires JavaScript.' }]
-    },
+    }
   },
 
   nitro: {
@@ -20,11 +20,14 @@ export default defineNuxtConfig({
       routes: [
         '/404.html'
       ]
+    },
+    devProxy: {
+      '/api/status/': {
+        target: 'https://api.albionstatus.com/',
+        prependPath: true,
+        changeOrigin: true
+      }
     }
-  },
-
-  typescript: {
-    strict: true
   },
 
   modules: [
@@ -35,16 +38,8 @@ export default defineNuxtConfig({
     '@kevinmarrec/nuxt-pwa',
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
-    '@vueuse/nuxt',
-    '@nuxtjs-alt/proxy'
+    '@vueuse/nuxt'
   ],
-
-  proxy: {
-    '^/api/status/': {
-      target: 'https://api.albionstatus.com/',
-      rewrite: (path: string) => path.replace(/^\/api\/status/, '')
-    }
-  },
 
   pwa: {
     meta: {
@@ -62,7 +57,7 @@ export default defineNuxtConfig({
       short_name: 'AlbionStatus',
       start_url: '/',
       display: 'standalone',
-      background_color: '#FFFFFF',
+      background_color: '#FFFFFF'
     }
   }
 })
