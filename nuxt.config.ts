@@ -31,7 +31,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    ['~/modules/adsense/src/module.ts', {
+    ['@nuxtjs/google-adsense', {
       id: 'ca-pub-4749840658812364',
       analyticsUacct: ANALYTICS_UA,
     }],
