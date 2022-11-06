@@ -1,3 +1,30 @@
+<script setup lang="ts">
+import { createFaqSchemaFromContent } from '@/shared/schemaHelpers'
+import type { FaqContent } from '~/types'
+
+const props = defineProps<{
+  content: FaqContent[]
+}>()
+
+const NONE_EXPANDED = -1
+const expandedQuestionIndex = ref(NONE_EXPANDED)
+const isExpanded = (i: number) => expandedQuestionIndex.value === i
+
+const changeState = (i: number) => {
+  if (isExpanded(i)) {
+    expandedQuestionIndex.value = NONE_EXPANDED
+    return
+  }
+  expandedQuestionIndex.value = i
+}
+
+useHead({
+  script: [
+    createFaqSchemaFromContent(props.content),
+  ],
+})
+</script>
+
 <template>
   <div class="max-w-screen-xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
@@ -47,29 +74,3 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { createFaqSchemaFromContent } from '@/shared/schemaHelpers'
-import { FaqContent } from '~/types'
-
-const props = defineProps<{
-  content: FaqContent[]
-}>()
-
-const NONE_EXPANDED = -1
-const expandedQuestionIndex = ref(NONE_EXPANDED)
-const isExpanded = (i: number) => expandedQuestionIndex.value === i
-
-const changeState = (i: number) => {
-  if (isExpanded(i)) {
-    expandedQuestionIndex.value = NONE_EXPANDED
-    return
-  }
-  expandedQuestionIndex.value = i
-}
-
-useHead({
-  script: [
-    createFaqSchemaFromContent(props.content)
-  ]
-})
-</script>

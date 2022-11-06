@@ -1,7 +1,7 @@
-
-import { defineNuxtModule, logger, addComponentsDir } from '@nuxt/kit'
+import { addComponentsDir, defineNuxtModule, logger } from '@nuxt/kit'
 import defu from 'defu'
-import { ADSENSE_URL, DEFAULTS, ModuleOptions, TEST_ID } from './config'
+import type { ModuleOptions } from './config'
+import { ADSENSE_URL, DEFAULTS, TEST_ID } from './config'
 
 export type { ModuleOptions }
 
@@ -10,13 +10,13 @@ export default defineNuxtModule<ModuleOptions>({
     name: '@nuxtjs/google-adsense-fork',
     configKey: 'google-adsense',
     compatibility: {
-      nuxt: '^3.0.0-rc.11'
-    }
+      nuxt: '^3.0.0-rc.11',
+    },
   },
   defaults: (nuxt) => {
     return {
       ...DEFAULTS,
-      test: nuxt.options.dev && process.env.NODE_ENV !== 'production'
+      test: nuxt.options.dev && process.env.NODE_ENV !== 'production',
     }
   },
   setup(options, nuxt) {
@@ -37,7 +37,7 @@ export default defineNuxtModule<ModuleOptions>({
       hid: 'adsbygoogle-script',
       defer: true,
       crossorigin: 'anonymous',
-      src: `${ADSENSE_URL}?client=${options.id}`
+      src: `${ADSENSE_URL}?client=${options.id}`,
     })
 
     const adsenseScript = `{
@@ -50,17 +50,18 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.app.head.script.push(
         createScriptMeta(
           `adsbygoogle.pauseAdRequests=${options.pauseOnLoad ? '1' : '0'};
-          adsbygoogle.push(${adsenseScript});`
-        )
+          adsbygoogle.push(${adsenseScript});`,
+        ),
       )
-    } else {
+    }
+    else {
       nuxt.options.app.head.script.push(
         createScriptMeta(
           `adsbygoogle.onload = function () {
             adsbygoogle.pauseAdRequests=${options.pauseOnLoad ? '1' : '0'};
             [].forEach.call(document.getElementsByClassName('adsbygoogle'), function () { adsbygoogle.push(${adsenseScript}); })
-          };`
-        )
+          };`,
+        ),
       )
     }
 
@@ -70,7 +71,7 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.app.head.meta = nuxt.options.app.head.meta ?? []
       nuxt.options.app.head.meta.unshift({
         name: 'robots',
-        content: 'noindex,noarchive,nofollow'
+        content: 'noindex,noarchive,nofollow',
       })
     }
 
@@ -79,15 +80,15 @@ export default defineNuxtModule<ModuleOptions>({
       path: '~/modules/adsense/src/runtime/components',
       isAsync: false,
       prefix: '',
-      level: 999
+      level: 999,
     })
 
     // Inject options into runtime config
     nuxt.options.runtimeConfig.public['google-adsense'] = defu(
       nuxt.options.runtimeConfig.public['google-adsense'],
-      { options }
+      { options },
     )
-  }
+  },
 })
 
 function createScriptMeta(script: string) {
@@ -98,6 +99,6 @@ function createScriptMeta(script: string) {
 
   return {
     hid: 'adsbygoogle',
-    children: script
+    children: script,
   }
 }

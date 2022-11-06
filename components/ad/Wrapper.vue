@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const { notInLegalView, hasAdblock, adSlotId } = useAdLogic()
+</script>
+
 <template>
   <div v-if="notInLegalView" class="flex flex-wrap flex-col mx-auto w-full mb-2 mt-8">
     <template v-if="hasAdblock === false">
@@ -5,9 +9,9 @@
         :slot="adSlotId"
         :ad-style="{
           display: 'inline-block',
-          height: '250px'
+          height: '250px',
         }"
-        :ad-format="''"
+        ad-format=""
         class="w-full mx-auto mb-2"
       />
       <span class="mt-2 mb-1 text-center text-sm text-gray-400">Advertisement</span>
@@ -41,7 +45,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const { notInLegalView, hasAdblock, adSlotId } = useAdLogic()
-</script>

@@ -42,6 +42,6 @@ export default function () {
   return {
     hasAdblock,
     notInLegalView,
-    adSlotId
+    adSlotId,
   }
 }

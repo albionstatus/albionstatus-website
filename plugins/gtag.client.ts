@@ -10,9 +10,9 @@ export default defineNuxtPlugin((nuxtApp) => {
       params: {
         anonymize_ip: true,
       },
-    }
+    },
   })
 
-  const router = useRouter();
+  const router = useRouter()
   trackRouter(router)
 })

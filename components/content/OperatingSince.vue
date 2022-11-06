@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { DateTime } from 'luxon'
 import { DATE_OF_CREATION } from '~/shared/constants'

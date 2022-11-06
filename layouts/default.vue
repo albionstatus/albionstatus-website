@@ -1,3 +1,16 @@
+<script setup lang="ts">
+const isSidebarShown = ref(false)
+const { baseUrl } = useRuntimeConfig()
+const { path } = useRoute()
+const pathWithSlash = path.endsWith('/') ? path : `${path}/`
+
+useHead({
+  link: [
+    { rel: 'canonical', href: `${baseUrl}${pathWithSlash}` },
+  ],
+})
+</script>
+
 <template>
   <div class="h-screen flex overflow-hidden bg-white">
     <AppSidebar v-model="isSidebarShown" />
@@ -25,16 +38,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const isSidebarShown = ref(false)
-const { baseUrl } = useRuntimeConfig()
-const { path } = useRoute()
-const pathWithSlash = path.endsWith('/') ? path : `${path}/`
-
-useHead({
-  link: [
-    { rel: 'canonical', href: `${baseUrl}${pathWithSlash}` }
-  ]
-})
-</script>

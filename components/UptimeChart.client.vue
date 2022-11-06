@@ -1,13 +1,10 @@
-<template>
-  <Bar cssClasses="max-w-full xl:h-[500px]" :chart-options="chartOptions" :chart-data="chartData" />
-</template>
-
 <script setup lang="ts">
 import { DateTime } from 'luxon'
 import { useIntervalFn } from '@vueuse/core'
-import { ChartApiResponse, ProcessedChartDatapoint } from '~/types'
 import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ChartOptions, BarOptions } from 'chart.js'
+import type { ChartOptions } from 'chart.js'
+import { BarElement, BarOptions, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from 'chart.js'
+import type { ChartApiResponse, ProcessedChartDatapoint } from '~/types'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
@@ -32,7 +29,7 @@ const formattedHour = (d: number) => d < 12
 const shiftedHourData = computed((): ProcessedChartDatapoint[] => {
   const multiDimensionalHourArray: boolean[][] = Array.from({ length: 24 }, () => [])
 
-  data.value?.forEach(currentData => {
+  data.value?.forEach((currentData) => {
     const hourFromCreatedAtDate = Number(currentData.created_at.slice(11, 13))
     const hourArray = multiDimensionalHourArray[hourFromCreatedAtDate]
     const serverOnlineAtTime = currentData.current_status === 'online'
@@ -46,7 +43,7 @@ const shiftedHourData = computed((): ProcessedChartDatapoint[] => {
     return {
       onlineMinutes: totalMinutesTracked - offlineMinutes,
       offlineMinutes,
-      hour: index
+      hour: index,
     }
   })
 
@@ -55,13 +52,13 @@ const shiftedHourData = computed((): ProcessedChartDatapoint[] => {
 const labels = computed(() => shiftedHourData.value.map(d => formattedHour(d.hour)))
 const datasets = computed(() => [
   { label: 'not tracked', data: shiftedHourData.value.map(d => Math.max(0, 60 - d.offlineMinutes - d.onlineMinutes)), backgroundColor: '#868686' },
-  { label: 'offline', data: shiftedHourData.value.map(d => Math.min(60, d.offlineMinutes)), backgroundColor: '#b13c28', },
-  { label: 'online', data: shiftedHourData.value.map(d => Math.min(60, d.onlineMinutes)), backgroundColor: '#008F68' }
+  { label: 'offline', data: shiftedHourData.value.map(d => Math.min(60, d.offlineMinutes)), backgroundColor: '#b13c28' },
+  { label: 'online', data: shiftedHourData.value.map(d => Math.min(60, d.onlineMinutes)), backgroundColor: '#008F68' },
 ])
 
 const chartData = computed(() => ({
   labels: labels.value,
-  datasets: datasets.value
+  datasets: datasets.value,
 }))
 
 const isForToday = (hourIn12Format: string) => {
@@ -82,15 +79,15 @@ const chartOptions: ChartOptions<'bar'> = {
   plugins: {
     title: {
       display: true,
-      text: "Server uptime of the last 24 hours"
+      text: 'Server uptime of the last 24 hours',
     },
     tooltip: {
       mode: 'index',
       callbacks: {
         title: ([tooltipItem]) => formattedDateHour(tooltipItem.label),
       },
-      filter: (ctx) => ctx.formattedValue !== '0'
-    }
+      filter: ctx => ctx.formattedValue !== '0',
+    },
   },
   responsive: true,
   maintainAspectRatio: false,
@@ -99,9 +96,12 @@ const chartOptions: ChartOptions<'bar'> = {
       stacked: true,
     },
     y: {
-      stacked: true
-    }
-  }
+      stacked: true,
+    },
+  },
 }
-
 </script>
+
+<template>
+  <Bar css-classes="max-w-full xl:h-[500px]" :chart-options="chartOptions" :chart-data="chartData" />
+</template>

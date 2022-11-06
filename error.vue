@@ -1,3 +1,19 @@
+<script>
+export default {
+  props: {
+    error: {
+      type: Object,
+      required: true,
+    },
+  },
+  head() {
+    return {
+      title: `${this.error.statusCode} - No server status here!`,
+    }
+  },
+}
+</script>
+
 <template>
   <section class="flex flex-col items-center mt-6">
     <Heading class="my-2">
@@ -11,23 +27,7 @@
       class="gray-900 my-4"
     >
       Back
-  </NuxtLink>
+    </NuxtLink>
     <img src="https://thecatapi.com/api/images/get?format=src&type=gif">
   </section>
 </template>
-
-<script>
-export default {
-  props: {
-    error: {
-      type: Object,
-      required: true
-    }
-  },
-  head () {
-    return {
-      title: `${this.error.statusCode} - No server status here!`
-    }
-  }
-}
-</script>

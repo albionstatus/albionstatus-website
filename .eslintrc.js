@@ -1,9 +1,10 @@
 module.exports = {
   root: true,
   extends: [
-    '@nuxtjs/eslint-config-typescript'
+    '@antfu',
   ],
   rules: {
-    '@typescript-eslint/no-unused-vars': 'off'
-  }
+    '@typescript-eslint/no-unused-vars': 'off',
+    'vue/no-deprecated-slot-attribute': 'off',
+  },
 }

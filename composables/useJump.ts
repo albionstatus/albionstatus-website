@@ -9,6 +9,6 @@ export const useJump = () => {
       : router.push(INDEX_PATH)
   }
   return {
-    jump
+    jump,
   }
 }

@@ -16,7 +16,8 @@ export default defineNuxtPlugin(({ app }) => {
   if (process.env.NODE_ENV === 'production') {
     if (app.head) {
       app.head.link = [...(app.head.link || []), ...preloadLinks]
-    } else {
+    }
+    else {
       app.head = {
         link: preloadLinks,
       }

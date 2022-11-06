@@ -1,9 +1,8 @@
-
 import type { Router } from 'vue-router'
 
 const isInternalLink = (href: string | undefined) => href?.startsWith('/')
 type InterpolationEl = HTMLElement & {
-  $componentUpdated?: Function,
+  $componentUpdated?: Function
   $destroy?: Function
 }
 
@@ -12,9 +11,9 @@ export const createInterpolateDirective = (router: Router) => ({
     const navigate = (event: Event) => {
       const target = event.target as HTMLElement
       const href = target.getAttribute('href')
-      if (!href) {
+      if (!href)
         return
-      }
+
       event.preventDefault()
       router.push(href)
     }
@@ -25,12 +24,11 @@ export const createInterpolateDirective = (router: Router) => ({
     const addListeners = (links: Element[]) => {
       links.forEach((link) => {
         const href = link.getAttribute('href')
-        if (!href) {
+        if (!href)
           return
-        }
-        if (isInternalLink(href)) {
+
+        if (isInternalLink(href))
           link.addEventListener('click', navigate, false)
-        }
       })
     }
     const removeListeners = (links: Element[]) => {
@@ -44,5 +42,5 @@ export const createInterpolateDirective = (router: Router) => ({
     el.$destroy = () => removeListeners(links)
   },
   updated: (el: InterpolationEl) => el.$componentUpdated?.(),
-  beforeUnmount: (el: InterpolationEl) => el.$destroy?.()
+  beforeUnmount: (el: InterpolationEl) => el.$destroy?.(),
 })

@@ -1,3 +1,25 @@
+<script setup lang="ts">
+import { DateTime, Duration } from 'luxon'
+import { useIntervalFn } from '@vueuse/core'
+
+const props = defineProps<{
+  number: number
+  endDate: string
+}>()
+
+const now = ref(DateTime.local())
+const endOfSeason = ref(DateTime.fromFormat(props.endDate, 'yyyy-MM-dd').set({ minute: 59, second: 0, hour: 9 }))
+
+const remaining = computed(() => endOfSeason.value.diff(now.value).toObject())
+const finished = computed(() => now.value >= endOfSeason.value)
+
+useIntervalFn(() => { now.value = DateTime.local() }, 10)
+
+const formattedTimeUntilEndOfSeason = computed(() => finished.value
+  ? 'Ended already'
+  : Duration.fromObject(remaining.value).toFormat('dd \'days\' hh \'hours\' mm \'minutes and\' ss \'seconds\''))
+</script>
+
 <template>
   <ClientOnly>
     <div class="mt-16">
@@ -17,25 +39,3 @@
     </div>
   </ClientOnly>
 </template>
-
-<script setup lang="ts">
-import { DateTime, Duration } from 'luxon'
-import { useIntervalFn } from '@vueuse/core'
-
-const props = defineProps<{
-  number: number,
-  endDate: string,
-}>()
-
-const now = ref(DateTime.local())
-const endOfSeason = ref(DateTime.fromFormat(props.endDate, 'yyyy-MM-dd').set({ minute: 59, second: 0, hour: 9 }))
-
-const remaining = computed(() => endOfSeason.value.diff(now.value).toObject())
-const finished = computed(() => now.value >= endOfSeason.value)
-
-useIntervalFn(() => { now.value = DateTime.local() }, 10)
-
-const formattedTimeUntilEndOfSeason = computed(() => finished.value
-  ? 'Ended already'
-  : Duration.fromObject(remaining.value).toFormat('dd \'days\' hh \'hours\' mm \'minutes and\' ss \'seconds\''))
-</script>

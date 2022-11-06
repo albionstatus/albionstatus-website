@@ -1,18 +1,18 @@
-export type ChartApiResponse = {
-  // eslint-disable-next-line camelcase
-  created_at: string,
-  // eslint-disable-next-line camelcase
+export interface ChartApiResponse {
+
+  created_at: string
+
   current_status: string
   message?: string
 }
 
-export type ProcessedChartDatapoint = {
-  offlineMinutes: number,
-  onlineMinutes: number,
+export interface ProcessedChartDatapoint {
+  offlineMinutes: number
+  onlineMinutes: number
   hour: number
 }
 
-export type FaqContent = {
-  question: string,
+export interface FaqContent {
+  question: string
   answer: string
 }

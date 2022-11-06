@@ -1,3 +1,29 @@
+<script setup lang="ts">
+const title = 'Season 12 Schedule | AlbionStatus'
+const metaDescription = 'Read more about the schedule of the current Albion Online season, reset days and territory claiming'
+
+useHead({
+  title,
+  meta: [
+    {
+      hid: 'og:title',
+      name: 'og:title',
+      content: title,
+    },
+    {
+      hid: 'description',
+      name: 'description',
+      content: metaDescription,
+    },
+    {
+      hid: 'og:description',
+      name: 'og:description',
+      content: metaDescription,
+    },
+  ],
+})
+</script>
+
 <template>
   <div>
     <div class="prose">
@@ -26,28 +52,3 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-const title = 'Season 12 Schedule | AlbionStatus'
-const metaDescription = 'Read more about the schedule of the current Albion Online season, reset days and territory claiming'
-
-useHead({
-  title,
-  meta: [
-    {
-      hid: 'og:title',
-      name: 'og:title',
-      content: title
-    },
-    {
-      hid: 'description',
-      name: 'description',
-      content: metaDescription
-    },
-    {
-      hid: 'og:description',
-      name: 'og:description',
-      content: metaDescription
-    }
-  ]
-})
-</script>

@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const { jump } = useJump()
+</script>
+
 <template>
   <a href="/" @click.prevent="jump">
     <picture class="h-16 w-auto">
@@ -8,7 +12,3 @@
     </picture>
   </a>
 </template>
-
-<script setup lang="ts">
-const { jump } = useJump()
-</script>

@@ -1,3 +1,9 @@
+<script setup lang="ts">
+withDefaults(defineProps<{ hideLabel?: boolean }>(), { hideLabel: false })
+
+const { notInLegalView, hasAdblock, adSlotId } = useAdLogic()
+</script>
+
 <template>
   <div v-if="notInLegalView" class="flex flex-wrap flex-col w-full text-center mx-auto mt-8">
     <template v-if="hasAdblock === false">
@@ -5,10 +11,10 @@
         :slot="adSlotId"
         :ad-style="{
           display: 'inline-block',
-          height: '16rem'
-      }" 
-      :ad-format="''" 
-      class="w-full mx-auto max-h-64" 
+          height: '16rem',
+        }"
+        ad-format=""
+        class="w-full mx-auto max-h-64"
       />
       <div v-show="!hideLabel" class="w-full mx-auto text-center text-sm text-gray-400">
         Advertisement
@@ -21,9 +27,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-withDefaults(defineProps<{ hideLabel?: boolean }>(), { hideLabel: false })
-
-const { notInLegalView, hasAdblock, adSlotId } = useAdLogic()
-</script>

@@ -1,13 +1,13 @@
 export interface ModuleOptions {
-  tag?: string,
-  id?: string,
-  analyticsUacct?: string,
-  analyticsDomainName?: string,
-  pageLevelAds?: boolean,
-  includeQuery?: boolean,
-  overlayBottom?: boolean,
-  onPageLoad?: boolean,
-  pauseOnLoad?: boolean,
+  tag?: string
+  id?: string
+  analyticsUacct?: string
+  analyticsDomainName?: string
+  pageLevelAds?: boolean
+  includeQuery?: boolean
+  overlayBottom?: boolean
+  onPageLoad?: boolean
+  pauseOnLoad?: boolean
   test?: boolean
 }
 
@@ -20,7 +20,7 @@ export const DEFAULTS: ModuleOptions = {
   overlayBottom: false,
   test: false,
   onPageLoad: false,
-  pauseOnLoad: false
+  pauseOnLoad: false,
 }
 
 // Default client ID for testing
