@@ -28,7 +28,7 @@ useHead({
       </div>
       <div class="bg-gray-50 flex-1 flex flex-col justify-between relative z-0 overflow-y-auto pt-2 md:pt-6 focus:outline-none" tabindex="0">
         <main class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grow">
-          <slot />
+          <NuxtPage />
           <ClientOnly>
             <LazyAdWrapper class="mt-8" />
           </ClientOnly>
