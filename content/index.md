@@ -23,8 +23,7 @@ Be sure to take a look into the FAQ if you haven't done that by now!
 
 Also, AlbionStatus is the first open source tracker for the servers of Albion Online.
 If you are interested how the tech stack looks like, what queries we do and how we save the data, check out our
-[GitHub](https://github.com/albionstatus/albionstatus-website/)
-[repositories](https://github.com/albionstatus/albionstatus-backend/)!
+[GitHub](https://github.com/albionstatus/albionstatus-website/)&nbsp;[repositories](https://github.com/albionstatus/albionstatus-backend/)!
 Thanks a lot to all contributors who helped to build AlbionStatus.
 
 ## What's next?
