@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 import { useIntervalFn } from '@vueuse/core'
 import { Bar } from 'vue-chartjs'
 import type { ChartOptions } from 'chart.js'
-import { BarElement, BarOptions, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from 'chart.js'
+import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from 'chart.js'
 import type { ChartApiResponse, ProcessedChartDatapoint } from '~/types'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
