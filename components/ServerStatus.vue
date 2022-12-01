@@ -86,7 +86,7 @@ function setStatus(data: ChartApiResponse[]) {
 </script>
 
 <template>
-  <div class="mt-16 pt-16 pb-12 bg-gray-100 rounded sm:pb-16">
+  <div class="mt-4 lg:mt-16 pt-4 lg:pt-16 pb-4 lg:pb-12 bg-gray-100 rounded">
     <div class="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto">
         <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-2">
