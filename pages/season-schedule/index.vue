@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const title = 'Season 12 Schedule | AlbionStatus'
+const title = 'Season 17 Schedule | AlbionStatus'
 const metaDescription = 'Read more about the schedule of the current Albion Online season, reset days and territory claiming'
 
 useHead({
