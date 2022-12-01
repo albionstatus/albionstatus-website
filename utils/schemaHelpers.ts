@@ -1,12 +1,17 @@
 import DOMPurify from 'isomorphic-dompurify'
+
 import type { FaqContent } from '~/types'
 
 DOMPurify.setConfig({
-  ALLOWED_TAGS: ['#text'],
-  KEEP_CONTENT: true,
+  ALLOWED_TAGS: [],
 })
 
-const sanitizeHTML = (answer: string) => DOMPurify.sanitize(answer)
+const sanitizeAnswer = (answer: string) => {
+  debugger
+  const res = DOMPurify.sanitize(answer)
+  console.log(res, answer)
+  return res
+}
 
 export const createFaqSchemaFromContent = (content: FaqContent[]) => ({
   type: 'application/ld+json',
@@ -15,10 +20,10 @@ export const createFaqSchemaFromContent = (content: FaqContent[]) => ({
     '@type': 'FAQPage',
     'mainEntity': content.map(content => ({
       '@type': 'Question',
-      'name': sanitizeHTML(content.question),
+      'name': content.question,
       'acceptedAnswer': {
         '@type': 'Answer',
-        'text': sanitizeHTML(content.answer),
+        'text': sanitizeAnswer(content.answer),
       },
     })),
   }),
