@@ -4,7 +4,7 @@ export const encodeAnswer = (answer: string) => answer.replace(/"/g, '\'').repla
 
 export const createFaqSchemaFromContent = (content: FaqContent[]) => ({
   type: 'application/ld+json',
-  json: {
+  innerHTML: JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     'mainEntity': content.map(content => ({
@@ -15,5 +15,5 @@ export const createFaqSchemaFromContent = (content: FaqContent[]) => ({
         'text': encodeAnswer(content.answer),
       },
     })),
-  },
+  }),
 })
