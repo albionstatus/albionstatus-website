@@ -20,7 +20,9 @@ const { data, refresh } = useAsyncData<ChartApiResponse[]>(async () => {
 })
 
 const THIRTY_SECONDS = 30 * 1000
-useIntervalFn(() => { refresh() }, THIRTY_SECONDS)
+useIntervalFn(() => {
+  refresh()
+}, THIRTY_SECONDS)
 
 const formattedHour = (d: number) => d < 12
   ? `${d === 0 ? 12 : d}am`
