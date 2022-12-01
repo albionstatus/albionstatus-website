@@ -3,10 +3,11 @@ const isSidebarShown = ref(false)
 const { baseUrl } = useRuntimeConfig()
 const { path } = useRoute()
 const pathWithSlash = path.endsWith('/') ? path : `${path}/`
+const canonical = computed(() => `${baseUrl}${pathWithSlash}`)
 
 useHead({
   link: [
-    { rel: 'canonical', href: `${baseUrl}${pathWithSlash}` },
+    { rel: 'canonical', href: canonical },
   ],
 })
 </script>

@@ -46,17 +46,14 @@ useHead({
   title,
   meta: [
     {
-      hid: 'og:title',
       name: 'og:title',
       content: title,
     },
     {
-      hid: 'description',
       name: 'description',
       content: metaDescription,
     },
     {
-      hid: 'og:description',
       name: 'og:description',
       content: metaDescription,
     },
