@@ -27,9 +27,9 @@ useHead({
 <template>
   <div>
     <div class="prose">
-      <h1>Current Season - Season 12</h1>
-      Albion's Guild Season 12 begins on <strong>Saturday, March 13 2020</strong> at 11:00 UTC and will end on
-      <strong>Monday, June 7 2021</strong> 09:59 UTC.<br>
+      <h1>Current Season - Season 17</h1>
+      Albion's Guild Season 17 begins on <strong>Saturday, September 17 2022</strong> at 11:00 UTC and will end on
+      <strong>Monday, December 05 2022</strong> 09:59 UTC.<br>
       <h2>Reset Days / Invasion Days</h2>
       <p>
         On so called <em>Invasion Days</em> &ndash; also referred to as Reset Days &ndash; claimed guild
@@ -41,14 +41,14 @@ useHead({
         with a primetime between 22:00 and 5:00 UTC will become available at 01:00 UTC on the following day. The reset times create a balance
         between EU and NA core play times.
       </p>
-      <p>The reset days for seasons 12 are:</p>
+      <p>The reset days for seasons 17 are:</p>
       <ul>
-        <li><strong>March 13, 2021</strong></li>
-        <li><strong>April 10, 2021</strong></li>
-        <li><strong>May 8, 2021</strong></li>
+        <li><strong>September 17, 2022</strong></li>
+        <li><strong>October 10, 2022</strong></li>
+        <li><strong>November 11, 2022</strong></li>
       </ul>
       <h2>Time until end of the season</h2>
-      <EndOfSeasonTimer :number="12" end-date="2021-06-07" />
+      <EndOfSeasonTimer :number="17" end-date="2022-12-05" />
     </div>
   </div>
 </template>
