@@ -105,5 +105,7 @@ const chartOptions: ChartOptions<'bar'> = {
 </script>
 
 <template>
-  <Bar css-classes="max-w-full xl:h-[500px]" :chart-options="chartOptions" :chart-data="chartData" />
+  <div class="h-[500px]">
+    <Bar css-classes="max-w-full" :options="chartOptions" :data="chartData" />
+  </div>
 </template>
