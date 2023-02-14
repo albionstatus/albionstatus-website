@@ -29,7 +29,7 @@ const content = [
         The server of "Albion West" is located in <span class="font-medium">Washington DC, USA</span>. This server location was chosen in such a way that
         players from America, Europe and also Russia will have a decent ping. As Albion's combat isn't as fast paced as
         RTS games like Dota or Starcraft, players can even play the game well with "high pings" of 150.
-        An "Albion east" server aimed for players from Oceania and Asia was announced recently. The exact location of this server is not known yet.`,
+        An "Albion East" server aimed for players from Oceania and Asia was announced recently. The location of the Albion East server will be Singapore.`,
   },
   {
     question: 'Are there EU or OCE servers available for Albion?',
