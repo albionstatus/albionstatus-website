@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import { DateTime } from 'luxon'
 import { useIntervalFn } from '@vueuse/core'
 import { Bar } from 'vue-chartjs'
 import type { ChartOptions } from 'chart.js'
 import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from 'chart.js'
-import type { ChartApiResponse, ProcessedChartDatapoint } from '~/types'
+import type { ProcessedChartDatapoint, StatusApiResponse } from '~/types'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 const rotateArray = (arr: Array<any>, n: number) => arr.slice(n, arr.length).concat(arr.slice(0, n))
 
-const { data, refresh } = useAsyncData<ChartApiResponse[]>(async () => {
-  const timestamp = DateTime.utc().minus({ days: 1 }).toISO()
-
-  const res = await $fetch<ChartApiResponse[]>(`/api/status/?timestamp=${timestamp}`)
+const { data, refresh } = useAsyncData<StatusApiResponse[]>(async () => {
+  const res = await $fetch<StatusApiResponse[]>('/api/status/west/past/day')
   return res.slice().reverse()
 }, {
   server: false,
@@ -34,7 +31,7 @@ const shiftedHourData = computed((): ProcessedChartDatapoint[] => {
   data.value?.forEach((currentData) => {
     const hourFromCreatedAtDate = Number(currentData.created_at.slice(11, 13))
     const hourArray = multiDimensionalHourArray[hourFromCreatedAtDate]
-    const serverOnlineAtTime = currentData.current_status === 'online'
+    const serverOnlineAtTime = currentData.type === 'online'
     hourArray.push(serverOnlineAtTime)
   })
 

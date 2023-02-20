@@ -23,8 +23,8 @@ export default defineNuxtConfig({
     },
     devProxy: {
       '/api/status/': {
-        target: 'https://api.albionstatus.com/',
-        prependPath: true,
+        target: 'https://api-new.albionstatus.com/',
+        prependPath: false,
         changeOrigin: true,
       },
     },

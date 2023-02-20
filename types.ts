@@ -1,8 +1,6 @@
-export interface ChartApiResponse {
-
+export interface StatusApiResponse {
   created_at: string
-
-  current_status: string
+  type: string
   message?: string
 }
 

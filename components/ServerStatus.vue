@@ -2,7 +2,7 @@
 import { DateTime } from 'luxon'
 import type { DurationUnits } from 'luxon'
 import { DATE_OF_CREATION } from '@/shared/constants'
-import type { ChartApiResponse } from '~/types'
+import type { StatusApiResponse } from '~/types'
 
 /*
  * Constants
@@ -63,9 +63,9 @@ const operatingSince = units.map(u => duration.get(u) && `${Math.ceil(duration.g
   .join(', ')
   .replace(/,([^,]*)$/, ' and $1')
 
-const { data, refresh } = useFetch<ChartApiResponse[]>('/api/status/current/', { server: false })
+const { data, refresh } = useFetch<StatusApiResponse>('/api/status/west/', { server: false })
 watch(data, (data) => {
-  if (!data?.length)
+  if (!data)
     return
 
   setStatus(data)
@@ -75,13 +75,11 @@ useIntervalFn(() => {
   refresh()
 }, 30 * 1000)
 
-function setStatus(data: ChartApiResponse[]) {
-  const [newestData] = data
-
+function setStatus(newStatus: StatusApiResponse) {
   // Track last status so we know when to inform the user of a status change
-  status.value = newestData.current_status
-  lastCheckedAt.value = DateTime.fromISO(newestData.created_at)
-  message.value = newestData.message ?? ''
+  status.value = newStatus.type
+  lastCheckedAt.value = DateTime.fromISO(newStatus.created_at)
+  message.value = newStatus.message ?? ''
 }
 </script>
 
