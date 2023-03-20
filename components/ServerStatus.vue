@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { DurationUnits, DateTime } from 'luxon';
+import type { DurationUnits } from 'luxon'
+import { DateTime } from 'luxon'
 
 const { status: statusWest, statusClasses: statusClassesWest, message: messageWest, showMessage: showMessageWest, formattedLastCheckedAt } = useStatus('west')
 const { status: statusEast, statusClasses: statusClassesEast, message: messageEast, showMessage: showMessageEast } = useStatus('east')
@@ -10,7 +11,6 @@ const operatingSince = units.map(u => duration.get(u) && `${Math.ceil(duration.g
   .filter(Boolean)
   .join(', ')
   .replace(/,([^,]*)$/, ' and $1')
-
 </script>
 
 <template>
@@ -37,7 +37,8 @@ const operatingSince = units.map(u => duration.get(u) && `${Math.ceil(duration.g
         </dl>
         <dl class="border-t rounded-b-lg bg-white shadow-lg sm:grid sm:grid-cols-1">
           <div
-            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r"
+          >
             <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
               Last checked at
             </dt>
@@ -46,21 +47,28 @@ const operatingSince = units.map(u => duration.get(u) && `${Math.ceil(duration.g
             </dd>
           </div>
         </dl>
-        <Transition enter-active-class="transition-opacity ease-linear duration-300" enter-class="opacity-0"
+        <Transition
+          enter-active-class="transition-opacity ease-linear duration-300" enter-class="opacity-0"
           enter-to-class="opacity-100" leave-active-class="transition-opacity ease-linear duration-300"
-          leave-class="opacity-100" leave-to-class="opacity-0">
-          <dl class="mt-4 rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-1">
+          leave-class="opacity-100" leave-to-class="opacity-0"
+        >
+          <dl v-if="showMessageEast || showMessageWest" class="mt-4 rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-1">
             <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
               <dd class="text-3xl leading-none text-center text-gray-700">
-                <p v-show="showMessageWest">Albion West: {{ messageWest }}<br></p>
-                <p v-show="showMessageEast">Albion East: {{ messageEast }}</p>
+                <p v-show="showMessageWest">
+                  Albion West: {{ messageWest }}<br>
+                </p>
+                <p v-show="showMessageEast">
+                  Albion East: {{ messageEast }}
+                </p>
               </dd>
             </div>
           </dl>
         </Transition>
         <dl class="mt-4 rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-1">
           <div
-            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r"
+          >
             <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
               Operating since
             </dt>
