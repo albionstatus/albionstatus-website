@@ -32,7 +32,7 @@ export default defineNuxtConfig({
 
   modules: [
     ['@nuxtjs/google-adsense', {
-      id: 'ca-pub-4749840658812364',
+      id: 'ca-pub-2368867988038528',
       analyticsUacct: ANALYTICS_UA,
     }],
     '@kevinmarrec/nuxt-pwa',
