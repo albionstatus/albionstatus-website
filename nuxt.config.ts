@@ -1,12 +1,9 @@
-const ANALYTICS_UA = 'UA-62902757-9'
-
 const baseUrl = 'https://www.albionstatus.com'
 
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      baseUrl,
-      analyticsUA: ANALYTICS_UA,
+      baseUrl
     },
   },
   app: {
@@ -33,13 +30,18 @@ export default defineNuxtConfig({
   modules: [
     ['@nuxtjs/google-adsense', {
       id: 'ca-pub-2368867988038528',
-      analyticsUacct: ANALYTICS_UA,
     }],
     '@kevinmarrec/nuxt-pwa',
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
+    '@nuxtjs/plausible',
   ],
+
+  plausible: {
+    domain: 'albionstatus.com',
+    apiHost: 'https://plausible.lichter.io',
+  },
 
   pwa: {
     meta: {
