@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const isSidebarShown = ref(false)
-const { baseUrl } = useRuntimeConfig()
-const { path } = useRoute()
+const { baseUrl } = useRuntimeConfig().public
+const path = useRoute().path
 const pathWithSlash = path.endsWith('/') ? path : `${path}/`
 const canonical = computed(() => `${baseUrl}${pathWithSlash}`)
 
