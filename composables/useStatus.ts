@@ -17,7 +17,7 @@ const STATUS_CLASS_LOOKUP: Record<string, string> = {
   default: 'text-yellow-400',
 }
 
-export function useStatus (server: 'east' | 'west') {
+export function useStatus (server: 'was' | 'ams' | 'sgp') {
   const status = ref('???')
   const isFirstCheck = ref(true)
   const statusClasses = computed(() => STATUS_CLASS_LOOKUP[status.value] ?? STATUS_CLASS_LOOKUP.default)
