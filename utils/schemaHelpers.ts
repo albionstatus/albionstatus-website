@@ -7,9 +7,7 @@ DOMPurify.setConfig({
 })
 
 const sanitizeAnswer = (answer: string) => {
-  debugger
   const res = DOMPurify.sanitize(answer)
-  console.log(res, answer)
   return res
 }
 
