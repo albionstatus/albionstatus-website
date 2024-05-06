@@ -3,20 +3,21 @@ const content = [
   {
     question: 'How many Albion servers exist?',
     answer: `
-        All players play on <span class="font-medium">the same server instance</span>.
-        There aren't multiple servers running, not even for the different platforms the game is available on.
-        That's the reason why there is no sever selection shown when creating your character.
-        Albion is, similar to EVE Online, sticking to the global server concept, which means:<br>
-        "<span class="font-medium">One server for all players</span>".
-        <br><br>
-        However, in the early days the data was hosted in two datacenters, which resulted in a better ping for players.
-        But the disadvantages, including latency and inter-server disconnects, outweighed the advantages.`,
+        There are currently three servers:
+        - Albion Americas (Washington DC)
+        - Albion Asia (Singapore)
+        - Albion Europe (Amsterdam)
+        Each server is seperate so players can play on the server nearest to them (lowest ping),
+        but a player can play on either of these three servers. On the character selection
+        screen, you can chose which server you wish to play on and the ping is shown behind
+        the server name. The lower the ping, the better the connection.`,
   },
   {
     question: 'Does the server location negatively influence the game experience?',
     answer: `
         Generally speaking, it <span class="font-medium">should not influence your game experience</span>.
         95% of the Albion Online players have a ping below 150, according to the developers of the game.
+        Still, it can't hurt to choose the server with the lowest ping.
         Players from Australia might suffer from the worldwide highest pings but the game should be still playable for
         them.<br>
         Also, your in-game experience depends on lots of other factors. Besides your location, your own internet
@@ -26,17 +27,9 @@ const content = [
   {
     question: 'Where is the Albion Online server located?',
     answer: `
-        The server of "Albion West" is located in <span class="font-medium">Washington DC, USA</span>. This server location was chosen in such a way that
-        players from America, Europe and also Russia will have a decent ping. As Albion's combat isn't as fast paced as
-        RTS games like Dota or Starcraft, players can even play the game well with "high pings" of 150.
-        An "Albion East" server aimed for players from Oceania and Asia was announced recently. The location of the Albion East server will be Singapore.`,
-  },
-  {
-    question: 'Are there EU or OCE servers available for Albion?',
-    answer: `
-        As explained in the previous answers, there is <span class="font-medium">no european or australian/oceanic server for Albion Online yet</span>.
-        The "Albion East" closed beta will launch on the 20th of February and will be publicly available on March 20th 2023.
-        There is no european server planned though.`,
+        The server of "Albion Americas" is located in <span class="font-medium">Washington DC, USA</span>.
+        The server of "Albion Asia" is located in <span class="font-medium">Singapore, Singapore</span>.
+        The server of "Albion Europe" is located in <span class="font-medium">Amsterdam, the Netherlands</span>.`,
   },
   {
     question: 'How do I see my ping or latency when playing Albion Online?',
