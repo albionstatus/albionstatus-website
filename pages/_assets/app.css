@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-developmint-500: #199922;
+  --color-developmint-300: #75c17a;
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "./node_modules/void/schema.json",
+  "worker": {
+    "compatibility_date": "2026-02-12",
+    "compatibility_flags": ["nodejs_compat"]
+  },
+  "head": {
+    "titleTemplate": "%s | AlbionStatus",
+    "title": "AlbionStatus - Is Albion Down?",
+    "htmlAttrs": { "lang": "en" },
+    "meta": [
+      { "charset": "utf-8" },
+      { "name": "viewport", "content": "width=device-width, initial-scale=1" },
+      {
+        "name": "description",
+        "content": "AlbionStatus is the only reliable Albion Online server status tracker. Find out if Albion is down in a splitsecond."
+      },
+      { "property": "og:site_name", "content": "AlbionStatus" },
+      { "name": "twitter:site", "content": "@AlbionStatus" },
+      { "name": "twitter:card", "content": "summary" }
+    ],
+    "link": [{ "rel": "icon", "href": "/icon.png" }],
+    "script": [
+      {
+        "src": "https://plausible.lichter.io/js/plausible.js",
+        "defer": "true",
+        "data-domain": "albionstatus.com"
+      }
+    ]
+  }
+}

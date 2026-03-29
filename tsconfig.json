@@ -1,4 +1,6 @@
 {
-  // https://v3.nuxtjs.org/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.void/tsconfig.json",
+  "compilerOptions": {
+    "types": ["void/env"]
+  }
 }
